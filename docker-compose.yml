@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: agriflow-frontend
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "4321:4321" # Port principal d'Astro
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true # Pour la détection des changements de fichiers
+      - HOST=0.0.0.0 # Permet à Astro de se lier sur toutes les interfaces
+    restart: unless-stopped
+    # Rend le processus de développement plus robuste
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4321"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s 

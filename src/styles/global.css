@@ -1,1 +1,55 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Palette de couleurs vertes */
+    --color-primary: 46 125 50; /* #2E7D32 Vert foncé */
+    --color-secondary: 76 175 80; /* #4CAF50 Vert moyen */
+    --color-accent: 139 195 74; /* #8BC34A Vert clair */
+    --color-light: 232 245 233; /* #E8F5E9 Vert très clair */
+    
+    --color-text: 38 50 56; /* #263238 Texte foncé */
+    --color-text-light: 96 125 139; /* #607D8B Texte gris */
+  }
+
+  html {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-block py-3 px-6 rounded-md font-medium text-center cursor-pointer transition-all duration-300 border-none;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary-dark;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white hover:bg-secondary-dark;
+  }
+
+  .btn-outline {
+    @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white;
+  }
+
+  .container {
+    @apply w-full max-w-7xl mx-auto px-6;
+  }
+
+  .section-title {
+    @apply text-center text-primary text-4xl font-semibold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-center text-text-light max-w-2xl mx-auto mb-12;
+  }
+}

@@ -1,11 +1,209 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<header class="bg-light py-8 md:py-16">
+		<div class="container">
+			<nav class="flex justify-between items-center py-6">
+				<div>
+					<span class="font-montserrat font-bold text-2xl text-primary">AgriFlow</span>
+				</div>
+				<div class="hidden md:flex gap-8">
+					<a href="#fonctionnalites" class="text-text font-medium hover:text-primary transition-colors">Fonctionnalités</a>
+					<a href="#avantages" class="text-text font-medium hover:text-primary transition-colors">Avantages</a>
+					<a href="#demo" class="text-text font-medium hover:text-primary transition-colors">Démonstration</a>
+					<a href="#contact" class="text-text font-medium hover:text-primary transition-colors">Contact</a>
+				</div>
+				<div class="flex gap-4">
+					<a href="/login" class="btn-outline">Se connecter</a>
+					<a href="/register" class="btn-primary">S'inscrire</a>
+				</div>
+			</nav>
+
+			<div class="flex flex-col-reverse md:flex-row items-center gap-12 mt-8">
+				<div class="md:w-1/2">
+					<h1 class="text-primary text-4xl md:text-5xl font-semibold leading-tight mb-6">
+						Gérez vos cultures efficacement
+					</h1>
+					<p class="text-text-light text-xl mb-8 max-w-xl">
+						AgriFlow vous permet de digitaliser et d'optimiser la gestion de vos terrains agricoles, cultures et interventions pour une traçabilité complète de vos activités.
+					</p>
+					<div class="flex flex-wrap gap-4">
+						<a href="/register" class="btn-primary">Commencer gratuitement</a>
+						<a href="#demo" class="btn-outline">Voir la démonstration</a>
+					</div>
+				</div>
+				<div class="md:w-1/2 flex justify-center">
+					<img src="/images/hero-illustration.svg" alt="Illustration AgriFlow" class="max-w-full h-auto" />
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<section id="fonctionnalites" class="py-20">
+		<div class="container">
+			<h2 class="section-title">Fonctionnalités clés</h2>
+			<p class="section-subtitle">
+				Une solution complète pour la gestion de vos activités agricoles
+			</p>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+				<div class="bg-white rounded shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
+					<div class="text-4xl mb-4">🏞️</div>
+					<h3 class="text-primary text-xl font-semibold mb-4">Gestion des terrains</h3>
+					<p class="text-text-light">Organisez vos terrains et espaces de culture selon vos besoins spécifiques : rizières, champs, vergers ou potagers.</p>
+				</div>
+
+				<div class="bg-white rounded shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
+					<div class="text-4xl mb-4">🌱</div>
+					<h3 class="text-primary text-xl font-semibold mb-4">Suivi des cultures</h3>
+					<p class="text-text-light">Suivez le cycle de vie complet de vos cultures, de la plantation à la récolte, avec un statut clair à chaque étape.</p>
+				</div>
+
+				<div class="bg-white rounded shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
+					<div class="text-4xl mb-4">📝</div>
+					<h3 class="text-primary text-xl font-semibold mb-4">Actions agricoles</h3>
+					<p class="text-text-light">Enregistrez toutes vos interventions (plantation, entretien, récolte) et gardez un historique précis de vos activités.</p>
+				</div>
+
+				<div class="bg-white rounded shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
+					<div class="text-4xl mb-4">📅</div>
+					<h3 class="text-primary text-xl font-semibold mb-4">Calendrier interactif</h3>
+					<p class="text-text-light">Planifiez vos actions futures et visualisez votre charge de travail avec un calendrier intuitif et personnalisable.</p>
+				</div>
+
+				<div class="bg-white rounded shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
+					<div class="text-4xl mb-4">🔍</div>
+					<h3 class="text-primary text-xl font-semibold mb-4">Observations et suivi</h3>
+					<p class="text-text-light">Documentez vos observations et conditions météorologiques pour une analyse complète de votre exploitation.</p>
+				</div>
+
+				<div class="bg-white rounded shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
+					<div class="text-4xl mb-4">👥</div>
+					<h3 class="text-primary text-xl font-semibold mb-4">Collaboration</h3>
+					<p class="text-text-light">Partagez vos données avec vos collaborateurs et attribuez différents niveaux d'accès selon les besoins.</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="avantages" class="py-20 bg-light">
+		<div class="container">
+			<div class="flex flex-col-reverse md:flex-row items-center gap-12">
+				<div class="md:w-1/2">
+					<h2 class="text-primary text-4xl font-semibold mb-8">Pourquoi choisir AgriFlow ?</h2>
+					<ul class="space-y-6 mb-8">
+						<li class="flex items-start">
+							<span class="text-primary font-bold text-xl mr-4">✓</span>
+							<div>
+								<h4 class="text-text font-semibold mb-1">Gain de temps considérable</h4>
+								<p class="text-text-light">Automatisez la planification et le suivi de vos activités agricoles</p>
+							</div>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary font-bold text-xl mr-4">✓</span>
+							<div>
+								<h4 class="text-text font-semibold mb-1">Amélioration de la productivité</h4>
+								<p class="text-text-light">Optimisez vos interventions grâce à un suivi précis et des rappels personnalisés</p>
+							</div>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary font-bold text-xl mr-4">✓</span>
+							<div>
+								<h4 class="text-text font-semibold mb-1">Traçabilité complète</h4>
+								<p class="text-text-light">Gardez un historique détaillé de toutes vos actions pour une meilleure analyse</p>
+							</div>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary font-bold text-xl mr-4">✓</span>
+							<div>
+								<h4 class="text-text font-semibold mb-1">Adaptabilité</h4>
+								<p class="text-text-light">Solution flexible qui s'adapte à différents types d'agriculture et tailles d'exploitation</p>
+							</div>
+						</li>
+						<li class="flex items-start">
+							<span class="text-primary font-bold text-xl mr-4">✓</span>
+							<div>
+								<h4 class="text-text font-semibold mb-1">Interface intuitive</h4>
+								<p class="text-text-light">Application simple à utiliser, accessible sur tous les appareils</p>
+							</div>
+						</li>
+					</ul>
+					<a href="/register" class="btn-primary">Essayer maintenant</a>
+				</div>
+				<div class="md:w-1/2 flex justify-center">
+					<img src="/images/benefits-illustration.svg" alt="Avantages d'AgriFlow" class="max-w-full h-auto" />
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="demo" class="py-20">
+		<div class="container">
+			<h2 class="section-title">Découvrez AgriFlow en action</h2>
+			<p class="section-subtitle">
+				Une démonstration vaut mieux que mille mots. Voyez comment AgriFlow peut transformer votre gestion agricole.
+			</p>
+			<div class="max-w-4xl mx-auto aspect-video">
+				<div class="w-full h-full bg-primary rounded flex flex-col items-center justify-center text-white cursor-pointer">
+					<div class="text-5xl mb-4">▶️</div>
+					<p class="text-lg">Voir la démo</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="py-16 bg-primary text-white text-center">
+		<div class="container">
+			<div class="max-w-3xl mx-auto">
+				<h2 class="text-white text-3xl md:text-4xl font-semibold mb-4">Prêt à transformer votre gestion agricole ?</h2>
+				<p class="text-lg mb-8">Rejoignez des milliers d'agriculteurs qui optimisent déjà leur productivité avec AgriFlow.</p>
+				<a href="/register" class="inline-block py-3 px-8 rounded bg-white text-primary font-medium text-lg hover:bg-light transition-colors">Commencer gratuitement</a>
+			</div>
+		</div>
+	</section>
+
+	<footer id="contact" class="bg-text text-white pt-16 pb-8">
+		<div class="container">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+				<div class="col-span-1 md:col-span-2 lg:col-span-1">
+					<h3 class="text-white text-xl font-semibold mb-4">AgriFlow</h3>
+					<p class="text-white/70">Solution de gestion agricole développée par ShiroUsagiLabo, conçue pour simplifier le quotidien des agriculteurs.</p>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium mb-4">Navigation</h4>
+					<ul class="space-y-2">
+						<li><a href="#fonctionnalites" class="text-white/70 hover:text-white transition-colors">Fonctionnalités</a></li>
+						<li><a href="#avantages" class="text-white/70 hover:text-white transition-colors">Avantages</a></li>
+						<li><a href="#demo" class="text-white/70 hover:text-white transition-colors">Démonstration</a></li>
+						<li><a href="/pricing" class="text-white/70 hover:text-white transition-colors">Tarifs</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium mb-4">Légal</h4>
+					<ul class="space-y-2">
+						<li><a href="/privacy" class="text-white/70 hover:text-white transition-colors">Politique de confidentialité</a></li>
+						<li><a href="/terms" class="text-white/70 hover:text-white transition-colors">Conditions d'utilisation</a></li>
+						<li><a href="/mentions" class="text-white/70 hover:text-white transition-colors">Mentions légales</a></li>
+					</ul>
+				</div>
+				<div>
+					<h4 class="text-white text-lg font-medium mb-4">Contact</h4>
+					<p class="text-white/70 mb-2">Email: contact@agriflow.com</p>
+					<p class="text-white/70 mb-4">Téléphone: +33 (0)1 23 45 67 89</p>
+					<div class="flex gap-4">
+						<a href="#" aria-label="Facebook" class="text-2xl">📱</a>
+						<a href="#" aria-label="Twitter" class="text-2xl">📱</a>
+						<a href="#" aria-label="Instagram" class="text-2xl">📱</a>
+						<a href="#" aria-label="LinkedIn" class="text-2xl">📱</a>
+					</div>
+				</div>
+			</div>
+			<div class="pt-8 border-t border-white/10 text-center text-white/50">
+				<p>&copy; {new Date().getFullYear()} AgriFlow. Tous droits réservés.</p>
+			</div>
+		</div>
+	</footer>
 </Layout>

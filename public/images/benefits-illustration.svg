@@ -1,0 +1,156 @@
+<svg width="600" height="400" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fond clair -->
+  <rect width="600" height="400" rx="20" fill="#F9FAFB"/>
+  
+  <!-- Ciel -->
+  <path d="M0 0H600V200C550 180 500 190 400 170C300 150 200 160 100 140C50 130 0 120 0 120V0Z" fill="#E8F5E9" opacity="0.5"/>
+  
+  <!-- Soleil -->
+  <circle cx="520" cy="80" r="30" fill="#FFC107" opacity="0.8"/>
+  <circle cx="520" cy="80" r="40" fill="#FFC107" opacity="0.3"/>
+  <circle cx="520" cy="80" r="50" fill="#FFC107" opacity="0.1"/>
+  
+  <!-- Champ en arrière-plan -->
+  <path d="M0 200C100 180 200 190 300 180C400 170 500 180 600 170V400H0V200Z" fill="#4CAF50" opacity="0.3"/>
+  
+  <!-- Lignes de culture stylisées -->
+  <g opacity="0.5">
+    <path d="M0 230C100 220 200 230 300 220C400 210 500 220 600 210" stroke="#2E7D32" stroke-width="1"/>
+    <path d="M0 260C100 250 200 260 300 250C400 240 500 250 600 240" stroke="#2E7D32" stroke-width="1"/>
+    <path d="M0 290C100 280 200 290 300 280C400 270 500 280 600 270" stroke="#2E7D32" stroke-width="1"/>
+    <path d="M0 320C100 310 200 320 300 310C400 300 500 310 600 300" stroke="#2E7D32" stroke-width="1"/>
+    <path d="M0 350C100 340 200 350 300 340C400 330 500 340 600 330" stroke="#2E7D32" stroke-width="1"/>
+    <path d="M0 380C100 370 200 380 300 370C400 360 500 370 600 360" stroke="#2E7D32" stroke-width="1"/>
+  </g>
+  
+  <!-- Plants de culture à gauche -->
+  <g transform="translate(80, 300)">
+    <path d="M-10 0C-10 0 -20 -40 -10 -60C0 -40 -10 0 -10 0Z" fill="#2E7D32" opacity="0.9"/>
+    <path d="M-10 0C-10 0 0 -30 -10 -50C-20 -30 -10 0 -10 0Z" fill="#4CAF50" opacity="0.9"/>
+    <line x1="-10" y1="0" x2="-10" y2="40" stroke="#795548" stroke-width="2"/>
+  </g>
+  
+  <g transform="translate(120, 300)">
+    <path d="M-5 0C-5 0 -15 -50 -5 -70C5 -50 -5 0 -5 0Z" fill="#2E7D32" opacity="0.9"/>
+    <path d="M-5 0C-5 0 5 -40 -5 -60C-15 -40 -5 0 -5 0Z" fill="#4CAF50" opacity="0.9"/>
+    <line x1="-5" y1="0" x2="-5" y2="40" stroke="#795548" stroke-width="2"/>
+  </g>
+  
+  <g transform="translate(160, 300)">
+    <path d="M0 0C0 0 -10 -45 0 -65C10 -45 0 0 0 0Z" fill="#2E7D32" opacity="0.9"/>
+    <path d="M0 0C0 0 10 -35 0 -55C-10 -35 0 0 0 0Z" fill="#4CAF50" opacity="0.9"/>
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#795548" stroke-width="2"/>
+  </g>
+  
+  <!-- Plants de culture à droite -->
+  <g transform="translate(440, 300)">
+    <path d="M10 0C10 0 0 -40 10 -60C20 -40 10 0 10 0Z" fill="#2E7D32" opacity="0.9"/>
+    <path d="M10 0C10 0 20 -30 10 -50C0 -30 10 0 10 0Z" fill="#4CAF50" opacity="0.9"/>
+    <line x1="10" y1="0" x2="10" y2="40" stroke="#795548" stroke-width="2"/>
+  </g>
+  
+  <g transform="translate(480, 300)">
+    <path d="M5 0C5 0 -5 -50 5 -70C15 -50 5 0 5 0Z" fill="#2E7D32" opacity="0.9"/>
+    <path d="M5 0C5 0 15 -40 5 -60C-5 -40 5 0 5 0Z" fill="#4CAF50" opacity="0.9"/>
+    <line x1="5" y1="0" x2="5" y2="40" stroke="#795548" stroke-width="2"/>
+  </g>
+  
+  <g transform="translate(520, 300)">
+    <path d="M0 0C0 0 -10 -45 0 -65C10 -45 0 0 0 0Z" fill="#2E7D32" opacity="0.9"/>
+    <path d="M0 0C0 0 10 -35 0 -55C-10 -35 0 0 0 0Z" fill="#4CAF50" opacity="0.9"/>
+    <line x1="0" y1="0" x2="0" y2="40" stroke="#795548" stroke-width="2"/>
+  </g>
+  
+  <!-- Agriculteur stylisé -->
+  <g transform="translate(300, 280)">
+    <!-- Jambes -->
+    <path d="M-20 0L-25 60" stroke="#5D4037" stroke-width="12" stroke-linecap="round"/>
+    <path d="M20 0L25 60" stroke="#5D4037" stroke-width="12" stroke-linecap="round"/>
+    
+    <!-- Chaussures -->
+    <ellipse cx="-25" cy="65" rx="10" ry="5" fill="#3E2723"/>
+    <ellipse cx="25" cy="65" rx="10" ry="5" fill="#3E2723"/>
+    
+    <!-- Corps -->
+    <rect x="-30" y="-50" width="60" height="60" rx="20" fill="#4CAF50"/>
+    
+    <!-- Bras tenant la tablette -->
+    <path d="M-30 -30L-60 0" stroke="#4CAF50" stroke-width="10" stroke-linecap="round"/>
+    <path d="M30 -30L60 -10" stroke="#4CAF50" stroke-width="10" stroke-linecap="round"/>
+    
+    <!-- Mains -->
+    <circle cx="-60" cy="0" r="8" fill="#D7CCC8"/>
+    <circle cx="60" cy="-10" r="8" fill="#D7CCC8"/>
+    
+    <!-- Tête -->
+    <circle cx="0" cy="-80" r="25" fill="#D7CCC8"/>
+    
+    <!-- Chapeau agriculteur -->
+    <path d="M-30 -90L0 -115L30 -90" fill="#8D6E63"/>
+    <ellipse cx="0" cy="-90" rx="30" ry="10" fill="#8D6E63"/>
+    
+    <!-- Visage simplifié -->
+    <circle cx="-8" cy="-80" r="3" fill="#3E2723"/>
+    <circle cx="8" cy="-80" r="3" fill="#3E2723"/>
+    <path d="M-5 -70C-5 -70 0 -65 5 -70" stroke="#3E2723" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Tablette avec interface AgriFlow -->
+  <g transform="translate(300, 240)">
+    <!-- Tablette -->
+    <rect x="-70" y="-40" width="140" height="100" rx="10" fill="#455A64"/>
+    <rect x="-65" y="-35" width="130" height="90" rx="5" fill="#FFFFFF"/>
+    
+    <!-- Écran - Interface -->
+    <rect x="-60" y="-30" width="120" height="20" rx="5" fill="#2E7D32"/>
+    <circle cx="-50" cy="-20" r="5" fill="white"/>
+    <rect x="-40" y="-22.5" width="40" height="5" rx="2.5" fill="white"/>
+    
+    <!-- Dashboard -->
+    <rect x="-60" y="-5" width="35" height="25" rx="5" fill="#E8F5E9"/>
+    <rect x="-20" y="-5" width="35" height="25" rx="5" fill="#E8F5E9"/>
+    <rect x="20" y="-5" width="35" height="25" rx="5" fill="#E8F5E9"/>
+    
+    <rect x="-60" y="25" width="55" height="25" rx="5" fill="#E8F5E9"/>
+    <rect x="0" y="25" width="55" height="25" rx="5" fill="#E8F5E9"/>
+    
+    <!-- Graphique simplifié -->
+    <path d="M-55 5L-45 0L-35 10" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="-55" y="10" width="25" height="5" rx="2.5" fill="#263238" opacity="0.7"/>
+    
+    <!-- Icônes -->
+    <circle cx="-2.5" cy="7.5" r="7.5" fill="#4CAF50"/>
+    <rect x="25" y="2.5" width="25" height="10" rx="5" fill="#2E7D32"/>
+    
+    <!-- Texte stylisé -->
+    <rect x="-55" y="32.5" width="45" height="5" rx="2.5" fill="#263238" opacity="0.7"/>
+    <rect x="-55" y="42.5" width="35" height="5" rx="2.5" fill="#263238" opacity="0.7"/>
+    
+    <rect x="5" y="32.5" width="45" height="5" rx="2.5" fill="#263238" opacity="0.7"/>
+    <rect x="5" y="42.5" width="35" height="5" rx="2.5" fill="#263238" opacity="0.7"/>
+  </g>
+  
+  <!-- Nuages stylisés -->
+  <g opacity="0.7">
+    <ellipse cx="150" cy="80" rx="40" ry="20" fill="white"/>
+    <ellipse cx="180" cy="70" rx="30" ry="15" fill="white"/>
+    <ellipse cx="210" cy="80" rx="20" ry="15" fill="white"/>
+  </g>
+  
+  <g opacity="0.5">
+    <ellipse cx="400" cy="100" rx="30" ry="15" fill="white"/>
+    <ellipse cx="430" cy="90" rx="25" ry="10" fill="white"/>
+    <ellipse cx="450" cy="100" rx="20" ry="10" fill="white"/>
+  </g>
+  
+  <!-- Outils agricoles en arrière-plan -->
+  <g transform="translate(50, 350) rotate(-30)" opacity="0.6">
+    <rect x="0" y="0" width="60" height="5" rx="2" fill="#795548"/>
+    <path d="M60 2.5L70 2.5L75 10L65 10L60 2.5Z" fill="#795548"/>
+  </g>
+  
+  <g transform="translate(550, 350) rotate(30)" opacity="0.6">
+    <rect x="-60" y="0" width="60" height="5" rx="2" fill="#795548"/>
+    <circle cx="-65" cy="2.5" r="7.5" fill="#795548"/>
+  </g>
+</svg> 

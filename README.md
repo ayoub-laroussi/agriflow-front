@@ -46,3 +46,89 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+# AgriFlow - Environnement de Développement
+
+Ce README explique comment configurer et utiliser l'environnement de développement Docker pour AgriFlow.
+
+## Prérequis
+
+- [Docker](https://www.docker.com/get-started) (version 20.10.0 ou supérieure)
+- [Docker Compose](https://docs.docker.com/compose/install/) (version 2.0.0 ou supérieure)
+
+## Configuration de l'environnement de développement
+
+### Première installation
+
+1. Clonez le dépôt :
+   ```bash
+   git clone https://github.com/votre-organisation/agriflow-front.git
+   cd agriflow-front
+   ```
+
+2. Démarrez l'environnement de développement avec Docker Compose :
+   ```bash
+   docker-compose up -d
+   ```
+
+3. L'application frontend sera accessible à l'adresse suivante :
+   ```
+   http://localhost:4321
+   ```
+
+### Commandes utiles
+
+- **Démarrer les services** :
+  ```bash
+  docker-compose up -d
+  ```
+
+- **Arrêter les services** :
+  ```bash
+  docker-compose down
+  ```
+
+- **Voir les logs** :
+  ```bash
+  docker-compose logs -f frontend
+  ```
+
+- **Reconstruire les images** (après modification du Dockerfile) :
+  ```bash
+  docker-compose build
+  ```
+
+- **Exécuter des commandes dans le conteneur** :
+  ```bash
+  docker-compose exec frontend sh
+  ```
+
+- **Installation de nouvelles dépendances** :
+  ```bash
+  docker-compose exec frontend pnpm add <package-name>
+  ```
+
+## Structure des fichiers Docker
+
+- `Dockerfile` : Configuration de l'image Docker pour le frontend
+- `docker-compose.yml` : Configuration des services (frontend, et plus tard backend et base de données)
+- `.dockerignore` : Fichiers à ignorer lors du build de l'image Docker
+
+## Développement
+
+Le répertoire local est monté dans le conteneur Docker, ce qui signifie que les modifications apportées aux fichiers source sont automatiquement détectées et le serveur de développement Astro recharge l'application.
+
+## Dépannage
+
+- **Problèmes de permissions** : Si vous rencontrez des problèmes de permissions avec les fichiers générés par Docker, essayez d'exécuter :
+  ```bash
+  sudo chown -R $(id -u):$(id -g) .
+  ```
+
+- **Ports déjà utilisés** : Si les ports 4321 ou 3000 sont déjà utilisés sur votre machine, modifiez les mappings de ports dans le fichier `docker-compose.yml`.
+
+- **Hot reload ne fonctionne pas** : Assurez-vous que `CHOKIDAR_USEPOLLING=true` est défini dans les variables d'environnement du service frontend dans `docker-compose.yml`.
+
+## Future expansion
+
+Le fichier `docker-compose.yml` contient des sections commentées pour le backend et la base de données. Ces sections peuvent être décommentées et configurées lorsque ces composants seront développés.
