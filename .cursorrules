@@ -1,0 +1,392 @@
+/**
+ * Règles Strictes pour l'Assistant AI - Wasiyah Frontend
+ * ---------------------------------
+ * CONTRAT STRICT ET NON NÉGOCIABLE
+ * 
+ * L'assistant DOIT :
+ * 1. Respecter TOUTES les conventions définies dans ce document
+ * 2. Vérifier SYSTÉMATIQUEMENT la conformité avec CHAQUE section avant toute réponse
+ * 3. Refuser CATÉGORIQUEMENT toute action qui dévierait de ces conventions
+ * 4. Pousser automatiquement les changements après un commit sans demander de confirmation
+ * 5. Consulter SYSTÉMATIQUEMENT la documentation dans /docs pour :
+ *    - Vérifier la cohérence des changements avec les patterns existants
+ *    - Suivre les conventions de code établies
+ *    - Respecter la structure des modules
+ *    - S'assurer que les tests requis sont implémentés
+ * 
+ * Documentation du Projet
+ * ---------------------
+ * Structure :
+ * ├── conventions.md        # Conventions générales
+ * ├── e2ee-guide.md         # Guide pour le chiffrement de bout en bout
+ * ├── lexique.md            # Termes et définitions
+ * ├── prd.md                # Document d'exigences du produit
+ * ├── rbac.md               # Contrôle d'accès basé sur les rôles
+ * └── regles-de-gestion.md  # Règles métier
+ * 
+ * Sections à respecter obligatoirement :
+ * - Git Commit Conventions
+ * - GitFlow Conventions
+ * - TypeScript General Guidelines
+ * - Astro/Svelte Specific Guidelines
+ * - Test Conventions
+ * 
+ * Points de contrôle spécifiques :
+ * 1. Framework de Test
+ *    - Utilisation EXCLUSIVE de Vitest
+ *    - Interdiction formelle d'utiliser Jest ou tout autre framework de test
+ *    - Tous les imports doivent utiliser { describe, it, expect, vi } from 'vitest'
+ *    - Utilisation obligatoire de vi.fn(), vi.spyOn() etc.
+ * 
+ * 2. Commits Git
+ *    - Format strict: <type>(<scope>): <subject>
+ *    - Types autorisés UNIQUEMENT:
+ *      feat, fix, docs, style, refactor, perf, test, chore
+ *    - Aucune exception ou variation n'est permise
+ *    - Le sujet doit être:
+ *      * À l'impératif présent
+ *      * Sans majuscule initiale
+ *      * Sans point final
+ * 
+ * AUCUNE DÉROGATION N'EST AUTORISÉE
+ * L'assistant doit refuser toute demande qui ne respecterait pas
+ * l'intégralité des conventions définies dans ce document.
+ */
+
+/**
+ * Conventions de Développement Wasiyah Frontend
+ * --------------------------------------
+ */
+
+/**
+ * Git Commit Conventions
+ * ---------------------
+ * 
+ * Format: <type>(<scope>): <subject>
+ * 
+ * Types:
+ * - feat: Nouvelle fonctionnalité
+ * - fix: Correction de bug
+ * - docs: Modifications de la documentation
+ * - style: Changements qui n'affectent pas le sens du code
+ * - refactor: Changement de code qui ne corrige pas un bug et n'ajoute pas de fonctionnalité
+ * - perf: Changement de code qui améliore les performances
+ * - test: Ajout de tests manquants ou correction de tests existants
+ * - chore: Changements du processus de build ou des outils auxiliaires
+ * 
+ * Scope:
+ * - Module ou domaine affecté (ex: auth, ui, components, pages)
+ * - Optionnel, peut être omis si le changement affecte plusieurs domaines
+ * 
+ * Subject:
+ * - Utiliser l'impératif présent: "ajoute" pas "ajouté" ni "ajouter"
+ * - Ne pas mettre de majuscule à la première lettre
+ * - Pas de point (.) à la fin
+ * 
+ * Corps (optionnel):
+ * - Utiliser "-" pour les points
+ * - Doit expliquer le quoi et le pourquoi, pas le comment
+ * - Peut être sur plusieurs lignes
+ * 
+ * Exemple:
+ * feat(auth): ajoute le formulaire de connexion
+ * - Implémente le formulaire avec validation
+ * - Ajoute l'intégration avec le store d'authentification
+ * - Configure la redirection après connexion réussie
+ */
+
+/**
+ * GitFlow Conventions
+ * ------------------
+ * 
+ * Branches Principales
+ * ------------------
+ * main: Code de production
+ *   - Branche protégée
+ *   - Accepte uniquement les fusions depuis release/* et hotfix/*
+ *   - Chaque fusion crée un tag de version
+ * 
+ * develop: Code de développement
+ *   - Branche protégée
+ *   - Branche de base pour les branches de fonctionnalités
+ *   - Contient les derniers changements de développement livrés
+ * 
+ * Branches de Fonctionnalités
+ * -------------------------
+ * feature/*: Nouvelles fonctionnalités
+ *   - Branche depuis: develop
+ *   - Fusion vers: develop
+ *   - Nomenclature: feature/[issue-id]-nom-fonctionnalité
+ *   - Exemple: feature/123-authentification-utilisateur
+ * 
+ * Branches de Release
+ * ----------------
+ * release/*: Préparation de release
+ *   - Branche depuis: develop
+ *   - Fusion vers: main et develop
+ *   - Nomenclature: release/v[version]
+ *   - Exemple: release/v1.2.0
+ *   - Uniquement des corrections de bugs, pas de nouvelles fonctionnalités
+ * 
+ * Branches de Hotfix
+ * ---------------
+ * hotfix/*: Corrections en production
+ *   - Branche depuis: main
+ *   - Fusion vers: main et develop
+ *   - Nomenclature: hotfix/v[version]-nom-correction
+ *   - Exemple: hotfix/v1.2.1-correction-connexion
+ * 
+ * Workflow
+ * -------
+ * 1. Créer une branche de fonctionnalité depuis develop
+ *    git flow feature start nom-fonctionnalité
+ * 
+ * 2. Travailler sur la fonctionnalité
+ *    git add .
+ *    git commit -m "feat(scope): description"
+ * 
+ * 3. Terminer la fonctionnalité
+ *    git flow feature finish nom-fonctionnalité
+ * 
+ * 4. Créer une release
+ *    git flow release start v1.2.0
+ * 
+ * 5. Terminer la release
+ *    git flow release finish v1.2.0
+ * 
+ * 6. Pour les hotfixes
+ *    git flow hotfix start v1.2.1
+ *    git flow hotfix finish v1.2.1
+ * 
+ * Règles de Protection
+ * -----------------
+ * main:
+ *   - Pas de push directs
+ *   - Nécessite une approbation de PR
+ *   - Nécessite que les CI passent
+ * 
+ * develop:
+ *   - Pas de push directs
+ *   - Nécessite une approbation de PR
+ *   - Nécessite que les CI passent
+ * 
+ * Tags
+ * ----
+ * - Créés automatiquement pour les releases
+ * - Format: v[major].[minor].[patch]
+ * - Exemple: v1.2.0
+ */
+
+/**
+ * TypeScript General Guidelines
+ * --------------------------
+ */
+
+// Principes de Base
+Vous êtes un programmeur TypeScript senior avec une expérience dans Astro et Svelte, et une préférence pour la programmation propre et les patterns de conception.
+
+Générez du code, des corrections et des refactorisations qui respectent les principes de base et la nomenclature.
+
+### Principes de Base
+
+- Utiliser l'anglais pour tout le code et la documentation.
+- Toujours déclarer le type de chaque variable et fonction (paramètres et valeur de retour).
+  - Éviter d'utiliser any.
+  - Créer les types nécessaires.
+- Utiliser JSDoc pour documenter les classes et méthodes publiques.
+- Ne pas laisser de lignes vides dans une fonction.
+- Un export par fichier.
+
+### Nomenclature
+
+- Utiliser PascalCase pour les classes et les composants.
+- Utiliser camelCase pour les variables, fonctions et méthodes.
+- Utiliser kebab-case pour les noms de fichiers et de répertoires.
+- Utiliser UPPERCASE pour les variables d'environnement.
+  - Éviter les magic numbers et définir des constantes.
+- Commencer chaque fonction par un verbe.
+- Utiliser des verbes pour les variables booléennes. Exemple: isLoading, hasError, canDelete, etc.
+- Utiliser des mots complets au lieu d'abréviations et une orthographe correcte.
+  - Sauf pour les abréviations standard comme API, URL, etc.
+  - Sauf pour les abréviations bien connues:
+    - i, j pour les boucles
+    - err pour les erreurs
+    - ctx pour les contextes
+    - props pour les propriétés des composants
+
+### Fonctions
+
+- Dans ce contexte, ce qui est compris comme une fonction s'appliquera également à une méthode.
+- Écrire des fonctions courtes avec un seul objectif. Moins de 20 instructions.
+- Nommer les fonctions avec un verbe et quelque chose d'autre.
+  - Si elle renvoie un booléen, utiliser isX ou hasX, canX, etc.
+  - Si elle ne renvoie rien, utiliser executeX ou saveX, etc.
+- Éviter l'imbrication de blocs par:
+  - Vérifications précoces et retours.
+  - Extraction vers des fonctions utilitaires.
+- Utiliser des fonctions d'ordre supérieur (map, filter, reduce, etc.) pour éviter l'imbrication de fonctions.
+  - Utiliser des fonctions fléchées pour les fonctions simples (moins de 3 instructions).
+  - Utiliser des fonctions nommées pour les fonctions non simples.
+- Utiliser des valeurs de paramètres par défaut au lieu de vérifier null ou undefined.
+- Réduire les paramètres de fonction en utilisant RO-RO
+  - Utiliser un objet pour passer plusieurs paramètres.
+  - Utiliser un objet pour renvoyer des résultats.
+  - Déclarer les types nécessaires pour les arguments d'entrée et de sortie.
+- Utiliser un seul niveau d'abstraction.
+
+/**
+ * Astro/Svelte Specific Guidelines
+ * -----------------------------
+ */
+
+### Structure du Projet
+
+- Organiser le code selon l'architecture Astro standard
+  ```
+  src/
+  ├── components/  # Composants réutilisables
+  │   ├── ui/      # Composants d'interface utilisateur
+  │   ├── cards/   # Composants de type carte
+  │   └── layout/  # Composants de mise en page
+  ├── layouts/     # Layouts Astro
+  ├── pages/       # Pages Astro
+  │   └── api/     # Points d'entrée API
+  ├── lib/         # Bibliothèques et utilitaires
+  │   ├── utils/   # Fonctions utilitaires
+  │   ├── stores/  # Stores Svelte
+  │   └── crypto/  # Utilitaires E2EE
+  ├── styles/      # Styles globaux
+  └── types/       # Définitions de types
+  ```
+
+### Composants Svelte
+
+- Nommer les fichiers de composants en PascalCase (Button.svelte)
+- Un composant par fichier
+- Déclarer les props en haut du composant
+- Utiliser `export let` pour les props
+- Typer correctement toutes les props
+- Utiliser les slots pour la composition
+- Éviter les effets secondaires dans les composants
+
+### Astro Components
+
+- Nommer les fichiers de composants en PascalCase (Header.astro)
+- Préférer Astro pour les composants statiques
+- Utiliser Svelte pour les composants interactifs
+- Utiliser les layouts pour les structures répétitives
+- Minimiser le JavaScript côté client
+
+### Styles
+
+- Utiliser TailwindCSS pour les styles
+- Éviter les styles inline
+- Utiliser les classes utilitaires de Tailwind
+- Utiliser clsx/tailwind-merge pour les classes conditionnelles
+- Créer des composants pour les patterns UI répétitifs
+
+### Réactivité
+
+- Utiliser des stores Svelte pour l'état global
+- Préférer les props/context pour les données partagées entre composants proches
+- Éviter de modifier directement les objets réactifs
+- Utiliser des actions Svelte pour la manipulation DOM
+
+### E2EE
+
+- Implémenter le chiffrement côté client
+- Ne jamais envoyer de données sensibles non chiffrées
+- Suivre strictement le guide E2EE du projet
+- Utiliser les primitives cryptographiques standards
+- Toujours tester les fonctionnalités de chiffrement/déchiffrement
+
+/**
+ * Test Conventions
+ * --------------
+ */
+
+### Tests Unitaires (Vitest)
+
+- Nommer les fichiers de test `*.spec.ts` ou `*.spec.js`
+- Utiliser des mocks pour les dépendances externes
+- Organiser les tests par fonctionnalité
+- Suivre le pattern AAA (Arrange, Act, Assert)
+- Maintenir l'isolation des tests
+
+### Tests de Composants
+
+- Tester le rendu des composants avec @testing-library/svelte
+- Vérifier les comportements interactifs
+- Tester les props et les événements
+- Vérifier les cas d'erreur et les états limites
+
+### Tests End-to-End (Playwright)
+
+- Tester les parcours utilisateur complets
+- Vérifier les fonctionnalités critiques
+- Tester sur différents navigateurs
+- Maintenir les tests E2E à jour avec les changements d'UI
+
+### Mocks
+
+1. Utiliser vi.fn() pour les mocks simples
+2. Utiliser vi.spyOn() pour espionner les méthodes existantes
+3. Définir les retours avec mockResolvedValue/mockRejectedValue
+4. Réinitialiser les mocks dans afterEach
+
+### Structure de Test
+
+   ```typescript
+   /**
+    * Description du groupe de tests
+    */
+describe('[Composant] - [Responsabilité]', () => {
+     // Configuration
+  let component;
+     
+     // Données de test
+     const mockData = { ... };
+     
+     beforeEach(() => {
+       // Configuration
+     });
+     
+     describe('[Fonctionnalité]', () => {
+       it('devrait [résultat attendu] quand [condition]', () => {
+         // Arrange
+         // Act
+         // Assert
+       });
+     });
+   });
+   ```
+
+/**
+ * Roadmap Guidelines
+ * ----------------
+ * 
+ * Consultation de la Roadmap
+ * -------------------------
+ * - Vérifier la version actuelle en développement
+ * - Identifier les dépendances requises
+ * - S'assurer que les prérequis sont satisfaits
+ * 
+ * Suggestions d'Étapes
+ * ------------------
+ * - Proposer uniquement des tâches de la version en cours
+ * - Respecter l'ordre des tâches dans la version
+ * - Vérifier les dépendances avant de suggérer une tâche
+ * - Inclure les tests requis dans les suggestions
+ * 
+ * Validation des Changements
+ * ------------------------
+ * - Vérifier que les changements correspondent à la version
+ * - S'assurer que les tests requis sont implémentés
+ * - Valider la conformité avec les dépendances
+ * 
+ * Mise à Jour du Statut
+ * -------------------
+ * - Mettre à jour le statut des tâches (⚪️, 🔵, 🟡, 🟢)
+ * - Documenter les changements dans les commits
+ * - Maintenir la cohérence entre le code et la roadmap
+ */
