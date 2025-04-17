@@ -17,12 +17,11 @@
  * Documentation du Projet
  * ---------------------
  * Structure :
- * ├── conventions.md        # Conventions générales
- * ├── e2ee-guide.md         # Guide pour le chiffrement de bout en bout
- * ├── lexique.md            # Termes et définitions
- * ├── prd.md                # Document d'exigences du produit
- * ├── rbac.md               # Contrôle d'accès basé sur les rôles
- * └── regles-de-gestion.md  # Règles métier
+ * ├── contexte.md        
+ * ├── enjeux.md         
+ * ├── objectif.md            
+ * ├── problematique.md                
+ * └── regles-de-gestion.md  
  * 
  * Sections à respecter obligatoirement :
  * - Git Commit Conventions
