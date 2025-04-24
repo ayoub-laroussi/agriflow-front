@@ -2,9 +2,6 @@ FROM node:18-slim
 
 WORKDIR /app
 
-# Désactiver les modules natifs de Rollup qui causent des problèmes
-ENV ROLLUP_SKIP_NATIVE=true
-
 # Copie des fichiers de configuration
 COPY package.json package-lock.json ./
 

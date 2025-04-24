@@ -1,0 +1,46 @@
+import BenefitItem from '../ui/BenefitItem.astro';
+
+const benefits = [
+    {
+        title: "Gain de temps considérable",
+        description: "Automatisez la planification et le suivi de vos activités agricoles"
+    },
+    {
+        title: "Amélioration de la productivité",
+        description: "Optimisez vos interventions grâce à un suivi précis et des rappels personnalisés"
+    },
+    {
+        title: "Traçabilité complète",
+        description: "Gardez un historique détaillé de toutes vos actions pour une meilleure analyse"
+    },
+    {
+        title: "Adaptabilité",
+        description: "Solution flexible qui s'adapte à différents types d'agriculture et tailles d'exploitation"
+    },
+    {
+        title: "Interface intuitive",
+        description: "Application simple à utiliser, accessible sur tous les appareils"
+    }
+];
+
+<section id="avantages" class="py-20 bg-light">
+    <div class="container">
+        <div class="flex flex-col-reverse md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <h2 class="text-primary text-4xl font-semibold mb-8">Pourquoi choisir AgriFlow ?</h2>
+                <ul class="space-y-6 mb-8">
+                    {benefits.map(benefit => (
+                        <BenefitItem 
+                            title={benefit.title}
+                            description={benefit.description}
+                        />
+                    ))}
+                </ul>
+                <a href="/register" class="btn-primary">Essayer maintenant</a>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="/images/benefits-illustration.svg" alt="Avantages d'AgriFlow" class="max-w-full h-auto" />
+            </div>
+        </div>
+    </div>
+</section> 

@@ -1,0 +1,53 @@
+import FeatureCard from '../ui/FeatureCard.astro';
+
+const features = [
+    {
+        icon: "🏞️",
+        title: "Gestion des terrains",
+        description: "Organisez vos terrains et espaces de culture selon vos besoins spécifiques : rizières, champs, vergers ou potagers."
+    },
+    {
+        icon: "🌱",
+        title: "Suivi des cultures",
+        description: "Suivez le cycle de vie complet de vos cultures, de la plantation à la récolte, avec un statut clair à chaque étape."
+    },
+    {
+        icon: "📝",
+        title: "Actions agricoles",
+        description: "Enregistrez toutes vos interventions (plantation, entretien, récolte) et gardez un historique précis de vos activités."
+    },
+    {
+        icon: "📅",
+        title: "Calendrier interactif",
+        description: "Planifiez vos actions futures et visualisez votre charge de travail avec un calendrier intuitif et personnalisable."
+    },
+    {
+        icon: "🔍",
+        title: "Observations et suivi",
+        description: "Documentez vos observations et conditions météorologiques pour une analyse complète de votre exploitation."
+    },
+    {
+        icon: "👥",
+        title: "Collaboration",
+        description: "Partagez vos données avec vos collaborateurs et attribuez différents niveaux d'accès selon les besoins."
+    }
+];
+
+<section id="fonctionnalites" class="py-20">
+    <div class="container">
+        <h2 class="section-title">Fonctionnalités clés</h2>
+        <p class="section-subtitle">
+            Une solution complète pour la gestion de vos activités agricoles
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {features.map(feature => (
+                <FeatureCard 
+                    icon={feature.icon}
+                    title={feature.title}
+                    description={feature.description}
+                />
+            ))}
+        </div>
+    </div>
+</section> 
