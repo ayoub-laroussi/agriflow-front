@@ -4,44 +4,106 @@ import BenefitItem from '../ui/BenefitItem.astro';
 const benefits = [
     {
         title: "Gain de temps considérable",
-        description: "Automatisez la planification et le suivi de vos activités agricoles"
-    },
-    {
-        title: "Amélioration de la productivité",
-        description: "Optimisez vos interventions grâce à un suivi précis et des rappels personnalisés"
+        description: "Automatisez la planification et le suivi de vos activités agricoles pour réduire le travail administratif"
     },
     {
         title: "Traçabilité complète",
-        description: "Gardez un historique détaillé de toutes vos actions pour une meilleure analyse"
+        description: "Gardez un historique détaillé de toutes vos actions pour une meilleure analyse et prise de décision"
     },
     {
-        title: "Adaptabilité",
-        description: "Solution flexible qui s'adapte à différents types d'agriculture et tailles d'exploitation"
+        title: "Flexibilité d'organisation",
+        description: "Adaptez l'application à votre type d'exploitation avec des configurations personnalisées"
     },
     {
-        title: "Interface intuitive",
-        description: "Application simple à utiliser, accessible sur tous les appareils"
+        title: "Suivi personnalisé",
+        description: "Suivez chaque culture individuellement avec un système de statuts clair et intuitif"
+    },
+    {
+        title: "Facilité d'utilisation",
+        description: "Interface simple et accessible conçue pour tous les niveaux de familiarité avec le numérique"
     }
 ];
 ---
 
-<section id="avantages" class="py-20 bg-light">
-    <div class="container">
-        <div class="flex flex-col-reverse md:flex-row items-center gap-12">
+<section id="solutions" class="py-20 bg-light">
+    <div class="container mx-auto px-4">
+        <div class="mb-16 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Des solutions concrètes<br/>pour vos défis agricoles quotidiens</h2>
+            <p class="text-text-light text-lg max-w-2xl mx-auto">
+                Découvrez comment AgriFlow répond aux défis de la gestion agricole avec des fonctionnalités adaptées à vos besoins.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="relative">
+                <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-primary font-bold">Gestion des espaces de culture</span>
+                        <span class="bg-light px-2 py-1 rounded text-sm">01</span>
+                    </div>
+                    <img src="/images/home/riziere3.jpg" alt="Espaces de culture" class="w-full h-48 object-cover rounded-lg mb-4" />
+                    <p class="text-text-light">Divisez facilement vos terrains en espaces spécifiques (rizières, champs, vergers, potagers) et suivez les interventions par espace.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-primary font-bold">Suivi des cultures</span>
+                        <span class="bg-light px-2 py-1 rounded text-sm">02</span>
+                    </div>
+                    <img src="/images/home/grain.jpg" alt="Suivi des cultures" class="w-full h-48 object-cover rounded-lg mb-4" />
+                    <p class="text-text-light">Gérez les cultures pérennes et saisonnières avec un système de statuts adaptés à chaque étape du cycle de vie des plantes.</p>
+                </div>
+            </div>
+            
+            <div class="relative pt-12">
+                <div class="bg-white rounded-xl p-6 shadow-lg mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-primary font-bold">Planification des actions</span>
+                        <span class="bg-light px-2 py-1 rounded text-sm">03</span>
+                    </div>
+                    <img src="/images/home/champs.jpg" alt="Planification" class="w-full h-48 object-cover rounded-lg mb-4" />
+                    <p class="text-text-light">Programmez et répétez automatiquement vos actions agricoles récurrentes avec un système de rappels personnalisables.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-6 shadow-lg">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-primary font-bold">Calendrier interactif</span>
+                        <span class="bg-light px-2 py-1 rounded text-sm">04</span>
+                    </div>
+                    <img src="/images/home/illustration-riziere.jpg" alt="Calendrier" class="w-full h-48 object-cover rounded-lg mb-4" />
+                    <p class="text-text-light">Visualisez et modifiez facilement vos interventions planifiées grâce à une interface calendrier intuitive et flexible.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 flex justify-center gap-4">
+            <button class="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+
+        <div class="mt-20 flex flex-col md:flex-row items-center gap-8">
             <div class="md:w-1/2">
-                <h2 class="text-primary text-4xl font-semibold mb-8">Pourquoi choisir AgriFlow ?</h2>
+                <h3 class="text-2xl font-bold mb-6">Demandez une démo personnalisée</h3>
+                <div class="flex relative">
+                    <button class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                    <input type="email" placeholder="Entrez votre email" class="w-full py-4 px-6 pr-14 rounded-full border border-gray-200" />
+                </div>
+            </div>
+            <div class="md:w-1/2">
                 <ul class="space-y-6 mb-8">
-                    {benefits.map(benefit => (
+                    {benefits.slice(0, 3).map(benefit => (
                         <BenefitItem 
                             title={benefit.title}
                             description={benefit.description}
                         />
                     ))}
                 </ul>
-                <a href="/register" class="btn-primary">Essayer maintenant</a>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <img src="/images/benefits-illustration.svg" alt="Avantages d'AgriFlow" class="max-w-full h-auto" />
             </div>
         </div>
     </div>

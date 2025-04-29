@@ -3,9 +3,12 @@ import Navigation from './Navigation.astro';
 import Hero from '../sections/Hero.astro';
 ---
 
-<header class="bg-light py-8 md:py-16">
-    <div class="container">
+<header class="bg-white dark:bg-background py-6">
+    <div class="container mx-auto px-4">
         <Navigation />
-        <Hero />
     </div>
-</header> 
+</header>
+
+<section class="w-screen max-w-none p-0 m-0">
+    <Hero />
+</section> 

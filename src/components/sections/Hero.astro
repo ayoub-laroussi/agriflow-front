@@ -1,17 +1,72 @@
-<div class="flex flex-col-reverse md:flex-row items-center gap-12 mt-8">
-    <div class="md:w-1/2">
-        <h1 class="text-primary text-4xl md:text-5xl font-semibold leading-tight mb-6">
-            Gérez vos cultures efficacement
-        </h1>
-        <p class="text-text-light text-xl mb-8 max-w-xl">
-            AgriFlow vous permet de digitaliser et d'optimiser la gestion de vos terrains agricoles, cultures et interventions pour une traçabilité complète de vos activités.
-        </p>
-        <div class="flex flex-wrap gap-4">
-            <a href="/register" class="btn-primary">Commencer gratuitement</a>
-            <a href="#demo" class="btn-outline">Voir la démonstration</a>
-        </div>
+---
+import { t } from '../../lib/utils/i18n';
+---
+
+<section
+  class="relative w-full h-[70vh] md:h-[80vh] flex items-center justify-center overflow-hidden"
+>
+  <img
+    src="/images/home/riziere2.jpg"
+    alt="Rizières en terrasse"
+    class="absolute inset-0 w-full h-full object-cover z-0"
+  />
+  <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+  <div
+    class="relative z-20 flex flex-col items-center justify-center text-center w-full px-4"
+  >
+    <div
+      class="text-xs text-primary dark:text-secondary bg-white dark:bg-background/90 bg-opacity-80 dark:bg-opacity-80 inline-block px-3 py-1 rounded-full mb-4"
+    >
+      {t('hero.tagline')}
     </div>
-    <div class="md:w-1/2 flex justify-center">
-        <img src="/images/hero-illustration.svg" alt="Illustration AgriFlow" class="max-w-full h-auto" />
-    </div>
-</div> 
+    <h1
+      class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg"
+    >
+      {t('hero.title')}
+    </h1>
+    <p class="text-white text-lg mb-8 max-w-2xl mx-auto drop-shadow">
+      {t('hero.description')}
+    </p>
+    <a
+      href="/register"
+      class="flex items-center gap-2 bg-primary dark:bg-secondary text-white px-8 py-4 rounded-full font-semibold hover:bg-primary-dark dark:hover:bg-primary transition-all text-lg shadow-lg"
+    >
+      {t('hero.cta')}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><line x1="5" y1="12" x2="19" y2="12"></line><polyline
+          points="12 5 19 12 12 19"></polyline></svg
+      >
+    </a>
+  </div>
+</section>
+
+<div
+  class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center"
+>
+  <div class="p-4">
+    <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">4+</h3>
+    <p class="text-text-light dark:text-text-light">{t('hero.stats.spaces')}</p>
+  </div>
+  <div class="p-4">
+    <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">7+</h3>
+    <p class="text-text-light dark:text-text-light">{t('hero.stats.statuses')}</p>
+  </div>
+  <div class="p-4">
+    <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">5+</h3>
+    <p class="text-text-light dark:text-text-light">{t('hero.stats.actions')}</p>
+  </div>
+  <div class="p-4">
+    <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">100%</h3>
+    <p class="text-text-light dark:text-text-light">{t('hero.stats.traceability')}</p>
+  </div>
+</div>
+

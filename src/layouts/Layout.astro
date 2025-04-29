@@ -1,9 +1,21 @@
 ---
 import '../styles/global.css';
+import { t } from '../lib/utils/i18n';
+
+// Obtenir la langue actuelle
+const currentPath = Astro.url.pathname;
+const pathSegments = currentPath.split('/').filter(Boolean);
+const currentLanguage = pathSegments[0] === 'en' ? 'en' : 'fr';
+
+// Support pour les titres et descriptions personnalisés
+const { 
+	title = 'AgriFlow', 
+	description = 'Plateforme de gestion agricole' 
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="fr" class="bg-background text-text">
+<html lang={currentLanguage} class="bg-background text-text">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
@@ -12,9 +24,50 @@ import '../styles/global.css';
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		<title>AgriFlow | Gestion agricole simplifiée</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		
+		<!-- Script pour le thème sombre -->
+		<script is:inline>
+			// Vérifie si l'utilisateur a déjà choisi un thème
+			const savedTheme = localStorage.getItem('theme');
+			
+			// Si oui, on applique ce thème
+			if (savedTheme === 'dark') {
+				document.documentElement.classList.add('dark');
+			} else if (savedTheme === 'light') {
+				document.documentElement.classList.remove('dark');
+			} else {
+				// Sinon on utilise la préférence système
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (prefersDark) {
+					document.documentElement.classList.add('dark');
+				}
+			}
+		</script>
+		
+		<!-- Script pour l'initialisation des langues -->
+		<script is:inline define:vars={{ currentLanguage }}>
+			// Exposer les variables de langue aux composants enfants
+			window.APP_LANGUAGE = {
+				current: currentLanguage,
+				available: ["fr", "en"]
+			};
+		</script>
+		
+		<!-- Chargement des traductions côté client -->
+		<script>
+			// Importer la fonction d'initialisation des traductions
+			import { initClientTranslations } from '../lib/utils/i18n';
+			
+			// Initialiser les traductions au chargement de la page
+			document.addEventListener('DOMContentLoaded', async () => {
+				await initClientTranslations();
+				console.log('Traductions initialisées ✅');
+			});
+		</script>
 	</head>
-	<body class="min-h-screen w-full leading-relaxed">
+	<body class="min-h-screen w-full leading-relaxed bg-white dark:bg-background text-text dark:text-white">
 		<slot />
 	</body>
 </html>

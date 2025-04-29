@@ -1,0 +1,87 @@
+{
+  "global": {
+    "site_name": "AgriFlow",
+    "site_description": "Simplified Agricultural Management",
+    "dark_mode": {
+      "toggle_light": "Switch to light mode",
+      "toggle_dark": "Switch to dark mode"
+    },
+    "language": {
+      "switch": "Change language",
+      "fr": "Français",
+      "en": "English"
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "features": "Features",
+    "solutions": "Solutions",
+    "demo": "Demo",
+    "contact": "Contact",
+    "login": "Login",
+    "register": "Register"
+  },
+  "hero": {
+    "tagline": "Agricultural management solution by ShiroUsagiLabo",
+    "title": "Digitize your farm management with AgriFlow",
+    "description": "Track, plan, and organize your agricultural activities across different types of land and growing spaces for complete traceability of your operations.",
+    "cta": "Get Started",
+    "stats": {
+      "spaces": "Types of managed agricultural spaces",
+      "statuses": "Crop status tracking",
+      "actions": "Types of agricultural actions",
+      "traceability": "Intervention traceability"
+    }
+  },
+  "features": {
+    "title": "Simplify the daily management of your agricultural operations",
+    "subtitle": "AgriFlow addresses the daily challenges of farmers by offering digital solutions adapted to the reality of the field.",
+    "list": {
+      "landManagement": {
+        "title": "Land Management",
+        "description": "Organize your plots and growing spaces according to your specific needs: rice fields, farmland, orchards or gardens."
+      },
+      "cropTracking": {
+        "title": "Crop Tracking",
+        "description": "Follow the complete lifecycle of your crops with clear statuses: fallow, in preparation, in production, growing, harvested or diseased."
+      },
+      "agriculturalActions": {
+        "title": "Agricultural Actions",
+        "description": "Record all your interventions (soil preparation, planting, maintenance, protection, harvesting) with dates and comments."
+      },
+      "calendar": {
+        "title": "Interactive Calendar",
+        "description": "Plan your future actions, configure recurring tasks and visualize your workload with our intuitive calendar."
+      },
+      "observations": {
+        "title": "Observations and Weather",
+        "description": "Document your observations and weather conditions for a comprehensive analysis of factors influencing your crops."
+      },
+      "collaboration": {
+        "title": "Collaboration",
+        "description": "Invite collaborators and assign different access levels (owner, collaborator, viewer) according to needs."
+      }
+    },
+    "traceability": {
+      "title": "Traceability at the service of your crops",
+      "description": "Keep a detailed history of all your actions to analyze the impact of your interventions and adopt more efficient practices.",
+      "caption": "Automated tracking of agricultural interventions"
+    }
+  },
+  "footer": {
+    "about": {
+      "title": "About",
+      "company": "ShiroUsagiLabo",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use",
+      "legal": "Legal Notice"
+    },
+    "contact": {
+      "title": "Contact",
+      "email": "contact@agriflow.com",
+      "phone": "+33 (0)1 23 45 67 89",
+      "address": "ShiroUsagiLabo, France"
+    },
+    "copyright": "© {year} AgriFlow by ShiroUsagiLabo. All rights reserved."
+  }
+} 

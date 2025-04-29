@@ -1,18 +1,18 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
         primary: 'rgb(var(--color-primary) / <alpha-value>)',
-        'primary-dark': '#1B5E20',
+        'primary-dark': 'rgb(var(--color-primary-dark) / <alpha-value>)',
         secondary: 'rgb(var(--color-secondary) / <alpha-value>)',
-        'secondary-dark': '#388E3C',
         accent: 'rgb(var(--color-accent) / <alpha-value>)',
         light: 'rgb(var(--color-light) / <alpha-value>)',
         text: 'rgb(var(--color-text) / <alpha-value>)',
         'text-light': 'rgb(var(--color-text-light) / <alpha-value>)',
-        background: '#FFFFFF',
+        background: 'rgb(var(--color-background) / <alpha-value>)',
       },
     },
   },

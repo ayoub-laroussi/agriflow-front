@@ -4,14 +4,16 @@
 
 @layer base {
   :root {
-    /* Palette de couleurs vertes */
-    --color-primary: 46 125 50; /* #2E7D32 Vert foncé */
-    --color-secondary: 76 175 80; /* #4CAF50 Vert moyen */
-    --color-accent: 139 195 74; /* #8BC34A Vert clair */
-    --color-light: 232 245 233; /* #E8F5E9 Vert très clair */
-    
-    --color-text: 38 50 56; /* #263238 Texte foncé */
-    --color-text-light: 96 125 139; /* #607D8B Texte gris */
+    /* Nouvelle palette AgriFlow */
+    --color-primary: 46 125 50;      /* #2e7d32ff office-green */
+    --color-secondary: 139 195 74;   /* #8bc34aff yellow-green */
+    --color-accent: 241 81 82;       /* #f15152ff imperial-red */
+    --color-light: 255 255 255;      /* #ffffffff white */
+    --color-background: 4 21 31;     /* #04151fff rich-black */
+
+    --color-text: 4 21 31;           /* #04151fff rich-black */
+    --color-text-light: 139 195 74;  /* #8bc34aff yellow-green */
+    --color-primary-dark: 30 61 32;  /* #1B3D20 (dérivé plus foncé) */
   }
 
   html {
@@ -22,6 +24,18 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
   }
+
+  /* Dark mode */
+  html.dark {
+    --color-background: 4 21 31;        /* #04151fff rich-black */
+    --color-light: 245 245 245;         /* #f5f5f5 (presque blanc) */
+    --color-text: 245 245 245;          /* #f5f5f5 (presque blanc) */
+    --color-text-light: 200 230 201;    /* #c8e6c9 (vert très clair) */
+    --color-primary: 139 195 74;        /* accent vert clair pour boutons principaux */
+    --color-primary-dark: 46 125 50;    /* office-green pour hover */
+    --color-secondary: 156 204 101;     /* #9ccc65 (vert clair lumineux) */
+    --color-accent: 241 81 82;          /* rouge accent inchangé */
+  }
 }
 
 @layer components {
@@ -30,15 +44,15 @@
   }
 
   .btn-primary {
-    @apply bg-primary text-white hover:bg-primary-dark;
+    @apply bg-primary text-white hover:bg-primary-dark dark:bg-secondary dark:hover:bg-primary;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-white hover:bg-secondary-dark;
+    @apply bg-secondary text-white hover:bg-primary dark:bg-primary dark:hover:bg-secondary;
   }
 
   .btn-outline {
-    @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white;
+    @apply bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white dark:border-secondary dark:text-secondary dark:hover:bg-secondary dark:hover:text-white;
   }
 
   .container {
@@ -46,10 +60,27 @@
   }
 
   .section-title {
-    @apply text-center text-primary text-4xl font-semibold mb-4;
+    @apply text-center text-primary text-4xl font-semibold mb-4 dark:text-secondary;
   }
 
   .section-subtitle {
-    @apply text-center text-text-light max-w-2xl mx-auto mb-12;
+    @apply text-center text-text-light max-w-2xl mx-auto mb-12 dark:text-text-light;
   }
+}
+
+body {
+  @apply bg-white text-text dark:bg-background dark:text-light;
+}
+
+/* Amélioration de la lisibilité des textes en mode sombre */
+.dark p {
+  @apply text-light/90;
+}
+
+.dark a:not(.btn) {
+  @apply text-secondary hover:text-light;
+}
+
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  @apply text-light;
 }

@@ -6,10 +6,20 @@ interface Props {
 }
 
 const { icon, title, description } = Astro.props;
+
+// Fonction pour vérifier si l'icône est un emoji ou un chemin vers un SVG
+function isEmoji(str: string): boolean {
+    return /\p{Emoji}/u.test(str);
+}
 ---
 
-<div class="bg-white rounded shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
-    <div class="text-4xl mb-4">{icon}</div>
-    <h3 class="text-primary text-xl font-semibold mb-4">{title}</h3>
-    <p class="text-text-light">{description}</p>
+<div class="bg-light dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
+    <div class="text-4xl mb-4">
+        {isEmoji(icon) ? 
+            <span class="inline-block w-12 h-12 bg-primary/10 dark:bg-primary/20 rounded-full flex items-center justify-center">{icon}</span> : 
+            <img src={icon} alt="Feature icon" class="w-12 h-12" />
+        }
+    </div>
+    <h3 class="text-primary dark:text-secondary text-xl font-semibold mb-4">{title}</h3>
+    <p class="text-text-light dark:text-gray-300">{description}</p>
 </div> 

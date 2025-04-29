@@ -1,0 +1,172 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Palette & Composants AgriFlow" description="Prévisualisation des couleurs, boutons et composants AgriFlow.">
+  <div class="container mx-auto p-8 space-y-12">
+    <h1 class="text-4xl font-bold text-primary font-display">Guide des Composants AgriFlow</h1>
+
+    <!-- Hiérarchie Typographique -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold font-display text-primary">Hiérarchie Typographique</h2>
+      <div class="space-y-4">
+        <h1 class="text-4xl font-extrabold font-display text-primary">Titre Principal (h1)</h1>
+        <h2 class="text-3xl font-bold font-display text-primary">Titre de Section (h2)</h2>
+        <h3 class="text-2xl font-bold font-display text-primary">Sous-section (h3)</h3>
+        <h4 class="text-xl font-semibold font-display text-primary">Titre de Carte (h4)</h4>
+        <h5 class="text-lg font-semibold font-display text-primary">Petit Titre (h5)</h5>
+        <h6 class="text-base font-semibold font-display text-primary">Mini Titre (h6)</h6>
+      </div>
+      <div class="space-y-4 font-body">
+        <p class="text-xl text-text">Texte Large - Pour les introductions et points importants</p>
+        <p class="text-text">Texte Normal - Pour le contenu principal et les descriptions</p>
+        <p class="text-sm text-text-light">Petit Texte - Pour les notes et informations secondaires</p>
+        <p class="text-xs text-text-light">Très Petit Texte - Pour les mentions légales et crédits</p>
+      </div>
+    </section>
+
+    <!-- Palette de Couleurs -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold font-display text-primary">Palette de Couleurs</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        <div class="p-4 bg-primary text-white rounded-lg">
+          <p class="font-bold">Primary</p>
+          <p class="text-sm">#2E7D32</p>
+        </div>
+        <div class="p-4 bg-secondary text-white rounded-lg">
+          <p class="font-bold">Secondary</p>
+          <p class="text-sm">#4CAF50</p>
+        </div>
+        <div class="p-4 bg-accent text-white rounded-lg">
+          <p class="font-bold">Accent</p>
+          <p class="text-sm">#8BC34A</p>
+        </div>
+        <div class="p-4 bg-light text-text rounded-lg border">
+          <p class="font-bold">Light</p>
+          <p class="text-sm">#E8F5E9</p>
+        </div>
+        <div class="p-4 bg-background text-text rounded-lg border">
+          <p class="font-bold">Background</p>
+          <p class="text-sm">#FFFFFF</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 bg-text text-white rounded-lg">
+          <p class="font-bold">Text</p>
+          <p class="text-sm">#263238</p>
+        </div>
+        <div class="p-4 bg-text-light text-white rounded-lg">
+          <p class="font-bold">Text Light</p>
+          <p class="text-sm">#607D8B</p>
+        </div>
+        <div class="p-4 bg-primary-dark text-white rounded-lg">
+          <p class="font-bold">Primary Dark</p>
+          <p class="text-sm">#1B5E20</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Boutons -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold font-display text-primary">Boutons</h2>
+      <div class="flex flex-wrap gap-4">
+        <button class="btn btn-primary">Bouton Principal</button>
+        <button class="btn btn-secondary">Bouton Secondaire</button>
+        <button class="btn btn-outline">Bouton Outline</button>
+        <button class="btn bg-accent text-white hover:bg-primary">Bouton Accent</button>
+        <button class="btn bg-gray-200 text-gray-500 cursor-not-allowed" disabled>Bouton Désactivé</button>
+      </div>
+    </section>
+
+    <!-- Formulaires -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold font-display text-primary">Formulaires</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <label class="block text-sm font-medium text-text">Champ Texte</label>
+          <input type="text" placeholder="Entrez votre texte" class="w-full px-4 py-2 bg-white border border-gray-300 text-text rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
+          <label class="block text-sm font-medium text-text">Email</label>
+          <input type="email" placeholder="exemple@domaine.com" class="w-full px-4 py-2 bg-white border border-gray-300 text-text rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
+          <label class="block text-sm font-medium text-text">Mot de passe</label>
+          <input type="password" placeholder="••••••••" class="w-full px-4 py-2 bg-white border border-gray-300 text-text rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary" />
+        </div>
+        <div class="space-y-4">
+          <label class="block text-sm font-medium text-text">Sélection</label>
+          <select class="w-full px-4 py-2 bg-white border border-gray-300 text-text rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+            <option>Option 1</option>
+            <option>Option 2</option>
+            <option>Option 3</option>
+          </select>
+          <label class="block text-sm font-medium text-text">Zone de texte</label>
+          <textarea placeholder="Entrez votre message" class="w-full px-4 py-2 bg-white border border-gray-300 text-text rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary h-32"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cartes -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold font-display text-primary">Cartes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+          <h4 class="text-xl font-bold mb-4 text-primary font-display">Carte Simple</h4>
+          <p class="text-text mb-4 font-body">Une carte basique pour afficher du contenu simple.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+          <h4 class="text-xl font-bold mb-4 text-primary font-display">Carte Interactive</h4>
+          <p class="text-text mb-4 font-body">Une carte avec un bouton d'action.</p>
+          <button class="btn btn-primary">Action</button>
+        </div>
+        <div class="p-6 bg-primary rounded-lg shadow-sm">
+          <h4 class="text-xl font-bold mb-4 text-white font-display">Carte Accent</h4>
+          <p class="text-white/80 mb-4 font-body">Une carte mise en avant avec la couleur principale.</p>
+          <button class="btn bg-white text-primary">Action</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alertes -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold font-display text-primary">Alertes</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="p-4 bg-primary/20 border-l-4 border-primary rounded-md">
+          <div class="flex items-center gap-3">
+            <span class="text-primary text-2xl">✔️</span>
+            <div>
+              <h4 class="font-semibold text-primary font-display">Succès</h4>
+              <p class="text-text font-body">Votre action a été effectuée avec succès.</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 bg-accent/20 border-l-4 border-accent rounded-md">
+          <div class="flex items-center gap-3">
+            <span class="text-accent text-2xl">ℹ️</span>
+            <div>
+              <h4 class="font-semibold text-accent font-display">Information</h4>
+              <p class="text-text font-body">Voici une information importante à connaître.</p>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 bg-primary-dark/20 border-l-4 border-primary-dark rounded-md">
+          <div class="flex items-center gap-3">
+            <span class="text-primary-dark text-2xl">⚠️</span>
+            <div>
+              <h4 class="font-semibold text-primary-dark font-display">Alerte</h4>
+              <p class="text-text font-body">Une action requiert votre attention.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badges -->
+    <section class="space-y-8">
+      <h2 class="text-3xl font-bold font-display text-primary">Badges</h2>
+      <div class="flex flex-wrap gap-4">
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary text-white">Nouveau</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-white">En cours</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent text-white">Succès</span>
+        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-light text-text border">Inactif</span>
+      </div>
+    </section>
+  </div>
+</Layout> 
