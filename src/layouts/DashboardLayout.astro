@@ -12,10 +12,13 @@ const { title = 'AgriFlow Dashboard', description = 'Gestion agricole simplifié
 import Sidebar from '../components/dashboard/Sidebar.svelte';
 import Header from '../components/dashboard/Header.svelte';
 import MobileSidebar from '../components/dashboard/MobileSidebar.svelte';
+
+// Récupérer la langue actuelle depuis l'URL ou la valeur par défaut
+const currentLang = Astro.url.pathname.startsWith('/en/') ? 'en' : 'fr';
 ---
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang={currentLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -53,6 +56,8 @@ import MobileSidebar from '../components/dashboard/MobileSidebar.svelte';
     </div>
 
     <script>
+      import { initClientTranslations } from '../lib/utils/i18n';
+      
       // Initialisation du thème sombre/clair
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -72,8 +77,17 @@ import MobileSidebar from '../components/dashboard/MobileSidebar.svelte';
 
       window.localStorage.setItem('theme', theme || 'light');
       
-      // Gestion du menu mobile
+      // Initialisation des variables de langue pour le client
+      window.APP_LANGUAGE = {
+        current: document.documentElement.lang || 'fr',
+        available: ['fr', 'en']
+      };
+      
+      // Initialiser les traductions côté client
       document.addEventListener('DOMContentLoaded', () => {
+        // Charger les traductions
+        initClientTranslations();
+        
         // Événements personnalisés pour la communication entre les composants
         const headerElement = document.querySelector('header');
         const mobileSidebarElement = document.querySelector('div.mobile-sidebar');

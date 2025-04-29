@@ -136,7 +136,7 @@
       <div class="flex items-center space-x-4">
         <!-- Sélecteur de langue -->
         <div class="hidden md:flex">
-          <LanguageSwitcher />
+          <LanguageSwitcher availableLanguages={['fr', 'en']} />
         </div>
         
         <!-- Notifications -->

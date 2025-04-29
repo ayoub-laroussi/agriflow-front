@@ -1,5 +1,6 @@
 ---
 import FeatureCard from '../ui/FeatureCard.astro';
+import Translate from '../ui/Translate.svelte';
 import { t } from '../../lib/utils/i18n';
 
 // Les icônes sont conservées car elles sont identiques dans toutes les langues
@@ -35,11 +36,13 @@ const featureData = [
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between mb-16">
             <div class="md:w-1/2 mb-8 md:mb-0">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text dark:text-light">{t('features.title')}</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text dark:text-light">
+                    <Translate key="features.title" client:load />
+                </h2>
             </div>
             <div class="md:w-1/3">
                 <p class="text-text-light dark:text-text-light text-lg">
-                    {t('features.subtitle')}
+                    <Translate key="features.subtitle" client:load />
                 </p>
             </div>
         </div>
@@ -49,8 +52,9 @@ const featureData = [
                 <div class="relative">
                     <FeatureCard 
                         icon={feature.icon} 
-                        title={`0${index + 1}. ${t(`features.list.${feature.key}.title`)}`} 
-                        description={t(`features.list.${feature.key}.description`)} 
+                        titleKey={`features.list.${feature.key}.title`}
+                        descriptionKey={`features.list.${feature.key}.description`}
+                        index={index + 1}
                     />
                 </div>
             ))}
@@ -62,12 +66,16 @@ const featureData = [
             </div>
             
             <div class="bg-white dark:bg-background rounded-xl p-8 shadow-lg border dark:border-gray-700 max-w-xl mx-auto md:absolute md:bottom-12 md:right-12">
-                <h3 class="text-2xl font-bold mb-4 text-primary dark:text-secondary">{t('features.traceability.title')}</h3>
+                <h3 class="text-2xl font-bold mb-4 text-primary dark:text-secondary">
+                    <Translate key="features.traceability.title" client:load />
+                </h3>
                 <p class="text-text-light dark:text-light/90 mb-4">
-                    {t('features.traceability.description')}
+                    <Translate key="features.traceability.description" client:load />
                 </p>
                 <div class="flex justify-end">
-                    <span class="text-sm text-text-light dark:text-secondary/90">{t('features.traceability.caption')}</span>
+                    <span class="text-sm text-text-light dark:text-secondary/90">
+                        <Translate key="features.traceability.caption" client:load />
+                    </span>
                 </div>
             </div>
         </div>
@@ -77,8 +85,9 @@ const featureData = [
                 <div class="relative">
                     <FeatureCard 
                         icon={feature.icon} 
-                        title={`0${index + 4}. ${t(`features.list.${feature.key}.title`)}`} 
-                        description={t(`features.list.${feature.key}.description`)} 
+                        titleKey={`features.list.${feature.key}.title`}
+                        descriptionKey={`features.list.${feature.key}.description`}
+                        index={index + 4}
                     />
                 </div>
             ))}

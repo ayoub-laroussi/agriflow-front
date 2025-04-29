@@ -120,8 +120,10 @@ export async function initClientTranslations(): Promise<void> {
   try {
     // Récupérer la langue actuelle
     const currentLang = window.APP_LANGUAGE.current || 'fr';
+    console.log(`[i18n] Initialisation des traductions pour la langue: ${currentLang}`);
     
     // Charger les fichiers de traduction
+    console.log('[i18n] Chargement des fichiers de traduction...');
     const responses = await Promise.all([
       fetch('/src/i18n/fr.json'),
       fetch('/src/i18n/en.json')
@@ -149,11 +151,13 @@ export async function initClientTranslations(): Promise<void> {
       defaultLanguage: 'fr'
     };
     
-    console.log('Translations initialized successfully');
+    console.log('[i18n] Traductions initialisées avec succès');
+    console.log(`[i18n] Langues disponibles: ${window.APP_LANGUAGE.available.join(', ')}`);
+    console.log(`[i18n] Langue actuelle: ${window.APP_LANGUAGE.current}`);
     
     // Déclencher un événement pour notifier que les traductions sont chargées
     window.dispatchEvent(new CustomEvent('translations-loaded'));
   } catch (error) {
-    console.error('Failed to initialize translations:', error);
+    console.error('[i18n] Échec de l\'initialisation des traductions:', error);
   }
 } 

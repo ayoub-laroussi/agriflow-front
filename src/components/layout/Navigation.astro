@@ -1,7 +1,8 @@
 ---
 import { t } from '../../lib/utils/i18n';
 import DarkModeToggle from '../ui/DarkModeToggle.svelte';
-import LanguageSwitcherNew from '../ui/LanguageSwitcherNew.svelte';
+import LanguageSwitcher from '../ui/LanguageSwitcher.svelte';
+import Translate from '../ui/Translate.svelte';
 
 // Obtenir la langue actuelle depuis URL
 const currentPath = Astro.url.pathname;
@@ -11,20 +12,36 @@ const currentLanguage = pathSegments[0] === 'en' ? 'en' : 'fr';
 
 <nav class="flex justify-between items-center py-6">
     <div class="flex items-center">
-        <span class="font-montserrat font-bold text-2xl text-primary dark:text-secondary">{t('global.site_name')}</span>
+        <span class="font-montserrat font-bold text-2xl text-primary dark:text-secondary">
+            <Translate key="global.site_name" client:load />
+        </span>
     </div>
     <div class="hidden md:flex gap-8">
-        <a href="#" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">{t('navigation.home')}</a>
-        <a href="#fonctionnalites" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">{t('navigation.features')}</a>
-        <a href="#solutions" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">{t('navigation.solutions')}</a>
-        <a href="#demo" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">{t('navigation.demo')}</a>
-        <a href="#contact" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">{t('navigation.contact')}</a>
+        <a href="#" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+            <Translate key="navigation.home" client:load />
+        </a>
+        <a href="#fonctionnalites" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+            <Translate key="navigation.features" client:load />
+        </a>
+        <a href="#solutions" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+            <Translate key="navigation.solutions" client:load />
+        </a>
+        <a href="#demo" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+            <Translate key="navigation.demo" client:load />
+        </a>
+        <a href="#contact" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+            <Translate key="navigation.contact" client:load />
+        </a>
         <a href="/i18n-demo" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors border-b border-secondary">i18n Demo</a>
     </div>
     <div class="flex gap-4 items-center">
-        <LanguageSwitcherNew client:load currentLanguage={currentLanguage} />
+        <LanguageSwitcher client:load />
         <DarkModeToggle client:load />
-        <a href="/login" class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">{t('navigation.login')}</a>
-        <a href="/register" class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">{t('navigation.register')}</a>
+        <a href="/login" class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">
+            <Translate key="navigation.login" client:load />
+        </a>
+        <a href="/register" class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">
+            <Translate key="navigation.register" client:load />
+        </a>
     </div>
 </nav> 

@@ -1,5 +1,5 @@
 ---
-import { t } from '../../lib/utils/i18n';
+import Translate from '../ui/Translate.svelte';
 ---
 
 <section
@@ -17,21 +17,21 @@ import { t } from '../../lib/utils/i18n';
     <div
       class="text-xs text-primary dark:text-secondary bg-white dark:bg-background/90 bg-opacity-80 dark:bg-opacity-80 inline-block px-3 py-1 rounded-full mb-4"
     >
-      {t('hero.tagline')}
+      <Translate key="hero.tagline" client:load />
     </div>
     <h1
       class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg"
     >
-      {t('hero.title')}
+      <Translate key="hero.title" client:load />
     </h1>
     <p class="text-white text-lg mb-8 max-w-2xl mx-auto drop-shadow">
-      {t('hero.description')}
+      <Translate key="hero.description" client:load />
     </p>
     <a
       href="/register"
       class="flex items-center gap-2 bg-primary dark:bg-secondary text-white px-8 py-4 rounded-full font-semibold hover:bg-primary-dark dark:hover:bg-primary transition-all text-lg shadow-lg"
     >
-      {t('hero.cta')}
+      <Translate key="hero.cta" client:load />
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -54,19 +54,27 @@ import { t } from '../../lib/utils/i18n';
 >
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">4+</h3>
-    <p class="text-text-light dark:text-text-light">{t('hero.stats.spaces')}</p>
+    <p class="text-text-light dark:text-text-light">
+      <Translate key="hero.stats.spaces" client:load />
+    </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">7+</h3>
-    <p class="text-text-light dark:text-text-light">{t('hero.stats.statuses')}</p>
+    <p class="text-text-light dark:text-text-light">
+      <Translate key="hero.stats.statuses" client:load />
+    </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">5+</h3>
-    <p class="text-text-light dark:text-text-light">{t('hero.stats.actions')}</p>
+    <p class="text-text-light dark:text-text-light">
+      <Translate key="hero.stats.actions" client:load />
+    </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">100%</h3>
-    <p class="text-text-light dark:text-text-light">{t('hero.stats.traceability')}</p>
+    <p class="text-text-light dark:text-text-light">
+      <Translate key="hero.stats.traceability" client:load />
+    </p>
   </div>
 </div>
 

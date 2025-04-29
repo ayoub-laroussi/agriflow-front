@@ -1,6 +1,8 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
   import { slide } from 'svelte/transition';
+  import LanguageSwitcher from '../ui/LanguageSwitcher.svelte';
+  import Translate from '../ui/Translate.svelte';
   
   const dispatch = createEventDispatcher();
   
@@ -10,43 +12,43 @@
   // Définition des liens de navigation (identiques à la sidebar)
   const navigationItems = [
     { 
-      name: 'Tableau de bord', 
+      name: 'dashboard.nav.dashboard', 
       href: '/dashboard', 
       icon: 'dashboard',
       current: true 
     },
     { 
-      name: 'Terrains', 
+      name: 'dashboard.nav.terrains', 
       href: '/dashboard/terrains', 
       icon: 'terrain',
       current: false 
     },
     { 
-      name: 'Espaces de culture', 
+      name: 'dashboard.nav.espaces', 
       href: '/dashboard/espaces', 
       icon: 'grid_view',
       current: false 
     },
     { 
-      name: 'Cultures', 
+      name: 'dashboard.nav.cultures', 
       href: '/dashboard/cultures', 
       icon: 'grass',
       current: false 
     },
     { 
-      name: 'Actions', 
+      name: 'dashboard.nav.actions', 
       href: '/dashboard/actions', 
       icon: 'event_note',
       current: false 
     },
     { 
-      name: 'Calendrier', 
+      name: 'dashboard.nav.calendrier', 
       href: '/dashboard/calendrier', 
       icon: 'calendar_month',
       current: false 
     },
     { 
-      name: 'Observations', 
+      name: 'dashboard.nav.observations', 
       href: '/dashboard/observations', 
       icon: 'visibility',
       current: false 
@@ -56,13 +58,13 @@
   // Autres sections
   const otherItems = [
     { 
-      name: 'Paramètres', 
+      name: 'dashboard.nav.parametres', 
       href: '/dashboard/parametres', 
       icon: 'settings',
       current: false 
     },
     { 
-      name: 'Aide', 
+      name: 'dashboard.nav.aide', 
       href: '/dashboard/aide', 
       icon: 'help',
       current: false 
@@ -115,7 +117,9 @@
           <div class="flex items-center justify-between h-16 px-6 border-b border-gray-200 dark:border-gray-700">
             <a href="/" class="flex items-center space-x-2">
               <span class="material-symbols-outlined text-green-600 text-2xl">eco</span>
-              <span class="text-xl font-semibold dark:text-white">AgriFlow</span>
+              <span class="text-xl font-semibold dark:text-white">
+                <Translate key="global.site_name" />
+              </span>
             </a>
             <button
               type="button"
@@ -140,14 +144,14 @@
                   on:click={closeMenu}
                 >
                   <span class="material-symbols-outlined mr-3">{item.icon}</span>
-                  {item.name}
+                  <Translate key={item.name} />
                 </a>
               {/each}
             </div>
             
             <div class="pt-6 mt-6 border-t border-gray-200 dark:border-gray-700">
               <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider dark:text-gray-400">
-                Autres
+                <Translate key="dashboard.nav.other" />
               </h3>
               <div class="mt-2 space-y-1">
                 {#each otherItems as item}
@@ -159,7 +163,7 @@
                     on:click={closeMenu}
                   >
                     <span class="material-symbols-outlined mr-3">{item.icon}</span>
-                    {item.name}
+                    <Translate key={item.name} />
                   </a>
                 {/each}
               </div>
@@ -179,9 +183,14 @@
                   Paul Dupont
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400">
-                  Voir le profil
+                  <Translate key="dashboard.nav.profile" />
                 </p>
               </div>
+            </div>
+            
+            <!-- Sélecteur de langue -->
+            <div class="mt-4">
+              <LanguageSwitcher availableLanguages={['fr', 'en']} />
             </div>
           </div>
         </div>

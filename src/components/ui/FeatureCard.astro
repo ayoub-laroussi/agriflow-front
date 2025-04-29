@@ -1,16 +1,24 @@
 ---
+import Translate from './Translate.svelte';
+
 interface Props {
     icon: string;
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
+    titleKey?: string;
+    descriptionKey?: string;
+    index?: number;
 }
 
-const { icon, title, description } = Astro.props;
+const { icon, title, description, titleKey, descriptionKey, index } = Astro.props;
 
 // Fonction pour vérifier si l'icône est un emoji ou un chemin vers un SVG
 function isEmoji(str: string): boolean {
     return /\p{Emoji}/u.test(str);
 }
+
+// Construire le titre avec le préfixe d'index si nécessaire
+const displayTitle = title || (index ? `0${index}. ` : "");
 ---
 
 <div class="bg-light dark:bg-gray-800 border dark:border-gray-700 rounded-lg shadow-md p-8 transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-lg">
@@ -20,6 +28,18 @@ function isEmoji(str: string): boolean {
             <img src={icon} alt="Feature icon" class="w-12 h-12" />
         }
     </div>
-    <h3 class="text-primary dark:text-secondary text-xl font-semibold mb-4">{title}</h3>
-    <p class="text-text-light dark:text-gray-300">{description}</p>
+    <h3 class="text-primary dark:text-secondary text-xl font-semibold mb-4">
+        {titleKey ? (
+            <span>{index ? `0${index}. ` : ""}<Translate key={titleKey} client:load /></span>
+        ) : (
+            <span>{displayTitle}</span>
+        )}
+    </h3>
+    <p class="text-text-light dark:text-gray-300">
+        {descriptionKey ? (
+            <Translate key={descriptionKey} client:load />
+        ) : (
+            <span>{description}</span>
+        )}
+    </p>
 </div> 

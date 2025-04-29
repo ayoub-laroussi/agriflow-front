@@ -1,4 +1,4 @@
-import { writable, derived } from 'svelte/store';
+import { writable, derived, readable } from 'svelte/store';
 import type { Lang } from '../../types';
 
 // Fonction pour initialiser le store de langue
@@ -40,21 +40,25 @@ function createLangStore() {
 // Création du store de langue
 export const langStore = createLangStore();
 
+// Pour compatibilité avec code existant
+export const currentLang = langStore;
+export const setLang = langStore.setLang;
+
 // Récupération des langues disponibles
 export const availableLangs: string[] = typeof window !== 'undefined' 
   ? window.APP_LANGUAGE.available 
   : ['fr', 'en'];
 
 // Fonction pour remplacer les placeholders dans une chaîne
-function interpolateParams(text: string, params: Record<string, string>): string {
+function interpolateParams(text: string, params: Record<string, string | number>): string {
   return text.replace(/{([^{}]*)}/g, (match, key) => {
     const value = params[key];
-    return value !== undefined ? value : match;
+    return value !== undefined ? String(value) : match;
   });
 }
 
 // Fonction pour obtenir une traduction
-export function getTranslation(key: string, params: Record<string, string> = {}, lang: Lang = 'fr'): string {
+export function getTranslation(key: string, params: Record<string, string | number> = {}, lang: Lang = 'fr'): string {
   try {
     if (typeof window === 'undefined') {
       return key; // Pas de traduction côté serveur
@@ -93,6 +97,16 @@ export function getTranslation(key: string, params: Record<string, string> = {},
 }
 
 // Fonction pour traduire avec réactivité pour les composants Svelte
-export function t(key: string, params: Record<string, string> = {}) {
+export function t(key: string, params: Record<string, string | number> = {}) {
   return derived(langStore, ($lang) => getTranslation(key, params, $lang));
-} 
+}
+
+// Store pour les traductions avec compatibilité
+export const translation = readable((key: string, params: Record<string, string | number> = {}) => {
+  let currentLang: Lang = 'fr';
+  const unsubscribe = langStore.subscribe(value => {
+    currentLang = value;
+  });
+  
+  return getTranslation(key, params, currentLang);
+}); 
