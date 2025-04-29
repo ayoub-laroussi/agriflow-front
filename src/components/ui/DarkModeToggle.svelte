@@ -1,49 +1,44 @@
 <script lang="ts">
 import { onMount } from 'svelte';
-let isDark = false;
 
-onMount(() => {
-  const savedTheme = localStorage.getItem('theme');
+let isDarkMode = false;
+
+function toggleDarkMode() {
+  isDarkMode = !isDarkMode;
   
-  if (savedTheme === 'dark') {
-    isDark = true;
+  if (isDarkMode) {
     document.documentElement.classList.add('dark');
-  } else if (savedTheme === 'light') {
-    isDark = false;
-    document.documentElement.classList.remove('dark');
-  } else {
-    // Si pas de thème sauvegardé, on utilise la préférence système
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    isDark = prefersDark;
-    if (prefersDark) {
-      document.documentElement.classList.add('dark');
-    }
-  }
-});
-
-function toggleDark() {
-  isDark = !isDark;
-  if (isDark) {
-    document.documentElement.classList.add('dark');
-    localStorage.setItem('theme', 'dark');
+    window.localStorage.setItem('theme', 'dark');
   } else {
     document.documentElement.classList.remove('dark');
-    localStorage.setItem('theme', 'light');
+    window.localStorage.setItem('theme', 'light');
   }
 }
+
+onMount(() => {
+  // Initialisation du mode en fonction du localStorage ou des préférences du système
+  const savedTheme = window.localStorage.getItem('theme');
+  
+  if (savedTheme === 'dark' || 
+      (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    isDarkMode = true;
+    document.documentElement.classList.add('dark');
+  } else {
+    isDarkMode = false;
+    document.documentElement.classList.remove('dark');
+  }
+});
 </script>
 
 <button
-  class="px-3 py-2 rounded-md bg-light dark:bg-background border border-gray-300 dark:border-gray-700 flex items-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-  aria-label="Activer/désactiver le mode sombre"
-  on:click={toggleDark}
-  title={isDark ? 'Désactiver le mode sombre' : 'Activer le mode sombre'}
+  type="button"
+  class="p-2 rounded-md text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-500"
+  on:click={toggleDarkMode}
+  aria-label={isDarkMode ? 'Passer en mode clair' : 'Passer en mode sombre'}
 >
-  {#if isDark}
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
-    <span class="text-text dark:text-light text-sm">Clair</span>
+  {#if isDarkMode}
+    <span class="material-symbols-outlined">light_mode</span>
   {:else}
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" /></svg>
-    <span class="text-text text-sm">Sombre</span>
+    <span class="material-symbols-outlined">dark_mode</span>
   {/if}
 </button> 
