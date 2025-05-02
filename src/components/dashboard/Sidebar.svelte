@@ -2,49 +2,44 @@
   import { createEventDispatcher } from 'svelte';
   import ThemeToggle from '../ui/DarkModeToggle.svelte';
   import Translate from '../ui/Translate.svelte';
+  import { dashboardStore, type DashboardSection } from '../../lib/stores/dashboardStore';
   
   // Définition des liens de navigation
   const navigationItems = [
     { 
       name: 'dashboard.nav.dashboard', 
-      href: '/dashboard', 
+      section: 'main' as DashboardSection,
       icon: 'dashboard',
       current: true 
     },
     { 
       name: 'dashboard.nav.terrains', 
-      href: '/dashboard/terrains', 
+      section: 'terrains' as DashboardSection,
       icon: 'terrain',
       current: false 
     },
     { 
       name: 'dashboard.nav.espaces', 
-      href: '/dashboard/espaces', 
+      section: 'spaces' as DashboardSection,
       icon: 'grid_view',
       current: false 
     },
     { 
       name: 'dashboard.nav.cultures', 
-      href: '/dashboard/cultures', 
+      section: 'cultures' as DashboardSection, 
       icon: 'grass',
       current: false 
     },
     { 
-      name: 'dashboard.nav.actions', 
-      href: '/dashboard/actions', 
+      name: 'dashboard.nav.taches', 
+      section: 'tasks' as DashboardSection,
       icon: 'event_note',
       current: false 
     },
     { 
       name: 'dashboard.nav.calendrier', 
-      href: '/dashboard/calendrier', 
+      section: 'calendar' as DashboardSection,
       icon: 'calendar_month',
-      current: false 
-    },
-    { 
-      name: 'dashboard.nav.observations', 
-      href: '/dashboard/observations', 
-      icon: 'visibility',
       current: false 
     }
   ];
@@ -70,6 +65,18 @@
   function closeMenu() {
     dispatch('close');
   }
+  
+  // Mettre à jour la section active
+  function handleNavigation(section: DashboardSection) {
+    dashboardStore.setActiveSection(section);
+  }
+
+  // S'abonner au store pour mettre à jour les états 'current'
+  $: {
+    navigationItems.forEach(item => {
+      item.current = item.section === $dashboardStore.activeSection;
+    });
+  }
 </script>
 
 <div class="flex flex-col h-full border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
@@ -87,16 +94,16 @@
   <nav class="flex-1 overflow-y-auto px-4 py-4 space-y-1">
     <div class="space-y-1">
       {#each navigationItems as item}
-        <a
-          href={item.href}
-          class="flex items-center px-3 py-2 text-sm font-medium rounded-lg {item.current 
+        <button
+          on:click={() => handleNavigation(item.section)}
+          class="flex items-center w-full text-left px-3 py-2 text-sm font-medium rounded-lg {item.current 
             ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-100' 
             : 'text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'}"
           aria-current={item.current ? 'page' : undefined}
         >
           <span class="material-symbols-outlined mr-3">{item.icon}</span>
           <Translate key={item.name} />
-        </a>
+        </button>
       {/each}
     </div>
 
