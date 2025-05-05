@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AuthCard from '../../components/ui/AuthCard.svelte';
+import RegisterForm from '../../components/auth/RegisterForm.svelte';
+import AuthCheck from '../../components/auth/AuthCheck.svelte';
+import { t } from '../../lib/utils/i18n';
+
+const title = t('auth.register.title', 'Inscription | AgriFlow');
+const description = t('auth.register.meta.description', 'Créez un compte sur la plateforme AgriFlow');
+---
+
+<Layout title={title} description={description}>
+  <main class="min-h-screen flex items-center justify-center px-4 py-12 bg-gray-50 dark:bg-gray-900">
+    <div class="w-full max-w-md">
+      <!-- Vérification d'authentification (rediriger si déjà connecté) -->
+      <AuthCheck client:only="svelte" mode="guest" />
+      
+      <div class="text-center mb-8">
+        <a href="/" class="inline-block">
+          <h1 class="text-3xl font-bold text-primary">AgriFlow</h1>
+        </a>
+      </div>
+      
+      <AuthCard 
+        title={t('auth.register.cardTitle', 'Créer un compte')} 
+        subtitle={t('auth.register.cardSubtitle', 'Inscrivez-vous pour commencer à utiliser AgriFlow')}
+      >
+        <RegisterForm client:load />
+      </AuthCard>
+      
+      <div class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p>&copy; {new Date().getFullYear()} AgriFlow. Tous droits réservés.</p>
+      </div>
+    </div>
+  </main>
+</Layout> 

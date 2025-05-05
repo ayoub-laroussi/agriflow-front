@@ -1,0 +1,27 @@
+---
+import Layout from './Layout.astro';
+import { t } from '../lib/utils/i18n';
+
+// Support pour les titres et descriptions personnalisés
+const { 
+	title = 'Authentification | AgriFlow', 
+	description = t('auth.meta.description', 'Connexion et inscription à la plateforme AgriFlow')
+} = Astro.props;
+---
+<Layout title={title} description={description}>
+  <main class="min-h-screen flex items-center justify-center px-4 py-12 bg-gray-50 dark:bg-gray-900">
+    <div class="w-full max-w-md">
+      <div class="text-center mb-8">
+        <a href="/" class="inline-block">
+          <h1 class="text-3xl font-bold text-primary">AgriFlow</h1>
+        </a>
+      </div>
+      
+      <slot />
+      
+      <div class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+        <p>&copy; {new Date().getFullYear()} AgriFlow. Tous droits réservés.</p>
+      </div>
+    </div>
+  </main>
+</Layout> 
