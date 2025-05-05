@@ -37,10 +37,10 @@ const currentLanguage = pathSegments[0] === 'en' ? 'en' : 'fr';
     <div class="flex gap-4 items-center">
         <LanguageSwitcher client:load />
         <DarkModeToggle client:load />
-        <a href="/login" class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">
+        <a href="/auth/login" class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">
             <Translate key="navigation.login" client:load />
         </a>
-        <a href="/register" class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">
+        <a href="/auth/register" class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">
             <Translate key="navigation.register" client:load />
         </a>
     </div>
