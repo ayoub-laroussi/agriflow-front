@@ -5,8 +5,8 @@ import RegisterForm from '../../components/auth/RegisterForm.svelte';
 import AuthCheck from '../../components/auth/AuthCheck.svelte';
 import { t } from '../../lib/utils/i18n';
 
-const title = t('auth.register.title', 'Inscription | AgriFlow');
-const description = t('auth.register.meta.description', 'Créez un compte sur la plateforme AgriFlow');
+const title = t('auth.register.title', { defaultValue: 'Inscription | AgriFlow' });
+const description = t('auth.register.meta.description', { defaultValue: 'Créez un compte sur la plateforme AgriFlow' });
 ---
 
 <Layout title={title} description={description}>
@@ -22,8 +22,8 @@ const description = t('auth.register.meta.description', 'Créez un compte sur la
       </div>
       
       <AuthCard 
-        title={t('auth.register.cardTitle', 'Créer un compte')} 
-        subtitle={t('auth.register.cardSubtitle', 'Inscrivez-vous pour commencer à utiliser AgriFlow')}
+        title={t('auth.register.cardTitle', { defaultValue: 'Créer un compte' })} 
+        subtitle={t('auth.register.cardSubtitle', { defaultValue: 'Inscrivez-vous pour commencer à utiliser AgriFlow' })}
       >
         <RegisterForm client:load />
       </AuthCard>

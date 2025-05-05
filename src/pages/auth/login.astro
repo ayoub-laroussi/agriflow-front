@@ -5,8 +5,8 @@ import LoginForm from '../../components/auth/LoginForm.svelte';
 import AuthCheck from '../../components/auth/AuthCheck.svelte';
 import { t } from '../../lib/utils/i18n';
 
-const title = t('auth.login.title', 'Connexion | AgriFlow');
-const description = t('auth.login.meta.description', 'Connectez-vous à votre compte AgriFlow');
+const title = t('auth.login.title', { defaultValue: 'Connexion | AgriFlow' });
+const description = t('auth.login.meta.description', { defaultValue: 'Connectez-vous à votre compte AgriFlow' });
 ---
 
 <Layout title={title} description={description}>
@@ -22,8 +22,8 @@ const description = t('auth.login.meta.description', 'Connectez-vous à votre co
       </div>
       
       <AuthCard 
-        title={t('auth.login.cardTitle', 'Connexion')} 
-        subtitle={t('auth.login.cardSubtitle', 'Connectez-vous pour accéder à votre compte')}
+        title={t('auth.login.cardTitle', { defaultValue: 'Connexion' })} 
+        subtitle={t('auth.login.cardSubtitle', { defaultValue: 'Connectez-vous pour accéder à votre compte' })}
       >
         <LoginForm client:load />
       </AuthCard>
