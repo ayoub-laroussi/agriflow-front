@@ -1,8 +1,17 @@
 ---
 import DashboardLayout from '../../layouts/DashboardLayout.astro';
 import Dashboard from '../../components/dashboard/Dashboard.svelte';
+import AuthCheck from '../../components/auth/AuthCheck.svelte';
+import { protectRoute } from '../../lib/utils/auth';
+
+// Protection côté serveur (redirection si non authentifié)
+const redirectResponse = await protectRoute(Astro);
+if (redirectResponse) return redirectResponse;
 ---
 
 <DashboardLayout title="Tableau de bord | AgriFlow">
+  <!-- Vérification d'authentification côté client -->
+  <AuthCheck client:only="svelte" mode="protected" />
+  
   <Dashboard client:load />
 </DashboardLayout> 

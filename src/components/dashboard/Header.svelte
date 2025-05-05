@@ -1,6 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
   import LanguageSwitcher from '../ui/LanguageSwitcher.svelte';
+  import LogoutButton from '../layout/LogoutButton.svelte';
   
   const dispatch = createEventDispatcher();
   
@@ -237,13 +238,11 @@
               >
                 Paramètres
               </a>
-              <a
-                href="/logout"
-                class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                role="menuitem"
-              >
-                Se déconnecter
-              </a>
+              <div class="block px-4 py-2">
+                <LogoutButton variant="outline" size="sm">
+                  Se déconnecter
+                </LogoutButton>
+              </div>
             </div>
           {/if}
         </div>
