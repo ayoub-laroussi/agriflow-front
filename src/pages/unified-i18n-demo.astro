@@ -1,0 +1,98 @@
+---
+/**
+ * Démonstration de l'internationalisation unifiée
+ * 
+ * Cette page montre comment utiliser notre approche unifiée pour créer des pages
+ * qui s'adaptent automatiquement à la langue sans duplication de code.
+ */
+
+import Layout from '../layouts/Layout.astro';
+import { initI18nContext } from '../lib/utils/i18n-helpers';
+
+// Initialiser le contexte i18n avec la clé de la page
+const { t, i18n, currentLocale, getLocalizedUrl } = initI18nContext(Astro, 'features');
+
+// Liste des fonctionnalités
+const features = [
+  'landManagement',
+  'cropTracking',
+  'agriculturalActions', 
+  'calendar'
+];
+
+// Variables pour l'interface utilisateur
+const pageTitle = `${t('global.site_name')} - ${i18n('title')}`;
+---
+
+<Layout title={pageTitle}>
+  <main class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold">{i18n('title')}</h1>
+      
+      <!-- Sélecteur de langue -->
+      <div class="language-selector flex items-center gap-4">
+        <span>{t('global.language.switch')}:</span>
+        <a 
+          href="/unified-i18n-demo" 
+          class={`px-3 py-1 rounded ${currentLocale === 'fr' ? 'bg-primary text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+        >
+          Français
+        </a>
+        <a 
+          href="/en/unified-i18n-demo" 
+          class={`px-3 py-1 rounded ${currentLocale === 'en' ? 'bg-primary text-white' : 'hover:bg-gray-100 dark:hover:bg-gray-800'}`}
+        >
+          English
+        </a>
+      </div>
+    </div>
+    
+    <p class="mb-8 text-lg">{i18n('introduction')}</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      {features.map(key => (
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold mb-3">
+            {t(`features.list.${key}.title`)}
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            {t(`features.list.${key}.description`)}
+          </p>
+          <a 
+            href={getLocalizedUrl(`features/${key}`)}
+            class="text-blue-600 hover:underline"
+          >
+            {i18n('learn_more')}
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <div class="bg-gray-50 dark:bg-gray-900 p-6 rounded-lg">
+      <h2 class="text-2xl font-bold mb-4">{i18n('traceability.title')}</h2>
+      <p class="mb-2">{i18n('traceability.description')}</p>
+      <p class="text-sm text-gray-500">{i18n('traceability.caption')}</p>
+    </div>
+    
+    <div class="mt-8">
+      <a href={getLocalizedUrl('')} class="text-blue-600 hover:underline">
+        {t('navigation.back_to_home')}
+      </a>
+    </div>
+    
+    <div class="mt-12 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">
+      <h2 class="text-xl font-bold mb-4">Documentation technique</h2>
+      <p>Cette page utilise l'approche unifiée pour l'internationalisation sans duplication de code.</p>
+      <ul class="list-disc list-inside mt-4">
+        <li>Langue actuelle: <strong>{currentLocale}</strong></li>
+        <li>Clé de page: <strong>features</strong></li>
+        <li>Fichiers de traduction: <code>src/i18n/{currentLocale}/pages/features/*.json</code></li>
+      </ul>
+      <div class="mt-4">
+        <a href="/docs/i18n-best-practices" class="text-blue-600 hover:underline">
+          Voir la documentation complète
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout> 

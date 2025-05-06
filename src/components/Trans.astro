@@ -1,0 +1,21 @@
+---
+interface Props {
+  key: string;
+  params?: Record<string, any>;
+}
+
+const { key, params = {} } = Astro.props;
+const { t } = Astro.locals;
+
+const translation = t ? t(key) : key;
+
+// Remplacer les paramètres
+let result = translation;
+if (params) {
+  Object.entries(params).forEach(([param, value]) => {
+    result = result.replace(new RegExp(`{${param}}`, 'g'), value);
+  });
+}
+---
+
+{result} 

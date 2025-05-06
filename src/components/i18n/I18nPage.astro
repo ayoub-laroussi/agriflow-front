@@ -1,0 +1,54 @@
+---
+/**
+ * Composant I18nPage
+ * 
+ * Ce composant sert de wrapper pour les pages et permet d'éviter la duplication
+ * du contenu entre les différentes langues. Il charge dynamiquement la traduction
+ * correspondante à la langue actuelle à partir des fichiers i18n.
+ */
+
+import type { ComponentInstance } from 'astro';
+import Layout from '../../layouts/Layout.astro';
+
+interface Props {
+  title: string;
+  pageKey: string;
+  contentComponent: ComponentInstance;
+  layout?: ComponentInstance;
+}
+
+// Récupérer les props
+const { title, pageKey, contentComponent, layout = Layout } = Astro.props;
+
+// Récupérer les traductions
+const { t } = Astro.locals;
+
+// Récupérer la langue courante
+const currentLocale = Astro.url.pathname.split('/')[1] === 'en' ? 'en' : 'fr';
+
+// Construire un objet avec toutes les traductions de la page
+// pour les passer au composant enfant
+const pageTranslations: Record<string, any> = {};
+const prefix = `${pageKey}.`;
+
+// Construire un proxy qui intercepte les accès aux propriétés pour faciliter l'accès aux traductions
+const i18n = new Proxy({}, {
+  get(target, prop) {
+    if (typeof prop === 'string') {
+      const key = `${prefix}${prop}`;
+      return t(key);
+    }
+    return undefined;
+  }
+});
+
+// Composant de layout à utiliser
+const LayoutComponent = layout;
+const ContentComponent = contentComponent;
+---
+
+<LayoutComponent title={t(title)}>
+  <slot name="before-content" />
+  <ContentComponent i18n={i18n} currentLocale={currentLocale} t={t} />
+  <slot name="after-content" />
+</LayoutComponent> 

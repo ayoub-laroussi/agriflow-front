@@ -1,0 +1,44 @@
+---
+import LocalizedPage from '../components/i18n/LocalizedPage.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+
+// Simulons une liste de fonctionnalités
+const featureKeys = ['landManagement', 'cropTracking', 'agriculturalActions', 'calendar'];
+---
+<LocalizedPage title="global.site_name" pageKey="features">
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{Astro.props.pageData.i18n('title')}</h1>
+    
+    <p class="mb-8">{Astro.props.pageData.i18n('introduction')}</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {featureKeys.map(key => (
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <h2 class="text-xl font-semibold mb-3">
+            {Astro.props.pageData.t(`features.list.${key}.title`)}
+          </h2>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            {Astro.props.pageData.t(`features.list.${key}.description`)}
+          </p>
+          <a 
+            href={getRelativeLocaleUrl(Astro.props.pageData.currentLocale, `features/${key}`)}
+            class="text-blue-600 hover:underline"
+          >
+            {Astro.props.pageData.i18n('learn_more')}
+          </a>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-12">
+      <a href={getRelativeLocaleUrl(Astro.props.pageData.currentLocale, '')} class="text-blue-600 hover:underline">
+        {Astro.props.pageData.t('navigation.back_to_home')}
+      </a>
+    </div>
+    
+    <div class="language-selector mt-8">
+      <a href={getRelativeLocaleUrl('fr', 'features-new')} class="mr-4">Français</a>
+      <a href={getRelativeLocaleUrl('en', 'features-new')}>English</a>
+    </div>
+  </div>
+</LocalizedPage> 

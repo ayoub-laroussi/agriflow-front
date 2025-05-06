@@ -9,10 +9,17 @@ export default defineConfig({
   integrations: [
     svelte(),
     tailwind(),
-    // I18n est temporairement désactivé pour résoudre les problèmes d'importation
   ],
   output: 'server',
   adapter: cloudflare(),
+  i18n: {
+    defaultLocale: 'fr',
+    locales: ['fr', 'en'],
+    routing: {
+      prefixDefaultLocale: false,
+      strategy: 'pathname'
+    }
+  },
   vite: {
     ssr: {
       // Nécessaire pour Cloudflare qui ne prend pas en charge certains modules Node
