@@ -1,0 +1,77 @@
+{
+  "title": "Bienvenue sur AgriFlow",
+  "description": "AgriFlow est une plateforme complète de gestion agricole qui vous aide à optimiser vos opérations et à améliorer votre productivité.",
+  "hero": {
+    "tagline": "Solution de gestion agricole par ShiroUsagiLabo",
+    "title": "Digitalisez votre gestion agricole avec AgriFlow",
+    "description": "Suivez, planifiez et organisez vos activités agricoles sur différents types de terrains et d'espaces de culture pour une traçabilité complète de vos exploitations.",
+    "cta": "Commencer maintenant",
+    "stats": {
+      "spaces": "Types d'espaces agricoles gérés",
+      "statuses": "Statuts de culture suivis",
+      "actions": "Types d'actions agricoles",
+      "traceability": "Traçabilité des interventions"
+    }
+  },
+  "features": {
+    "title": "Fonctionnalités principales",
+    "subtitle": "Tout ce dont vous avez besoin",
+    "introduction": "AgriFlow offre un ensemble complet d'outils conçus pour simplifier la gestion de vos exploitations agricoles.",
+    "subtitle_advanced": "Et bien plus encore...",
+    "description_advanced": "Découvrez toutes les fonctionnalités avancées qui font d'AgriFlow la solution complète pour votre exploitation agricole.",
+    "learn_more": "En savoir plus"
+  },
+  "benefits": {
+    "title": "Des solutions concrètes pour vos défis agricoles quotidiens",
+    "subtitle": "Découvrez comment AgriFlow répond aux défis de la gestion agricole avec des fonctionnalités adaptées à vos besoins.",
+    "space_management": {
+      "title": "Gestion des espaces de culture",
+      "description": "Organisez vos terrains, parcelles et espaces de culture avec une hiérarchie claire et personnalisable."
+    },
+    "crop_tracking": {
+      "title": "Suivi des cultures",
+      "description": "Suivez l'évolution de vos cultures avec un système de statuts personnalisable et des observations détaillées."
+    },
+    "action_planning": {
+      "title": "Planification des actions",
+      "description": "Planifiez vos interventions agricoles et suivez leur réalisation avec un calendrier interactif."
+    },
+    "calendar": {
+      "title": "Calendrier interactif",
+      "description": "Visualisez l'ensemble de vos actions planifiées sur un calendrier intuitif et filtrable."
+    },
+    "demo": {
+      "title": "Demandez une démo personnalisée",
+      "description": "Laissez-nous vous montrer comment AgriFlow peut s'adapter à votre exploitation agricole.",
+      "email_placeholder": "Entrez votre email"
+    }
+  },
+  "demo": {
+    "title": "Découvrez AgriFlow en action",
+    "description": "Voyez comment notre application vous aide à digitaliser et optimiser la gestion de vos cultures, de l'organisation des terrains jusqu'à la planification des actions agricoles.",
+    "cta": "Réserver une démonstration",
+    "image_alt": "Démonstration de l'application AgriFlow",
+    "advantages": {
+      "title": "Pourquoi nos utilisateurs nous choisissent",
+      "time_saving": {
+        "title": "Gain de temps",
+        "description": "Réduction des tâches administratives et simplification de la planification des interventions agricoles."
+      },
+      "decision": {
+        "title": "Meilleure prise de décision",
+        "description": "Analyse de l'impact de vos interventions pour optimiser vos pratiques grâce à un suivi détaillé."
+      },
+      "adaptability": {
+        "title": "Adaptabilité",
+        "description": "Solution flexible qui s'adapte à différents types d'agricultures et tailles d'exploitation."
+      }
+    }
+  },
+  "cta": {
+    "title": "Prêt à digitaliser votre gestion agricole ?",
+    "description": "Commencez dès aujourd'hui à tracer, planifier et optimiser toutes vos activités agricoles avec AgriFlow.",
+    "button_primary": "Essayer gratuitement",
+    "button_secondary": "Voir la démo",
+    "no_credit_card": "Aucune carte de crédit requise"
+  }
+} 

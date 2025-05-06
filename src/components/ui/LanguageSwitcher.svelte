@@ -36,7 +36,7 @@ const handleLanguageChange = (language: Lang) => {
       }));
       console.log(`Événement language-changed déclenché avec la langue: ${language}`);
       
-      // Redirection vers l'URL avec le bon préfixe de langue
+      // Redirection vers l'URL avec le bon préfixe de langue (utilisez l'API Astro)
       setTimeout(() => {
         // Récupérer l'URL actuelle
         const currentUrl = window.location.pathname;
@@ -92,7 +92,7 @@ onMount(() => {
   <button
     class="flex items-center gap-2 px-3 py-2 rounded-md transition-colors text-sm bg-light dark:bg-background border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800"
     on:click={toggleDropdown}
-    aria-label={t('global.language.switch')}
+    aria-label="Changer de langue"
   >
     <span class="hidden sm:inline">
       {availableLanguages.includes($currentLang) 
@@ -114,7 +114,7 @@ onMount(() => {
               class="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors {language === $currentLang ? 'text-primary dark:text-secondary font-medium' : 'text-text dark:text-light'}"
               on:click={() => handleLanguageChange(language)}
             >
-              <Translate key={`global.language.${language}`} />
+              {language === 'fr' ? 'Français' : 'English'}
             </button>
           </li>
         {/each}

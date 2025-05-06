@@ -1,0 +1,14 @@
+{
+  "home": "Home",
+  "features": "Features",
+  "about": "About",
+  "pricing": "Pricing",
+  "contact": "Contact",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+  "back_to_home": "Back to home",
+  "back_to_features": "Back to features",
+  "demo": "Demo",
+  "solutions": "Solutions"
+} 

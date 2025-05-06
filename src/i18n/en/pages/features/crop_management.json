@@ -1,0 +1,21 @@
+{
+  "title": "Crop Management",
+  "description": "Track all your crops from planting to harvest. Plan your rotations and optimize your yields with detailed analytics.",
+  "full_description": "Our crop management module gives you a complete view of all your farming activities, from seeding to harvest. Plan, monitor, and optimize every step of production to maximize your yields while minimizing costs and environmental impact.",
+  "benefits": {
+    "title": "Benefits",
+    "item1": "Precise tracking of each field and crop",
+    "item2": "Optimized planning of crop rotations",
+    "item3": "Automatic alerts for treatments and interventions",
+    "item4": "Comparative yield analysis over multiple years"
+  },
+  "how_it_works": {
+    "title": "How It Works",
+    "description": "AgriFlow's crop management module allows you to map your farm, record all activities related to your fields, and analyze historical data to make better decisions. The intuitive interface allows you to quickly visualize the state of your crops and plan future interventions."
+  },
+  "testimonial": {
+    "title": "What Our Users Say",
+    "quote": "Since I started using AgriFlow to manage my crops, I've been able to increase my yields by 15% while reducing my input costs. The global vision that the application gives me allows me to make more informed decisions.",
+    "author": "John Smith, Farmer in Midwest"
+  }
+} 

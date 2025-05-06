@@ -1,0 +1,60 @@
+{
+  "greeting": "Hello, {name}",
+  "overview": "Here's an overview of your farm today",
+  "stats": {
+    "terrains": "Lands",
+    "espaces": "Growing Spaces",
+    "cultures": "Active Crops",
+    "actions": "Planned Actions"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "terrains": "Lands",
+    "espaces": "Growing Spaces",
+    "cultures": "Crops",
+    "actions": "Actions",
+    "calendrier": "Calendar",
+    "observations": "Observations",
+    "parametres": "Settings",
+    "aide": "Help",
+    "other": "Others",
+    "profile": "View profile"
+  },
+  "recent_actions": "Recent Actions",
+  "upcoming": "Upcoming",
+  "active_cultures": "Active Crops",
+  "weather": "Weather",
+  "progress": "Progress",
+  "see_all_actions": "View all actions",
+  "see_calendar": "View calendar",
+  "see_all_cultures": "View all crops",
+  "record_observation": "Record an observation",
+  "add_new": "Add new",
+  "actions": {
+    "arrosage": "Watering",
+    "plantation": "Planting",
+    "fertilisation": "Fertilization",
+    "taille": "Pruning"
+  },
+  "status": {
+    "termine": "Completed",
+    "en_cours": "In progress",
+    "planifie": "Planned"
+  },
+  "events": {
+    "arrosage": "Watering tomatoes",
+    "recolte": "Harvesting radishes",
+    "traitement": "Preventive treatment for apple trees"
+  },
+  "culture": {
+    "croissance": "Growing",
+    "recolte": "Ready to harvest",
+    "floraison": "Flowering"
+  },
+  "weather": {
+    "sunny": "Sunny",
+    "humidity": "Humidity",
+    "wind": "Wind",
+    "precipitation": "Precipitation"
+  }
+} 

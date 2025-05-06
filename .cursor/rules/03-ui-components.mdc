@@ -1,0 +1,54 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# UI Components
+
+This rule documents the structure and organization of user interface components.
+
+## Organization
+
+- [src/components/ui/](mdc:src/components/ui) - Base UI components
+- [src/components/layout/](mdc:src/components/layout) - Layout components
+- [src/components/dashboard/](mdc:src/components/dashboard) - Dashboard-specific components
+- [src/components/sections/](mdc:src/components/sections) - Reusable page sections
+
+## Best Practices
+
+- Each component should be in its own file
+- Components should be typed with TypeScript
+- Prefer pure components (stateless when possible)
+- For stateful components, use Svelte stores
+- Document props with JSDoc
+- Create unit tests for each component
+- Use TailwindCSS for styling
+
+## Component Structure Example
+
+```svelte
+<script lang="ts">
+  // Imports
+  import { onMount } from 'svelte';
+  
+  // Props
+  export let title: string;
+  export let isActive: boolean = false;
+  
+  // Local logic
+  let isLoading: boolean = true;
+  
+  onMount(() => {
+    isLoading = false;
+  });
+</script>
+
+<!-- Template -->
+<div class="component-wrapper" class:active={isActive}>
+  <h2>{title}</h2>
+  {#if isLoading}
+    <span>Loading...</span>
+  {:else}
+    <slot />
+  {/if}
+</div>

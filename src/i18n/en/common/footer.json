@@ -1,0 +1,16 @@
+{
+  "copyright": "© {year} AgriFlow. All rights reserved.",
+  "about": {
+    "title": "About",
+    "company": "Our Company",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "legal": "Legal Notice"
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "contact@agriflow.com",
+    "phone": "+33 1 23 45 67 89",
+    "address": "123 Agriculture Street, 75000 Paris, France"
+  }
+} 

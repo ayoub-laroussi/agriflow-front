@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Astro and Svelte Integration
+
+This rule describes how Astro and Svelte are integrated in the AgriFlow project.
+
+## Page Structure
+
+- [src/pages/](mdc:src/pages) - Contains all Astro pages
+- [src/layouts/](mdc:src/layouts) - Contains reusable layouts
+
+## Astro with Svelte
+
+Astro is used as the main framework for static rendering, while Svelte is used for interactive components.
+
+### Best Practices
+
+- Use Astro for static content
+- Use Svelte for interactive UI parts
+- Partial hydration with `client:load` or `client:visible` directives for Svelte components
+- Pass data from Astro components to Svelte components via props
+
+### Integration Example
+
+```astro
+---
+// Astro Page
+import MainLayout from '../layouts/MainLayout.astro';
+import Counter from '../components/ui/Counter.svelte';
+
+const pageTitle = "Integration Example";
+const initialCount = 0;
+---
+
+<MainLayout title={pageTitle}>
+  <h1>{pageTitle}</h1>
+  
+  <div class="static-content">
+    <p>Static content rendered by Astro</p>
+  </div>
+  
+  <div class="interactive-component">
+    <!-- Client-side hydration of Svelte component -->
+    <Counter client:load initialCount={initialCount} />
+  </div>
+</MainLayout>
+```
+
+## Routing
+
+- Routing is handled by Astro via the file structure in `src/pages/`
+- Dynamic routes use the `[param].astro` format
+- API routes are defined in `src/pages/api/`

@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Trans from '../../components/Trans.astro';
+
+const { t } = Astro.locals;
+---
+
+<Layout title={`${t('global.site_name')} - ${t('features.crop_management.title')}`}>
+  <main class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">{t('features.crop_management.title')}</h1>
+    
+    <div class="prose max-w-none mb-12">
+      <p class="text-lg mb-6">{t('features.crop_management.full_description')}</p>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4">{t('features.crop_management.benefits.title')}</h2>
+      <ul class="list-disc pl-6 mb-8">
+        <li class="mb-2">{t('features.crop_management.benefits.item1')}</li>
+        <li class="mb-2">{t('features.crop_management.benefits.item2')}</li>
+        <li class="mb-2">{t('features.crop_management.benefits.item3')}</li>
+        <li class="mb-2">{t('features.crop_management.benefits.item4')}</li>
+      </ul>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4">{t('features.crop_management.how_it_works.title')}</h2>
+      <p class="mb-6">{t('features.crop_management.how_it_works.description')}</p>
+      
+      <h2 class="text-2xl font-semibold mt-8 mb-4">{t('features.crop_management.testimonial.title')}</h2>
+      <blockquote class="border-l-4 border-blue-500 pl-4 italic mb-8">
+        {t('features.crop_management.testimonial.quote')}
+        <footer class="mt-2 font-semibold not-italic">
+          {t('features.crop_management.testimonial.author')}
+        </footer>
+      </blockquote>
+    </div>
+    
+    <div class="flex space-x-4 mb-8">
+      <a 
+        href={getRelativeLocaleUrl(Astro.currentLocale || 'fr', 'features')}
+        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-200"
+      >
+        {t('navigation.back_to_features')}
+      </a>
+      
+      <a 
+        href={getRelativeLocaleUrl(Astro.currentLocale || 'fr', 'contact')}
+        class="px-4 py-2 border border-blue-600 text-blue-600 rounded hover:bg-blue-50 transition duration-200"
+      >
+        {t('features.contact_us')}
+      </a>
+    </div>
+    
+    <div class="language-selector mt-8">
+      <a href={getRelativeLocaleUrl('fr', 'features/crop_management')} class="mr-4">Français</a>
+      <a href={getRelativeLocaleUrl('en', 'features/crop_management')}>English</a>
+    </div>
+  </main>
+</Layout> 

@@ -1,0 +1,47 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Code Conventions
+
+This document summarizes the code conventions to follow in the AgriFlow project.
+
+## TypeScript
+
+- Use English for all code and documentation
+- Always specify types explicitly
+- Avoid using `any`
+- Use PascalCase for classes and components
+- Use camelCase for variables, functions, and methods
+- Use kebab-case for file and directory names
+- Use UPPERCASE for constants and environment variables
+
+## Svelte Components
+
+- One component per file
+- Name files using PascalCase (Button.svelte)
+- Type all props
+- Define props at the top of the component
+- Use slots for composition
+
+## Styles
+
+- Use TailwindCSS for styling
+- Avoid inline styles
+- Use clsx/tailwind-merge for conditional classes
+
+## Tests
+
+- Use EXCLUSIVELY Vitest for tests
+- Import { describe, it, expect, vi } from 'vitest'
+- Name test files *.spec.ts or *.spec.js
+- Use vi.fn() and vi.spyOn() for mocks
+- Follow the AAA pattern (Arrange, Act, Assert)
+
+## Git
+
+- Commit format: `<type>(<scope>): <subject>`
+- Allowed types: feat, fix, docs, style, refactor, perf, test, chore
+- Subject: present tense imperative, no capital first letter, no period at the end
+- Follow GitFlow for branch management

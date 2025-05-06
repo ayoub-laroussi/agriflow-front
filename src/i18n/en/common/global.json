@@ -1,0 +1,13 @@
+{
+  "site_name": "AgriFlow",
+  "site_description": "Agricultural Management Platform",
+  "dark_mode": {
+    "toggle_light": "Switch to light mode",
+    "toggle_dark": "Switch to dark mode"
+  },
+  "language": {
+    "switch": "Change language",
+    "fr": "French",
+    "en": "English"
+  }
+} 

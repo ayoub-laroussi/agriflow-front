@@ -1,0 +1,37 @@
+{
+  "title": "Features",
+  "introduction": "Discover the powerful features of AgriFlow that will help transform your farm through modern technology.",
+  "learn_more": "Learn more",
+  "contact_us": "Contact us",
+  "traceability": {
+    "title": "Traceability at the service of your crops",
+    "description": "Keep a detailed history of all your actions to analyze the impact of your interventions and adopt more efficient practices.",
+    "caption": "Automated tracking of agricultural interventions"
+  },
+  "list": {
+    "landManagement": {
+      "title": "Land Management",
+      "description": "Organize your plots and growing spaces according to your specific needs: rice fields, farmland, orchards or gardens."
+    },
+    "cropTracking": {
+      "title": "Crop Tracking",
+      "description": "Follow the complete lifecycle of your crops with clear statuses: fallow, in preparation, in production, growing, harvested or diseased."
+    },
+    "agriculturalActions": {
+      "title": "Agricultural Actions",
+      "description": "Record all your interventions (soil preparation, planting, maintenance, protection, harvesting) with dates and comments."
+    },
+    "calendar": {
+      "title": "Interactive Calendar",
+      "description": "Plan your future actions, configure recurring tasks and visualize your workload with our intuitive calendar."
+    },
+    "observations": {
+      "title": "Observations and Weather",
+      "description": "Document your observations and weather conditions for a comprehensive analysis of factors influencing your crops."
+    },
+    "collaboration": {
+      "title": "Collaboration",
+      "description": "Invite collaborators and assign different access levels (owner, collaborator, viewer) according to needs."
+    }
+  }
+} 

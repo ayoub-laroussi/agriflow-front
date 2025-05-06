@@ -1,0 +1,140 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# State Management with Svelte Stores
+
+This rule documents best practices for state management in the AgriFlow project.
+
+## Store Structure
+
+- [src/lib/stores/](mdc:src/lib/stores) - Contains all Svelte stores
+- Each store should be in its own file
+- Use explicit types for stores
+
+## Store Types
+
+### Readable Stores
+
+Used for read-only state.
+
+```typescript
+// stores/time.ts
+import { readable } from 'svelte/store';
+
+export const time = readable(new Date(), function start(set) {
+  const interval = setInterval(() => {
+    set(new Date());
+  }, 1000);
+
+  return function stop() {
+    clearInterval(interval);
+  };
+});
+```
+
+### Writable Stores
+
+Used for mutable state.
+
+```typescript
+// stores/count.ts
+import { writable } from 'svelte/store';
+
+export const count = writable(0);
+```
+
+### Derived Stores
+
+Used to derive state from other stores.
+
+```typescript
+// stores/doubled.ts
+import { derived } from 'svelte/store';
+import { count } from './count';
+
+export const doubled = derived(count, $count => $count * 2);
+```
+
+### Custom Stores
+
+For more complex business logic.
+
+```typescript
+// stores/tasks.ts
+import { writable } from 'svelte/store';
+
+export interface Task {
+  id: string;
+  text: string;
+  completed: boolean;
+}
+
+function createTasksStore() {
+  const { subscribe, set, update } = writable<Task[]>([]);
+
+  return {
+    subscribe,
+    addTask: (text: string) => update(tasks => {
+      const newTask: Task = { 
+        id: Date.now().toString(), 
+        text, 
+        completed: false 
+      };
+      return [...tasks, newTask];
+    }),
+    removeTask: (id: string) => update(tasks => 
+      tasks.filter(task => task.id !== id)
+    ),
+    toggleTask: (id: string) => update(tasks => 
+      tasks.map(task => 
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    ),
+    clearCompleted: () => update(tasks => 
+      tasks.filter(task => !task.completed)
+    ),
+    reset: () => set([])
+  };
+}
+
+export const tasks = createTasksStore();
+```
+
+## Usage in Components
+
+```svelte
+<script lang="ts">
+  import { count } from '../lib/stores/count';
+  import { tasks, type Task } from '../lib/stores/tasks';
+  
+  function handleAddTask() {
+    tasks.addTask('New task');
+  }
+  
+  function handleIncrementCount() {
+    $count += 1;
+  }
+</script>
+
+<div>
+  <p>Counter: {$count}</p>
+  <button on:click={handleIncrementCount}>Increment</button>
+  
+  <h2>Tasks</h2>
+  <button on:click={handleAddTask}>Add task</button>
+  
+  <ul>
+    {#each $tasks as task}
+      <li class:completed={task.completed}>
+        {task.text}
+        <button on:click={() => tasks.toggleTask(task.id)}>
+          {task.completed ? 'Unmark' : 'Mark as completed'}
+        </button>
+        <button on:click={() => tasks.removeTask(task.id)}>Delete</button>
+      </li>
+    {/each}
+  </ul>
+</div>
+```

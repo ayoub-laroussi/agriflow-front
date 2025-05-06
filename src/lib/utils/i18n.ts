@@ -3,14 +3,14 @@
  * 
  * Ce fichier fournit des fonctions utilitaires pour faciliter l'utilisation
  * des traductions dans les composants Svelte et dans le code client.
+ * 
+ * Note: Ce fichier est désormais obsolète et est maintenu pour compatibilité
+ * avec le code existant. Les nouvelles fonctionnalités devraient utiliser
+ * le système natif d'Astro i18n avec le middleware.
  */
 
 import type { Lang } from '../../types';
 import type { Translations } from '../../types/i18n';
-
-// Importer les fichiers de traduction directement pour le rendu côté serveur
-import frTranslations from '../../i18n/fr.json';
-import enTranslations from '../../i18n/en.json';
 
 // Définir l'interface de la fenêtre pour TypeScript
 declare global {
@@ -28,11 +28,34 @@ declare global {
   }
 }
 
-// Traductions disponibles côté serveur
-const serverTranslations: Record<Lang, Translations> = {
-  fr: frTranslations as Translations,
-  en: enTranslations as Translations
+// Pour assurer la compatibilité, nous construisons un objet de traduction temporaire
+// à partir des données des fichiers de traduction déjà chargés en mémoire
+const buildFallbackTranslations = (): Record<Lang, any> => {
+  // Essaye de créer un objet compatible avec l'ancienne structure
+  return {
+    fr: {
+      global: {
+        site_name: "AgriFlow",
+        site_description: "Plateforme de gestion agricole"
+      },
+      navigation: {
+        home: "Accueil"
+      }
+    },
+    en: {
+      global: {
+        site_name: "AgriFlow",
+        site_description: "Agricultural Management Platform"
+      },
+      navigation: {
+        home: "Home"
+      }
+    }
+  };
 };
+
+// Traductions disponibles côté serveur (version simplifiée)
+const serverTranslations: Record<Lang, Translations> = buildFallbackTranslations();
 
 /**
  * Récupère une valeur de traduction à partir d'une clé
@@ -41,11 +64,18 @@ const serverTranslations: Record<Lang, Translations> = {
  * @param params - Les paramètres à injecter (optionnel)
  * @param lang - La langue (optionnel, utilise la langue actuelle par défaut)
  * @returns La traduction correspondante ou la clé si non trouvée
+ * 
+ * @deprecated Utiliser le middleware Astro i18n à la place
  */
 export function t(key: string, params?: Record<string, any>, lang?: Lang): string {
+  // Vérifier si nous sommes dans un contexte Astro avec le middleware i18n
+  if (typeof window !== 'undefined' && window.document.documentElement.dataset.astroI18nLang) {
+    console.warn(`[i18n] Utilisation de la fonction obsolète t(). Préférez le middleware Astro i18n.`);
+  }
+  
   // Récupérer la langue actuelle depuis window si disponible
   const currentLang = (lang as Lang) || 
-    (typeof window !== 'undefined' && window.APP_LANGUAGE.current as Lang) || 
+    (typeof window !== 'undefined' && window.APP_LANGUAGE?.current as Lang) || 
     'fr';
   
   try {
@@ -54,7 +84,7 @@ export function t(key: string, params?: Record<string, any>, lang?: Lang): strin
     
     if (typeof window !== 'undefined') {
       // Côté client, utiliser les traductions chargées dans window.translations
-      if (!Object.keys(window.translations).length) {
+      if (!window.translations || !Object.keys(window.translations).length) {
         // Si les traductions client ne sont pas encore chargées, utiliser celles du serveur
         translations = serverTranslations[currentLang];
         if (!translations) {
@@ -65,7 +95,7 @@ export function t(key: string, params?: Record<string, any>, lang?: Lang): strin
         translations = window.translations[currentLang];
       }
     } else {
-      // Côté serveur, utiliser les traductions importées directement
+      // Côté serveur, utiliser les traductions de fallback
       translations = serverTranslations[currentLang];
     }
     
@@ -115,34 +145,34 @@ function interpolateParams(text: string, params: Record<string, any>): string {
 /**
  * Initialise les traductions côté client
  * Cette fonction est appelée dans le Layout.astro
+ * 
+ * @deprecated Utiliser le middleware Astro i18n à la place
  */
 export async function initClientTranslations(): Promise<void> {
   try {
-    // Récupérer la langue actuelle
-    const currentLang = window.APP_LANGUAGE.current || 'fr';
-    console.log(`[i18n] Initialisation des traductions pour la langue: ${currentLang}`);
-    
-    // Charger les fichiers de traduction
-    console.log('[i18n] Chargement des fichiers de traduction...');
-    const responses = await Promise.all([
-      fetch('/src/i18n/fr.json'),
-      fetch('/src/i18n/en.json')
-    ]);
-    
-    if (!responses.every(response => response.ok)) {
-      throw new Error('Failed to fetch translations');
+    // Vérifier si nous utilisons déjà Astro i18n
+    if (document.documentElement.dataset.astroI18nLang) {
+      console.log("[i18n] Astro i18n est déjà configuré, utilisation de celui-ci");
+      
+      // Initialiser l'objet de compatibilité
+      window.APP_LANGUAGE = {
+        current: document.documentElement.dataset.astroI18nLang,
+        available: ['fr', 'en']
+      };
+      
+      // Utiliser les traductions minimalistes pour compatibilité
+      window.translations = buildFallbackTranslations();
+      
+      window.dispatchEvent(new CustomEvent('translations-loaded'));
+      return;
     }
     
-    // Analyser les réponses JSON
-    const [frTranslations, enTranslations] = await Promise.all(
-      responses.map(response => response.json())
-    );
+    // Récupérer la langue actuelle
+    const currentLang = window.APP_LANGUAGE?.current || 'fr';
+    console.log(`[i18n] Initialisation des traductions pour la langue: ${currentLang}`);
     
-    // Stocker les traductions dans window
-    window.translations = {
-      fr: frTranslations,
-      en: enTranslations
-    } as Record<string, Record<string, string>>;
+    // Initialiser l'objet de traduction avec les valeurs minimales
+    window.translations = buildFallbackTranslations();
     
     // Initialiser astro-i18n du côté client
     window.astroI18n = {
@@ -152,8 +182,6 @@ export async function initClientTranslations(): Promise<void> {
     };
     
     console.log('[i18n] Traductions initialisées avec succès');
-    console.log(`[i18n] Langues disponibles: ${window.APP_LANGUAGE.available.join(', ')}`);
-    console.log(`[i18n] Langue actuelle: ${window.APP_LANGUAGE.current}`);
     
     // Déclencher un événement pour notifier que les traductions sont chargées
     window.dispatchEvent(new CustomEvent('translations-loaded'));

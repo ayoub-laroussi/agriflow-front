@@ -1,0 +1,97 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Atomic Commits
+
+This rule documents the principles and practices of atomic commits in the AgriFlow project.
+
+## What Are Atomic Commits?
+
+Atomic commits are commits that contain exactly one logical change to the codebase. They are self-contained and independent changes that can be understood, reviewed, tested, and potentially reverted without affecting other parts of the system.
+
+## Principles
+
+1. **Single Responsibility**: Each commit should do exactly one thing
+2. **Completeness**: Each commit should fully implement the change it describes
+3. **Independence**: Each commit should work independently of others
+4. **Coherence**: All changes in a commit should be related to its purpose
+
+## Benefits
+
+- Easier code reviews
+- Cleaner git history
+- Simpler debugging
+- Easier cherry-picking and reverting
+- Better understanding of code evolution
+
+## Practices
+
+### DO
+
+- Break large changes into smaller, logical commits
+- Ensure each commit compiles and passes tests
+- Write clear commit messages that explain the single purpose
+- Group related file changes together
+- Commit often
+
+### DON'T
+
+- Mix unrelated changes in a single commit
+- Include debugging code or console logs
+- Commit half-implemented features
+- Include large reformatting changes with actual code changes
+- Commit broken or untested code
+
+## Examples
+
+### Good Atomic Commits
+
+```
+feat(auth): add password strength indicator
+
+Added a visual indicator that shows password strength as users type,
+using zxcvbn library to calculate strength.
+```
+
+```
+fix(form): correct email validation regex
+
+The previous regex was incorrectly validating some invalid email formats.
+Updated to use the RFC 5322 compliant regex.
+```
+
+```
+refactor(api): extract fetchData utility function
+
+Extracted common data fetching logic into a reusable utility function
+to avoid duplication across components.
+```
+
+### Splitting a Large Change
+
+Instead of one large commit:
+
+❌ Bad:
+```
+feat: implement user profile page and settings
+```
+
+✅ Good - split into atomic commits:
+```
+feat(profile): add user profile page structure
+feat(profile): implement profile information display
+feat(profile): add profile editing functionality
+feat(settings): create settings page layout
+feat(settings): implement notification preferences
+feat(settings): add account deletion option
+```
+
+## Workflow Tips
+
+1. Use `git add -p` to stage parts of files selectively
+2. Regularly review your changes with `git diff` before committing
+3. Use `git stash` to temporarily store changes that don't belong in the current commit
+4. Consider using tools like GitLens to understand the history better
+5. Write commit messages that clearly explain the atomic change

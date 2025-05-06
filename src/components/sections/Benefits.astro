@@ -1,26 +1,24 @@
 ---
 import BenefitItem from '../ui/BenefitItem.astro';
+const { t } = Astro.locals;
 
+// Définir les bénéfices
 const benefits = [
     {
-        title: "Gain de temps considérable",
-        description: "Automatisez la planification et le suivi de vos activités agricoles pour réduire le travail administratif"
+        title: t('benefits.space_management.title'),
+        description: t('benefits.space_management.description')
     },
     {
-        title: "Traçabilité complète",
-        description: "Gardez un historique détaillé de toutes vos actions pour une meilleure analyse et prise de décision"
+        title: t('benefits.crop_tracking.title'),
+        description: t('benefits.crop_tracking.description')
     },
     {
-        title: "Flexibilité d'organisation",
-        description: "Adaptez l'application à votre type d'exploitation avec des configurations personnalisées"
+        title: t('benefits.action_planning.title'),
+        description: t('benefits.action_planning.description')
     },
     {
-        title: "Suivi personnalisé",
-        description: "Suivez chaque culture individuellement avec un système de statuts clair et intuitif"
-    },
-    {
-        title: "Facilité d'utilisation",
-        description: "Interface simple et accessible conçue pour tous les niveaux de familiarité avec le numérique"
+        title: t('benefits.calendar.title'),
+        description: t('benefits.calendar.description')
     }
 ];
 ---
@@ -28,9 +26,9 @@ const benefits = [
 <section id="solutions" class="py-20 bg-light">
     <div class="container mx-auto px-4">
         <div class="mb-16 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Des solutions concrètes<br/>pour vos défis agricoles quotidiens</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">{t('benefits.title')}</h2>
             <p class="text-text-light text-lg max-w-2xl mx-auto">
-                Découvrez comment AgriFlow répond aux défis de la gestion agricole avec des fonctionnalités adaptées à vos besoins.
+                {t('benefits.subtitle')}
             </p>
         </div>
 

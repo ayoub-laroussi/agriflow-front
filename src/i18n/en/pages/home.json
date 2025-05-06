@@ -1,0 +1,77 @@
+{
+  "title": "Welcome to AgriFlow",
+  "description": "AgriFlow is a comprehensive agricultural management platform that helps you optimize your operations and improve productivity.",
+  "hero": {
+    "tagline": "Agricultural management solution by ShiroUsagiLabo",
+    "title": "Digitize your agricultural management with AgriFlow",
+    "description": "Track, plan, and organize your agricultural activities across different types of land and growing spaces for complete traceability of your operations.",
+    "cta": "Get Started Now",
+    "stats": {
+      "spaces": "Types of agricultural spaces managed",
+      "statuses": "Crop status types tracked",
+      "actions": "Types of agricultural actions",
+      "traceability": "Intervention traceability"
+    }
+  },
+  "features": {
+    "title": "Key Features",
+    "subtitle": "Everything you need",
+    "introduction": "AgriFlow offers a comprehensive set of tools designed to simplify the management of your agricultural operations.",
+    "subtitle_advanced": "And much more...",
+    "description_advanced": "Discover all the advanced features that make AgriFlow the complete solution for your farm.",
+    "learn_more": "Learn more"
+  },
+  "benefits": {
+    "title": "Concrete solutions for your daily agricultural challenges",
+    "subtitle": "Discover how AgriFlow addresses agricultural management challenges with features tailored to your needs.",
+    "space_management": {
+      "title": "Growing Space Management",
+      "description": "Organize your lands, plots, and growing spaces with a clear and customizable hierarchy."
+    },
+    "crop_tracking": {
+      "title": "Crop Tracking",
+      "description": "Monitor the evolution of your crops with a customizable status system and detailed observations."
+    },
+    "action_planning": {
+      "title": "Action Planning",
+      "description": "Plan your agricultural interventions and track their completion with an interactive calendar."
+    },
+    "calendar": {
+      "title": "Interactive Calendar",
+      "description": "Visualize all your planned actions on an intuitive and filterable calendar."
+    },
+    "demo": {
+      "title": "Request a custom demo",
+      "description": "Let us show you how AgriFlow can adapt to your farming operation.",
+      "email_placeholder": "Enter your email"
+    }
+  },
+  "demo": {
+    "title": "See AgriFlow in action",
+    "description": "See how our application helps you digitize and optimize your crop management, from land organization to planning agricultural actions.",
+    "cta": "Book a demonstration",
+    "image_alt": "AgriFlow application demonstration",
+    "advantages": {
+      "title": "Why our users choose us",
+      "time_saving": {
+        "title": "Time Saving",
+        "description": "Reduction of administrative tasks and simplification of planning agricultural interventions."
+      },
+      "decision": {
+        "title": "Better Decision Making",
+        "description": "Analyze the impact of your interventions to optimize your practices through detailed monitoring."
+      },
+      "adaptability": {
+        "title": "Adaptability",
+        "description": "Flexible solution that adapts to different types of agriculture and farm sizes."
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to digitize your agricultural management?",
+    "description": "Start today to track, plan, and optimize all your agricultural activities with AgriFlow.",
+    "button_primary": "Try for free",
+    "button_secondary": "See the demo",
+    "no_credit_card": "No credit card required"
+  }
+} 

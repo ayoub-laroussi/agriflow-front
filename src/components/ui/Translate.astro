@@ -1,0 +1,12 @@
+---
+interface Props {
+  key: string;
+}
+
+const { key } = Astro.props;
+const { t } = Astro.locals;
+
+const translation = t ? t(key) : key;
+---
+
+{translation} 

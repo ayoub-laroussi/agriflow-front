@@ -1,0 +1,66 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Contribution Workflow
+
+This rule describes the process for contributing to the AgriFlow project.
+
+## GitFlow
+
+AgriFlow follows the GitFlow workflow with the following conventions:
+
+### Main Branches
+
+- `main`: Production code
+- `develop`: Development code
+
+### Feature Branches
+
+- Format: `feature/[issue-id]-feature-name`
+- Branch from: `develop`
+- Merge to: `develop`
+
+### Release Branches
+
+- Format: `release/v[version]`
+- Branch from: `develop`
+- Merge to: `main` and `develop`
+
+### Hotfix Branches
+
+- Format: `hotfix/v[version]-fix-name`
+- Branch from: `main`
+- Merge to: `main` and `develop`
+
+## Commits
+
+- Format: `<type>(<scope>): <subject>`
+- Allowed types: feat, fix, docs, style, refactor, perf, test, chore
+- Subject: present tense imperative, no capital first letter, no period at the end
+
+Examples:
+- `feat(auth): add login form validation`
+- `fix(ui): correct button alignment on mobile`
+- `docs(readme): update installation instructions`
+
+## Pull Request Process
+
+1. Create a feature branch from `develop`
+2. Implement changes with regular commits
+3. Ensure tests pass
+4. Push the branch to the remote repository
+5. Create a Pull Request to `develop`
+6. Wait for code review and approval
+7. Address feedback if necessary
+8. Merge the PR once approved
+
+## Checklist Before Submitting a PR
+
+- [ ] All tests pass
+- [ ] Code follows formatting conventions
+- [ ] Documentation is up to date
+- [ ] Commits follow conventions
+- [ ] Features are manually tested
+- [ ] Code doesn't contain secrets or sensitive information

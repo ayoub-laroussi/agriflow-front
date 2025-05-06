@@ -1,0 +1,60 @@
+{
+  "greeting": "Bonjour, {name}",
+  "overview": "Voici un aperçu de votre exploitation aujourd'hui",
+  "stats": {
+    "terrains": "Terrains",
+    "espaces": "Espaces de culture",
+    "cultures": "Cultures actives",
+    "actions": "Actions planifiées"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "terrains": "Terrains",
+    "espaces": "Espaces de culture",
+    "cultures": "Cultures",
+    "actions": "Actions",
+    "calendrier": "Calendrier",
+    "observations": "Observations",
+    "parametres": "Paramètres",
+    "aide": "Aide",
+    "other": "Autres",
+    "profile": "Voir le profil"
+  },
+  "recent_actions": "Actions récentes",
+  "upcoming": "À venir",
+  "active_cultures": "Cultures actives",
+  "weather": "Météo",
+  "progress": "Progression",
+  "see_all_actions": "Voir toutes les actions",
+  "see_calendar": "Voir le calendrier",
+  "see_all_cultures": "Voir toutes les cultures",
+  "record_observation": "Enregistrer une observation",
+  "add_new": "Ajouter",
+  "actions": {
+    "arrosage": "Arrosage",
+    "plantation": "Plantation",
+    "fertilisation": "Fertilisation",
+    "taille": "Taille"
+  },
+  "status": {
+    "termine": "Terminé",
+    "en_cours": "En cours",
+    "planifie": "Planifié"
+  },
+  "events": {
+    "arrosage": "Arrosage des tomates",
+    "recolte": "Récolte des radis",
+    "traitement": "Traitement préventif pommiers"
+  },
+  "culture": {
+    "croissance": "En croissance",
+    "recolte": "Prêt à récolter",
+    "floraison": "Floraison"
+  },
+  "weather": {
+    "sunny": "Ensoleillé",
+    "humidity": "Humidité",
+    "wind": "Vent",
+    "precipitation": "Précipitations"
+  }
+} 

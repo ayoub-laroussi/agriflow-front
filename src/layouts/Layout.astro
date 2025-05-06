@@ -1,17 +1,14 @@
 ---
 import '../styles/global.css';
-import { t } from '../lib/utils/i18n';
-
-// Obtenir la langue actuelle
-const currentPath = Astro.url.pathname;
-const pathSegments = currentPath.split('/').filter(Boolean);
-const currentLanguage = pathSegments[0] === 'en' ? 'en' : 'fr';
 
 // Support pour les titres et descriptions personnalisés
 const { 
 	title = 'AgriFlow', 
 	description = 'Plateforme de gestion agricole' 
 } = Astro.props;
+
+// Utiliser la locale d'Astro
+const currentLanguage = Astro.currentLocale || 'fr';
 ---
 
 <!doctype html>
@@ -46,25 +43,13 @@ const {
 			}
 		</script>
 		
-		<!-- Script pour l'initialisation des langues -->
+		<!-- Script pour l'initialisation des langues (pour compatibilité avec le code existant) -->
 		<script is:inline define:vars={{ currentLanguage }}>
 			// Exposer les variables de langue aux composants enfants
 			window.APP_LANGUAGE = {
 				current: currentLanguage,
 				available: ["fr", "en"]
 			};
-		</script>
-		
-		<!-- Chargement des traductions côté client -->
-		<script>
-			// Importer la fonction d'initialisation des traductions
-			import { initClientTranslations } from '../lib/utils/i18n';
-			
-			// Initialiser les traductions au chargement de la page
-			document.addEventListener('DOMContentLoaded', async () => {
-				await initClientTranslations();
-				console.log('Traductions initialisées ✅');
-			});
 		</script>
 	</head>
 	<body class="min-h-screen w-full leading-relaxed bg-white dark:bg-background text-text dark:text-white">

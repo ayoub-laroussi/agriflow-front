@@ -1,0 +1,35 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# AgriFlow Project Structure
+
+This project is a frontend application using Astro and Svelte, built with TypeScript and TailwindCSS.
+
+## Main Architecture
+
+- [src/](mdc:src) - Contains all source code
+  - [src/components/](mdc:src/components) - Reusable components
+  - [src/layouts/](mdc:src/layouts) - Astro layouts for pages
+  - [src/pages/](mdc:src/pages) - Astro pages and API endpoints
+  - [src/lib/](mdc:src/lib) - Libraries and utilities
+  - [src/types/](mdc:src/types) - TypeScript type definitions
+  - [src/styles/](mdc:src/styles) - Global styles
+  - [src/assets/](mdc:src/assets) - Static assets
+  - [src/i18n/](mdc:src/i18n) - Internationalization
+
+## Configuration
+
+- [astro.config.mjs](mdc:astro.config.mjs) - Astro configuration
+- [tsconfig.json](mdc:tsconfig.json) - TypeScript configuration
+- [tailwind.config.js](mdc:tailwind.config.js) - TailwindCSS configuration
+- [svelte.config.js](mdc:svelte.config.js) - Svelte configuration
+
+## Documentation
+
+- [contexte.md](mdc:contexte.md) - Project context
+- [enjeux.md](mdc:enjeux.md) - Project challenges
+- [objectif.md](mdc:objectif.md) - Project objectives
+- [problematique.md](mdc:problematique.md) - Problems to solve
+- [regle-de-gestion.md](mdc:regle-de-gestion.md) - Business rules

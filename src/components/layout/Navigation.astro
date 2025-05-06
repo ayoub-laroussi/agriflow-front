@@ -1,47 +1,60 @@
 ---
-import { t } from '../../lib/utils/i18n';
+// Récupérer la fonction de traduction depuis Astro.locals
+const { t } = Astro.locals;
 import DarkModeToggle from '../ui/DarkModeToggle.svelte';
-import LanguageSwitcher from '../ui/LanguageSwitcher.svelte';
-import Translate from '../ui/Translate.svelte';
 
 // Obtenir la langue actuelle depuis URL
 const currentPath = Astro.url.pathname;
 const pathSegments = currentPath.split('/').filter(Boolean);
 const currentLanguage = pathSegments[0] === 'en' ? 'en' : 'fr';
+
+// Préfixe d'URL basé sur la langue actuelle
+const urlPrefix = currentLanguage === 'en' ? '/en' : '';
 ---
 
-<nav class="flex justify-between items-center py-6">
-    <div class="flex items-center">
-        <span class="font-montserrat font-bold text-2xl text-primary dark:text-secondary">
-            <Translate key="global.site_name" client:load />
-        </span>
-    </div>
-    <div class="hidden md:flex gap-8">
-        <a href="#" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-            <Translate key="navigation.home" client:load />
-        </a>
-        <a href="#fonctionnalites" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-            <Translate key="navigation.features" client:load />
-        </a>
-        <a href="#solutions" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-            <Translate key="navigation.solutions" client:load />
-        </a>
-        <a href="#demo" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-            <Translate key="navigation.demo" client:load />
-        </a>
-        <a href="#contact" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-            <Translate key="navigation.contact" client:load />
-        </a>
-        <a href="/i18n-demo" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors border-b border-secondary">i18n Demo</a>
-    </div>
-    <div class="flex gap-4 items-center">
-        <LanguageSwitcher client:load />
-        <DarkModeToggle client:load />
-        <a href="/auth/login" class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">
-            <Translate key="navigation.login" client:load />
-        </a>
-        <a href="/auth/register" class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">
-            <Translate key="navigation.register" client:load />
-        </a>
-    </div>
-</nav> 
+<div class="container mx-auto px-4">
+  <nav class="flex justify-between items-center py-6">
+      <div class="flex items-center">
+          <span class="font-montserrat font-bold text-2xl text-primary dark:text-secondary">
+              {t('global.site_name')}
+          </span>
+      </div>
+      <div class="hidden md:flex gap-8">
+          <a href="#" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+              {t('navigation.home')}
+          </a>
+          <a href="#fonctionnalites" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+              {t('navigation.features')}
+          </a>
+          <a href="#solutions" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+              {t('navigation.about')}
+          </a>
+          <a href="#demo" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+              {t('navigation.demo')}
+          </a>
+          <a href="#contact" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
+              {t('navigation.contact')}
+          </a>
+      </div>
+      <div class="flex gap-4 items-center">
+          <!-- Sélecteur de langue -->
+          <div class="language-switcher flex space-x-2">
+              <a href="/" class={`px-2 py-1 text-sm rounded-md transition-colors ${currentLanguage === 'fr' ? 'bg-primary text-white' : 'text-text dark:text-light hover:text-primary dark:hover:text-secondary'}`}>
+                  FR
+              </a>
+              <a href="/en/" class={`px-2 py-1 text-sm rounded-md transition-colors ${currentLanguage === 'en' ? 'bg-primary text-white' : 'text-text dark:text-light hover:text-primary dark:hover:text-secondary'}`}>
+                  EN
+              </a>
+          </div>
+          
+          <DarkModeToggle client:load />
+          
+          <a href={`${urlPrefix}/auth/login`} class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">
+              {t('navigation.login')}
+          </a>
+          <a href={`${urlPrefix}/auth/register`} class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">
+              {t('navigation.register')}
+          </a>
+      </div>
+  </nav>
+</div> 

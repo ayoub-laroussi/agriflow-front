@@ -1,5 +1,6 @@
 ---
-import Translate from '../ui/Translate.svelte';
+// Récupérer la fonction de traduction depuis Astro.locals
+const { t } = Astro.locals;
 ---
 
 <section
@@ -17,21 +18,21 @@ import Translate from '../ui/Translate.svelte';
     <div
       class="text-xs text-primary dark:text-secondary bg-white dark:bg-background/90 bg-opacity-80 dark:bg-opacity-80 inline-block px-3 py-1 rounded-full mb-4"
     >
-      <Translate key="hero.tagline" client:load />
+      {t('home.hero.tagline')}
     </div>
     <h1
       class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg"
     >
-      <Translate key="hero.title" client:load />
+      {t('home.hero.title')}
     </h1>
     <p class="text-white text-lg mb-8 max-w-2xl mx-auto drop-shadow">
-      <Translate key="hero.description" client:load />
+      {t('home.hero.description')}
     </p>
     <a
       href="/auth/register"
       class="flex items-center gap-2 bg-primary dark:bg-secondary text-white px-8 py-4 rounded-full font-semibold hover:bg-primary-dark dark:hover:bg-primary transition-all text-lg shadow-lg"
     >
-      <Translate key="hero.cta" client:load />
+      {t('home.hero.cta')}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -55,25 +56,25 @@ import Translate from '../ui/Translate.svelte';
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">4+</h3>
     <p class="text-text-light dark:text-text-light">
-      <Translate key="hero.stats.spaces" client:load />
+      {t('home.hero.stats.spaces')}
     </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">7+</h3>
     <p class="text-text-light dark:text-text-light">
-      <Translate key="hero.stats.statuses" client:load />
+      {t('home.hero.stats.statuses')}
     </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">5+</h3>
     <p class="text-text-light dark:text-text-light">
-      <Translate key="hero.stats.actions" client:load />
+      {t('home.hero.stats.actions')}
     </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">100%</h3>
     <p class="text-text-light dark:text-text-light">
-      <Translate key="hero.stats.traceability" client:load />
+      {t('home.hero.stats.traceability')}
     </p>
   </div>
 </div>

@@ -1,0 +1,79 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Testing and Code Quality
+
+This rule details the testing and code quality practices in the AgriFlow project.
+
+## Testing Framework
+
+- **Vitest** is the ONLY testing framework allowed in this project
+- Imports must use `{ describe, it, expect, vi } from 'vitest'`
+- It is strictly forbidden to use Jest or other testing frameworks
+
+## Test Structure
+
+- Test files must be named `*.spec.ts` or `*.spec.js`
+- Tests should be organized by functionality
+- Each test should follow the AAA pattern (Arrange, Act, Assert)
+
+```typescript
+// Test structure example
+import { describe, it, expect, vi } from 'vitest';
+import { ComponentToTest } from './ComponentToTest';
+
+describe('ComponentToTest', () => {
+  describe('someFunction', () => {
+    it('should return correct value when called with valid input', () => {
+      // Arrange
+      const component = new ComponentToTest();
+      const input = 'valid input';
+      
+      // Act
+      const result = component.someFunction(input);
+      
+      // Assert
+      expect(result).toBe('expected output');
+    });
+  });
+});
+```
+
+## Mocks
+
+- Use `vi.fn()` for simple mocks
+- Use `vi.spyOn()` for existing methods
+- Reset mocks in `afterEach`
+
+```typescript
+import { describe, it, expect, vi, afterEach } from 'vitest';
+import { ApiService } from './ApiService';
+
+describe('ApiService', () => {
+  afterEach(() => {
+    vi.resetAllMocks();
+  });
+  
+  it('should call API endpoint', async () => {
+    // Mock fetch
+    global.fetch = vi.fn().mockResolvedValue({
+      json: vi.fn().mockResolvedValue({ data: 'test' }),
+      ok: true
+    });
+    
+    // Call service
+    await ApiService.getData();
+    
+    // Assert fetch was called correctly
+    expect(global.fetch).toHaveBeenCalledWith('/api/data');
+  });
+});
+```
+
+## Component Testing
+
+- Use `@testing-library/svelte` to test Svelte components
+- Test rendering, events, and user interactions
+- Verify error cases and edge states

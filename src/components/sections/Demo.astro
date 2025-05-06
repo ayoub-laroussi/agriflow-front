@@ -1,16 +1,36 @@
 ---
+const { t } = Astro.locals;
+
+// Définir les avantages
+const advantages = [
+  {
+    icon: "⏱️",
+    title: t('demo.advantages.time_saving.title'),
+    description: t('demo.advantages.time_saving.description')
+  },
+  {
+    icon: "🔍",
+    title: t('demo.advantages.decision.title'),
+    description: t('demo.advantages.decision.description')
+  },
+  {
+    icon: "📱",
+    title: t('demo.advantages.adaptability.title'),
+    description: t('demo.advantages.adaptability.description')
+  }
+];
 ---
 
 <section id="demo" class="py-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Découvrez AgriFlow en action</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">{t('demo.title')}</h2>
                 <p class="text-text-light text-lg mb-8">
-                    Voyez comment notre application vous aide à digitaliser et optimiser la gestion de vos cultures, de l'organisation des terrains jusqu'à la planification des actions agricoles.
+                    {t('demo.description')}
                 </p>
                 <a href="#contact" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary-dark transition-all">
-                    Réserver une démonstration
+                    {t('demo.cta')}
                 </a>
             </div>
             <div class="md:w-1/2">
@@ -28,25 +48,15 @@
         </div>
         
         <div class="mt-16 text-center">
-            <h3 class="text-2xl font-bold mb-6">Pourquoi nos utilisateurs nous choisissent</h3>
+            <h3 class="text-2xl font-bold mb-6">{t('demo.advantages.title')}</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-                <div class="p-6 bg-light rounded-xl">
-                    <div class="text-4xl mb-4">⏱️</div>
-                    <h4 class="text-xl font-bold mb-3">Gain de temps</h4>
-                    <p class="text-text-light">Réduction des tâches administratives et simplification de la planification des interventions agricoles.</p>
-                </div>
-                
-                <div class="p-6 bg-light rounded-xl">
-                    <div class="text-4xl mb-4">📊</div>
-                    <h4 class="text-xl font-bold mb-3">Meilleure prise de décision</h4>
-                    <p class="text-text-light">Analyse de l'impact de vos interventions pour optimiser vos pratiques grâce à un suivi détaillé.</p>
-                </div>
-                
-                <div class="p-6 bg-light rounded-xl">
-                    <div class="text-4xl mb-4">🔄</div>
-                    <h4 class="text-xl font-bold mb-3">Adaptabilité</h4>
-                    <p class="text-text-light">Solution flexible qui s'adapte à différents types d'agricultures et tailles d'exploitation.</p>
-                </div>
+                {advantages.map(item => (
+                    <div class="p-6 bg-light rounded-xl">
+                        <div class="text-4xl mb-4">{item.icon}</div>
+                        <h4 class="text-xl font-bold mb-3">{item.title}</h4>
+                        <p class="text-text-light">{item.description}</p>
+                    </div>
+                ))}
             </div>
         </div>
     </div>

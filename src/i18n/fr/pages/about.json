@@ -1,0 +1,12 @@
+{
+  "title": "À propos",
+  "introduction": "AgriFlow est une plateforme innovante dédiée à la transformation numérique du secteur agricole. Notre objectif est de fournir aux agriculteurs et aux professionnels de l'agriculture des outils numériques avancés pour optimiser leurs opérations quotidiennes.",
+  "mission": {
+    "title": "Notre mission",
+    "description": "Notre mission est de démocratiser l'accès aux technologies avancées pour tous les acteurs du secteur agricole, qu'il s'agisse de petites exploitations familiales ou de grandes entreprises agricoles. Nous croyons que la technologie peut être un puissant catalyseur de changement positif dans l'agriculture."
+  },
+  "vision": {
+    "title": "Notre vision",
+    "description": "Nous envisageons un avenir où l'agriculture est plus efficace, plus durable et plus rentable grâce à l'adoption intelligente de solutions numériques. AgriFlow s'efforce d'être à l'avant-garde de cette transformation en fournissant des outils qui respectent les traditions agricoles tout en embrassant l'innovation."
+  }
+} 

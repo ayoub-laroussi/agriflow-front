@@ -1,5 +1,6 @@
 ---
-import { t } from '../../lib/utils/i18n';
+// Récupérer la fonction de traduction depuis Astro.locals
+const { t } = Astro.locals;
 const currentYear = new Date().getFullYear();
 ---
 
@@ -35,10 +36,10 @@ const currentYear = new Date().getFullYear();
             <div>
                 <h4 class="text-white dark:text-secondary text-lg font-medium mb-6">{t('navigation.features')}</h4>
                 <ul class="space-y-4">
-                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.list.landManagement.title')}</a></li>
-                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.list.cropTracking.title')}</a></li>
-                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.list.agriculturalActions.title')}</a></li>
-                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.list.calendar.title')}</a></li>
+                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.crop_management.title')}</a></li>
+                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.inventory.title')}</a></li>
+                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.reporting.title')}</a></li>
+                    <li><a href="#fonctionnalites" class="text-white/80 dark:text-light/95 hover:text-white dark:hover:text-white transition-colors">{t('features.planning.title')}</a></li>
                 </ul>
             </div>
             <div>
@@ -81,7 +82,7 @@ const currentYear = new Date().getFullYear();
             </div>
         </div>
         <div class="pt-8 border-t border-white/10 dark:border-gray-700 text-center text-white/60 dark:text-light/80">
-            <p>{t('footer.copyright', { year: currentYear })}</p>
+            <p>{t('footer.copyright').replace('{year}', currentYear.toString())}</p>
         </div>
     </div>
 </footer> 
