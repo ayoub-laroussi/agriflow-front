@@ -40,20 +40,32 @@
     authStore.startLoading();
     
     try {
-      // Simulation d'une requête API (à remplacer par une vraie API)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Appel à l'API d'authentification
+      const response = await fetch('http://localhost:3000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+        credentials: 'include'
+      });
       
-      // Vérifications basiques pour la démo (à remplacer par l'API)
-      if (email === 'admin@example.com' && password === 'password') {
+      const data = await response.json();
+      
+      if (response.ok) {
         const user = {
-          id: '1',
-          email: email,
-          name: 'Administrateur'
+          id: data.user.id,
+          email: data.user.email,
+          name: data.user.name || data.user.username || email
         };
         
         // Stocker dans localStorage si "Se souvenir de moi" est coché
         if (rememberMe) {
           localStorage.setItem('user', JSON.stringify(user));
+          // Stocker le token si présent dans la réponse
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+          }
         }
         
         // Mettre à jour le store
@@ -62,8 +74,8 @@
         // Rediriger vers le dashboard
         window.location.href = '/dashboard';
       } else {
-        errors.form = 'Email ou mot de passe incorrect';
-        authStore.setError('Email ou mot de passe incorrect');
+        errors.form = data.message || 'Email ou mot de passe incorrect';
+        authStore.setError(errors.form);
       }
     } catch (error) {
       console.error('Erreur de connexion:', error);
