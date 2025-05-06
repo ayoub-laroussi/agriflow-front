@@ -59,25 +59,58 @@
     authStore.startLoading();
     
     try {
-      // Simulation d'une requête API (à remplacer par une vraie API)
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Appel à l'API d'inscription
+      const response = await fetch('http://localhost:3000/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password
+        }),
+        credentials: 'include'
+      });
       
-      // Créer un nouvel utilisateur (démo uniquement)
-      const user = {
-        id: Date.now().toString(),
-        email: email,
-        name: name
-      };
+      const data = await response.json();
       
-      // Stocker l'utilisateur dans le localStorage
-      localStorage.setItem('user', JSON.stringify(user));
-      
-      // Mettre à jour le store
-      authStore.login(user);
-      
-      // Rediriger vers le dashboard
-      window.location.href = '/dashboard';
-      
+      if (response.ok) {
+        const user = {
+          id: data.user.id,
+          email: data.user.email,
+          name: data.user.name || name
+        };
+        
+        // Stocker l'utilisateur et le token dans le localStorage
+        localStorage.setItem('user', JSON.stringify(user));
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+        }
+        
+        // Mettre à jour le store
+        authStore.login(user, data.token);
+        
+        // Rediriger vers le dashboard
+        window.location.href = '/dashboard';
+      } else {
+        errors.form = data.message || 'Une erreur est survenue lors de l\'inscription';
+        
+        // Gérer les erreurs spécifiques retournées par l'API
+        if (data.errors) {
+          if (data.errors.email) {
+            errors.email = data.errors.email;
+          }
+          if (data.errors.password) {
+            errors.password = data.errors.password;
+          }
+          if (data.errors.name) {
+            errors.name = data.errors.name;
+          }
+        }
+        
+        authStore.setError(errors.form);
+      }
     } catch (error) {
       console.error('Erreur d\'inscription:', error);
       errors.form = 'Une erreur est survenue lors de l\'inscription';
