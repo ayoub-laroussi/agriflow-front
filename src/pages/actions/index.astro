@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ActionList from '../../components/ui/ActionList.svelte';
+import FloatingActionButton from '../../components/ui/FloatingActionButton.svelte';
+---
+
+<Layout title="Actions Agricoles | AgriFlow">
+  <main class="container mx-auto py-8 px-4">
+    <h1 class="text-3xl font-bold mb-6">Actions Agricoles</h1>
+    
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      Planifiez et suivez vos actions agricoles pour une gestion optimale de vos cultures.
+    </p>
+    
+    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+      <ActionList client:load />
+    </div>
+    
+    <FloatingActionButton 
+      client:load
+      icon="add"
+      label="Ajouter une action"
+      showLabel={true}
+    />
+  </main>
+</Layout> 

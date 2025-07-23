@@ -1,6 +1,117 @@
 <script lang="ts">
   // Propriétés du composant
   export let isActive: boolean = false;
+  
+  import AddLandModal from '../ui/AddLandModal.svelte';
+  import { landStore } from '../../lib/stores/landStore';
+  import { spaceStore } from '../../lib/stores/spaceStore';
+  import { onMount } from 'svelte';
+  import type { Land } from '../../types/Land';
+  import LandList from '../ui/LandList.svelte';
+  import Button from '../ui/Button.svelte';
+  
+  // État pour gérer l'ouverture de la modale
+  let isAddLandModalOpen = false;
+  let isDeleteConfirmOpen = false;
+  let landToDelete: Land | null = null;
+  let filteredLands: Land[] = [];
+  let searchTerm = '';
+  let typeFilter = 'all';
+  let statusFilter = 'all';
+  
+  // Fonction pour ouvrir la modale d'ajout
+  function openAddLandModal() {
+    isAddLandModalOpen = true;
+  }
+  
+  // Fonction pour fermer la modale d'ajout
+  function closeAddLandModal() {
+    isAddLandModalOpen = false;
+  }
+  
+  // Fonction pour ouvrir la confirmation de suppression
+  function openDeleteConfirm(land: Land) {
+    landToDelete = land;
+    isDeleteConfirmOpen = true;
+  }
+  
+  // Fonction pour fermer la confirmation de suppression
+  function closeDeleteConfirm() {
+    isDeleteConfirmOpen = false;
+    landToDelete = null;
+  }
+  
+  // Fonction pour filtrer les terrains
+  function filterLands() {
+    filteredLands = $landStore.filter(land => {
+      // Filtre par terme de recherche
+      const matchesSearch = searchTerm === '' || 
+        land.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (land.description && land.description.toLowerCase().includes(searchTerm.toLowerCase()));
+      
+      // Appliquer d'autres filtres ici si nécessaire
+      
+      return matchesSearch;
+    });
+  }
+  
+  // Fonction pour supprimer un terrain
+  function deleteLand() {
+    if (landToDelete) {
+      // Vérifier si des espaces sont associés à ce terrain
+      const relatedSpaces = $spaceStore.filter(space => space.landId === landToDelete?.id);
+      
+      // Supprimer les espaces associés
+      relatedSpaces.forEach(space => {
+        spaceStore.removeSpace(space.id);
+      });
+      
+      // Supprimer le terrain
+      landStore.removeLand(landToDelete.id);
+      
+      closeDeleteConfirm();
+    }
+  }
+  
+  // Fonction pour gérer l'ajout d'un terrain
+  function handleLandAdded() {
+    closeAddLandModal();
+    filterLands();
+  }
+  
+  // Mettre à jour la liste filtrée lorsque les données du store changent
+  $: {
+    filterLands();
+  }
+  
+  // Mettre à jour la liste filtrée lorsque les filtres changent
+  $: {
+    if (searchTerm !== undefined) {
+      filterLands();
+    }
+  }
+  
+  // Ajouter des exemples de terrains au montage du composant si vide
+  onMount(() => {
+    if ($landStore.length === 0) {
+      // Ajouter des exemples de terrains
+      landStore.addLand({
+        name: "Grande Plaine",
+        area: 52000, // 5.2 hectares
+        location: "Secteur Nord",
+        description: "Terrain plat adapté aux grandes cultures céréalières"
+      });
+      
+      landStore.addLand({
+        name: "Colline du Verger",
+        area: 18000, // 1.8 hectares
+        location: "Secteur Est",
+        description: "Terrain en pente douce avec verger existant"
+      });
+    }
+    
+    filterLands();
+  });
 </script>
 
 <div class="container mx-auto" class:hidden={!isActive}>
@@ -14,7 +125,11 @@
       </p>
     </div>
     <div class="mt-4 md:mt-0">
-      <button type="button" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+      <button 
+        type="button" 
+        class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+        on:click={openAddLandModal}
+      >
         <span class="material-symbols-outlined mr-2">add</span>
         Nouveau terrain
       </button>
@@ -35,28 +150,31 @@
             class="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md leading-5 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-green-500 focus:border-green-500 sm:text-sm"
             placeholder="Rechercher un terrain..."
             type="search"
+            bind:value={searchTerm}
           >
         </div>
       </div>
       <div class="flex items-center space-x-2">
         <select
+          bind:value={typeFilter}
           class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
         >
-          <option>Tous les types</option>
-          <option>Terre agricole</option>
-          <option>Prairie</option>
-          <option>Verger</option>
-          <option>Vigne</option>
-          <option>Forêt</option>
+          <option value="all">Tous les types</option>
+          <option value="agricultural">Terre agricole</option>
+          <option value="meadow">Prairie</option>
+          <option value="orchard">Verger</option>
+          <option value="vineyard">Vigne</option>
+          <option value="forest">Forêt</option>
         </select>
         <select
+          bind:value={statusFilter}
           class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
         >
-          <option>Tous les statuts</option>
-          <option>En exploitation</option>
-          <option>En jachère</option>
-          <option>En repos</option>
-          <option>En conversion</option>
+          <option value="all">Tous les statuts</option>
+          <option value="active">En exploitation</option>
+          <option value="fallow">En jachère</option>
+          <option value="rest">En repos</option>
+          <option value="conversion">En conversion</option>
         </select>
       </div>
     </div>
@@ -128,91 +246,137 @@
           </tr>
         </thead>
         <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-green-600 dark:text-green-400">agriculture</span>
-                </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900 dark:text-white">Grande Plaine</div>
-                  <div class="text-sm text-gray-500 dark:text-gray-400">Secteur Nord</div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900 dark:text-white">Terre agricole</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900 dark:text-white">5.2 hectares</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
-                En exploitation
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-              Blé, Maïs
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-              15/03/2018
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button class="text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300 mr-2">
-                <span class="material-symbols-outlined">visibility</span>
-              </button>
-              <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-2">
-                <span class="material-symbols-outlined">edit</span>
-              </button>
-              <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
-                <span class="material-symbols-outlined">delete</span>
-              </button>
-            </td>
-          </tr>
-          
-          <tr>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-amber-100 dark:bg-amber-900 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-amber-600 dark:text-amber-400">forest</span>
-                </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-900 dark:text-white">Colline du Verger</div>
-                  <div class="text-sm text-gray-500 dark:text-gray-400">Secteur Est</div>
-                </div>
-              </div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900 dark:text-white">Verger</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <div class="text-sm text-gray-900 dark:text-white">1.8 hectares</div>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
-                En exploitation
-              </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-              Pommiers, Poiriers
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
-              22/09/2019
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-              <button class="text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300 mr-2">
-                <span class="material-symbols-outlined">visibility</span>
-              </button>
-              <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-2">
-                <span class="material-symbols-outlined">edit</span>
-              </button>
-              <button class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300">
-                <span class="material-symbols-outlined">delete</span>
-              </button>
-            </td>
-          </tr>
+          {#if filteredLands.length === 0}
+            <tr>
+              <td colspan="7" class="px-6 py-10 text-center text-gray-500 dark:text-gray-400">
+                <p>Aucun terrain trouvé</p>
+                <button 
+                  class="mt-2 inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-200 dark:text-green-100 dark:bg-green-800 dark:hover:bg-green-700"
+                  on:click={openAddLandModal}
+                >
+                  <span class="material-symbols-outlined text-sm mr-1">add</span>
+                  Ajouter un terrain
+                </button>
+              </td>
+            </tr>
+          {:else}
+            {#each filteredLands as land (land.id)}
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
+                      <span class="material-symbols-outlined text-green-600 dark:text-green-400">agriculture</span>
+                    </div>
+                    <div class="ml-4">
+                      <div class="text-sm font-medium text-gray-900 dark:text-white">{land.name}</div>
+                      <div class="text-sm text-gray-500 dark:text-gray-400">{land.location || 'Non spécifié'}</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900 dark:text-white">Terre agricole</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="text-sm text-gray-900 dark:text-white">{(land.area / 10000).toFixed(2)} hectares</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                    En exploitation
+                  </span>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                  {#if land.name.includes('Plaine')}
+                    Blé, Maïs
+                  {:else if land.name.includes('Verger')}
+                    Pommiers, Poiriers
+                  {:else}
+                    -
+                  {/if}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
+                  {land.createdAt ? land.createdAt.toLocaleDateString() : 'Non définie'}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                  <button class="text-green-600 hover:text-green-900 dark:text-green-400 dark:hover:text-green-300 mr-2">
+                    <span class="material-symbols-outlined">visibility</span>
+                  </button>
+                  <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300 mr-2">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button 
+                    class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300"
+                    on:click={() => openDeleteConfirm(land)}
+                  >
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </td>
+              </tr>
+            {/each}
+          {/if}
         </tbody>
       </table>
     </div>
   </div>
+
+  <!-- Remplacer les modales par des divs conditionnels -->
+  {#if isAddLandModalOpen}
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full">
+        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Ajouter un nouveau terrain</h3>
+          <button on:click={closeAddLandModal} class="text-gray-400 hover:text-gray-500">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="p-4">
+          <AddLandModal on:close={closeAddLandModal} on:added={handleLandAdded} />
+        </div>
+      </div>
+    </div>
+  {/if}
+
+  {#if isDeleteConfirmOpen && landToDelete}
+    <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-sm w-full">
+        <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+          <h3 class="text-lg font-medium text-gray-900 dark:text-white">Confirmer la suppression</h3>
+          <button on:click={closeDeleteConfirm} class="text-gray-400 hover:text-gray-500">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="p-4">
+          <div class="text-gray-700 dark:text-gray-300">
+            <p>Êtes-vous sûr de vouloir supprimer <strong>{landToDelete?.name}</strong> ?</p>
+            <p class="text-sm text-red-500 mt-2">
+              <span class="material-symbols-outlined text-sm align-middle mr-1">warning</span>
+              Cette action ne peut pas être annulée.
+            </p>
+            {#if landToDelete && $spaceStore.filter(space => space.landId === landToDelete.id).length > 0}
+              <p class="text-sm text-amber-500 mt-2">
+                <span class="material-symbols-outlined text-sm align-middle mr-1">warning</span>
+                Ce terrain contient des espaces qui seront également supprimés.
+              </p>
+            {/if}
+          </div>
+          
+          <div class="mt-6 flex justify-end space-x-3">
+            <button 
+              type="button" 
+              class="px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+              on:click={closeDeleteConfirm}
+            >
+              Annuler
+            </button>
+            <button 
+              type="button" 
+              class="px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
+              on:click={deleteLand}
+            >
+              Supprimer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {/if}
 </div> 

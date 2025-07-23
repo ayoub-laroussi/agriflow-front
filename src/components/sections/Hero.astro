@@ -1,6 +1,5 @@
 ---
-// Récupérer la fonction de traduction depuis Astro.locals
-const { t } = Astro.locals;
+// Suppression de la référence à i18n
 ---
 
 <section
@@ -18,21 +17,21 @@ const { t } = Astro.locals;
     <div
       class="text-xs text-primary dark:text-secondary bg-white dark:bg-background/90 bg-opacity-80 dark:bg-opacity-80 inline-block px-3 py-1 rounded-full mb-4"
     >
-      {t('home.hero.tagline')}
+      Plateforme de gestion agricole innovante
     </div>
     <h1
       class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-white drop-shadow-lg"
     >
-      {t('home.hero.title')}
+      Gérez vos cultures avec précision et simplicité
     </h1>
     <p class="text-white text-lg mb-8 max-w-2xl mx-auto drop-shadow">
-      {t('home.hero.description')}
+      Optimisez votre production agricole grâce à notre solution complète de suivi et de gestion des cultures
     </p>
     <a
       href="/auth/register"
       class="flex items-center gap-2 bg-primary dark:bg-secondary text-white px-8 py-4 rounded-full font-semibold hover:bg-primary-dark dark:hover:bg-primary transition-all text-lg shadow-lg"
     >
-      {t('home.hero.cta')}
+      Commencer maintenant
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -56,25 +55,25 @@ const { t } = Astro.locals;
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">4+</h3>
     <p class="text-text-light dark:text-text-light">
-      {t('home.hero.stats.spaces')}
+      Types d'espaces de culture
     </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">7+</h3>
     <p class="text-text-light dark:text-text-light">
-      {t('home.hero.stats.statuses')}
+      Statuts de culture disponibles
     </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">5+</h3>
     <p class="text-text-light dark:text-text-light">
-      {t('home.hero.stats.actions')}
+      Actions agricoles suivies
     </p>
   </div>
   <div class="p-4">
     <h3 class="text-4xl font-bold mb-2 text-text dark:text-light">100%</h3>
     <p class="text-text-light dark:text-text-light">
-      {t('home.hero.stats.traceability')}
+      Traçabilité des opérations
     </p>
   </div>
 </div>

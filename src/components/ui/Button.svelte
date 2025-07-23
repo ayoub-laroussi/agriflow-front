@@ -8,10 +8,10 @@
   
   // Calculer les classes en fonction des props
   $: variantClasses = {
-    primary: 'bg-primary hover:bg-primary-600 text-white',
-    secondary: 'bg-secondary hover:bg-secondary-600 text-white',
-    outline: 'border border-primary hover:bg-primary/10 text-primary',
-    danger: 'bg-red-500 hover:bg-red-600 text-white'
+    primary: 'bg-green-600 hover:bg-green-700 text-white',
+    secondary: 'bg-blue-600 hover:bg-blue-700 text-white',
+    outline: 'border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200',
+    danger: 'bg-red-600 hover:bg-red-700 text-white'
   }[variant];
   
   $: sizeClasses = {
@@ -27,7 +27,7 @@
 <button
   {type}
   {disabled}
-  class="flex items-center justify-center gap-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 {variantClasses} {sizeClasses} {widthClass} {disabledClass}"
+  class="flex items-center justify-center gap-2 rounded-md font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 {variantClasses} {sizeClasses} {widthClass} {disabledClass}"
   on:click
 >
   {#if loading}

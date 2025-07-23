@@ -7,6 +7,8 @@ import { t } from '../../lib/utils/i18n';
 
 const title = t('auth.login.title', { defaultValue: 'Connexion | AgriFlow' });
 const description = t('auth.login.meta.description', { defaultValue: 'Connectez-vous à votre compte AgriFlow' });
+const cardTitle = 'Connexion';
+const cardSubtitle = 'Connectez-vous pour accéder à votre compte';
 ---
 
 <Layout title={title} description={description}>
@@ -22,8 +24,8 @@ const description = t('auth.login.meta.description', { defaultValue: 'Connectez-
       </div>
       
       <AuthCard 
-        title={t('auth.login.cardTitle', { defaultValue: 'Connexion' })} 
-        subtitle={t('auth.login.cardSubtitle', { defaultValue: 'Connectez-vous pour accéder à votre compte' })}
+        title={cardTitle}
+        subtitle={cardSubtitle}
       >
         <LoginForm client:load />
       </AuthCard>

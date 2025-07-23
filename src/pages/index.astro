@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import Hero from '../components/sections/Hero.astro';
 import Features from '../components/sections/Features.astro';
 import Benefits from '../components/sections/Benefits.astro';
@@ -9,16 +8,9 @@ import Cta from '../components/sections/Cta.astro';
 import Navigation from '../components/layout/Navigation.astro';
 import Footer from '../components/layout/Footer.astro';
 // import Navbar from '../components/sections/Navbar.astro';
-
-// Récupération de la locale à partir de l'URL
-const locale = Astro.currentLocale || 'fr';
-const { t } = Astro.locals;
-
-// Vérifier que les traductions sont disponibles
-console.log("Traductions disponibles:", !!t);
 ---
 
-<Layout title={t('global.site_name')}>
+<Layout title="AgriFlow">
 	<main>
 		<!-- Ajouter la navigation -->
 		<Navigation />

@@ -1,43 +1,43 @@
 <script lang="ts">
   import { createEventDispatcher } from 'svelte';
   import ThemeToggle from '../ui/DarkModeToggle.svelte';
-  import Translate from '../ui/Translate.svelte';
+
   import { dashboardStore, type DashboardSection } from '../../lib/stores/dashboardStore';
   
   // Définition des liens de navigation
   const navigationItems = [
     { 
-      name: 'dashboard.nav.dashboard', 
+      name: 'Tableau de bord', 
       section: 'main' as DashboardSection,
       icon: 'dashboard',
       current: true 
     },
     { 
-      name: 'dashboard.nav.terrains', 
+      name: 'Terrains', 
       section: 'terrains' as DashboardSection,
       icon: 'terrain',
       current: false 
     },
     { 
-      name: 'dashboard.nav.espaces', 
+      name: 'Espaces', 
       section: 'spaces' as DashboardSection,
       icon: 'grid_view',
       current: false 
     },
     { 
-      name: 'dashboard.nav.cultures', 
+      name: 'Cultures', 
       section: 'cultures' as DashboardSection, 
       icon: 'grass',
       current: false 
     },
     { 
-      name: 'dashboard.nav.taches', 
+      name: 'Tâches', 
       section: 'tasks' as DashboardSection,
       icon: 'event_note',
       current: false 
     },
     { 
-      name: 'dashboard.nav.calendrier', 
+      name: 'Calendrier', 
       section: 'calendar' as DashboardSection,
       icon: 'calendar_month',
       current: false 
@@ -47,13 +47,13 @@
   // Autres sections
   const otherItems = [
     { 
-      name: 'dashboard.nav.parametres', 
+      name: 'Paramètres', 
       href: '/dashboard/parametres', 
       icon: 'settings',
       current: false 
     },
     { 
-      name: 'dashboard.nav.aide', 
+      name: 'Aide', 
       href: '/dashboard/aide', 
       icon: 'help',
       current: false 
@@ -68,7 +68,18 @@
   
   // Mettre à jour la section active
   function handleNavigation(section: DashboardSection) {
+    console.log('Navigation clicked:', section);
+    
+    // Forcer la mise à jour de l'état actif dans les items de navigation
+    navigationItems.forEach(item => {
+      item.current = item.section === section;
+    });
+    
+    // Mettre à jour le store
     dashboardStore.setActiveSection(section);
+    
+    // Fermer le menu mobile si nécessaire
+    closeMenu();
   }
 
   // S'abonner au store pour mettre à jour les états 'current'
@@ -85,7 +96,7 @@
     <a href="/" class="flex items-center space-x-2">
       <span class="material-symbols-outlined text-green-600 text-2xl">eco</span>
       <span class="text-xl font-semibold dark:text-white">
-        <Translate key="global.site_name" />
+        AgriFlow
       </span>
     </a>
   </div>
@@ -102,14 +113,14 @@
           aria-current={item.current ? 'page' : undefined}
         >
           <span class="material-symbols-outlined mr-3">{item.icon}</span>
-          <Translate key={item.name} />
+          {item.name}
         </button>
       {/each}
     </div>
 
     <div class="pt-6 mt-6 border-t border-gray-200 dark:border-gray-700">
       <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider dark:text-gray-400">
-        <Translate key="dashboard.nav.other" />
+        Autres
       </h3>
       <div class="mt-2 space-y-1">
         {#each otherItems as item}
@@ -120,7 +131,7 @@
               : 'text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-700'}"
           >
             <span class="material-symbols-outlined mr-3">{item.icon}</span>
-            <Translate key={item.name} />
+            {item.name}
           </a>
         {/each}
       </div>

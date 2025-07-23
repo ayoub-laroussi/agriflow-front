@@ -1,60 +1,206 @@
 ---
-// Récupérer la fonction de traduction depuis Astro.locals
-const { t } = Astro.locals;
+// Supprimer la référence à i18n
 import DarkModeToggle from '../ui/DarkModeToggle.svelte';
 
-// Obtenir la langue actuelle depuis URL
-const currentPath = Astro.url.pathname;
-const pathSegments = currentPath.split('/').filter(Boolean);
-const currentLanguage = pathSegments[0] === 'en' ? 'en' : 'fr';
+// Déterminer la section active à partir de l'URL ou du hash dans l'URL
+const url = new URL(Astro.request.url);
+const hash = url.hash;
+let activeSection = '';
 
-// Préfixe d'URL basé sur la langue actuelle
-const urlPrefix = currentLanguage === 'en' ? '/en' : '';
+if (hash) {
+  // Enlever le # du hash
+  activeSection = hash.slice(1);
+} else {
+  // Si pas de hash, on considère que c'est la page d'accueil
+  activeSection = 'home';
+}
+
+// Navigation items définissant toutes les sections navigables
+const navItems = [
+  { id: 'home', href: '#', label: 'Accueil' },
+  { id: 'fonctionnalites', href: '#fonctionnalites', label: 'Fonctionnalités' },
+  { id: 'solutions', href: '#solutions', label: 'À propos' },
+  { id: 'demo', href: '#demo', label: 'Démo' },
+  { id: 'contact', href: '#contact', label: 'Contact' }
+];
 ---
 
 <div class="container mx-auto px-4">
   <nav class="flex justify-between items-center py-6">
       <div class="flex items-center">
           <span class="font-montserrat font-bold text-2xl text-primary dark:text-secondary">
-              {t('global.site_name')}
+              AgriFlow
           </span>
       </div>
       <div class="hidden md:flex gap-8">
-          <a href="#" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-              {t('navigation.home')}
-          </a>
-          <a href="#fonctionnalites" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-              {t('navigation.features')}
-          </a>
-          <a href="#solutions" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-              {t('navigation.about')}
-          </a>
-          <a href="#demo" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-              {t('navigation.demo')}
-          </a>
-          <a href="#contact" class="text-text dark:text-light font-medium hover:text-primary dark:hover:text-secondary transition-colors">
-              {t('navigation.contact')}
-          </a>
+          {navItems.map(item => (
+            <a
+              href={item.href}
+              class={`text-text dark:text-light font-medium transition-colors ${
+                activeSection === item.id 
+                  ? 'text-primary dark:text-secondary font-semibold'
+                  : 'hover:text-primary dark:hover:text-secondary'
+              }`}
+              data-section={item.id}
+            >
+              {item.label}
+            </a>
+          ))}
       </div>
-      <div class="flex gap-4 items-center">
-          <!-- Sélecteur de langue -->
-          <div class="language-switcher flex space-x-2">
-              <a href="/" class={`px-2 py-1 text-sm rounded-md transition-colors ${currentLanguage === 'fr' ? 'bg-primary text-white' : 'text-text dark:text-light hover:text-primary dark:hover:text-secondary'}`}>
-                  FR
-              </a>
-              <a href="/en/" class={`px-2 py-1 text-sm rounded-md transition-colors ${currentLanguage === 'en' ? 'bg-primary text-white' : 'text-text dark:text-light hover:text-primary dark:hover:text-secondary'}`}>
-                  EN
-              </a>
-          </div>
-          
+      <div class="flex gap-4 items-center">          
           <DarkModeToggle client:load />
           
-          <a href={`${urlPrefix}/auth/login`} class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">
-              {t('navigation.login')}
+          <a href="/auth/login" class="text-sm font-medium px-3 py-2 text-text dark:text-light hover:text-primary dark:hover:text-secondary transition-colors">
+              Connexion
           </a>
-          <a href={`${urlPrefix}/auth/register`} class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">
-              {t('navigation.register')}
+          <a href="/auth/register" class="text-sm font-medium bg-primary text-white rounded-full px-5 py-2 hover:bg-primary-dark transition-colors">
+              S'inscrire
           </a>
       </div>
   </nav>
-</div> 
+</div>
+
+<script>
+  /**
+   * Gère l'interaction de la navigation en mettant en évidence la section active 
+   * lors du défilement et gère la navigation fluide entre les sections
+   */
+  document.addEventListener('DOMContentLoaded', () => {
+    // Sélectionner tous les liens de navigation
+    const navLinks = document.querySelectorAll('[data-section]');
+    
+    // Définir le type pour les sections
+    interface Section {
+      id: string;
+      element: HTMLElement;
+    }
+    
+    const sections: Section[] = [];
+    
+    // Classes pour les styles des liens actifs et inactifs
+    const activeClasses = ['text-primary', 'dark:text-secondary', 'font-semibold'];
+    const inactiveClasses = ['text-text', 'dark:text-light', 'hover:text-primary', 'dark:hover:text-secondary'];
+    
+    // Collecter toutes les sections référencées dans la navigation
+    navLinks.forEach(link => {
+      const sectionId = link.getAttribute('data-section');
+      if (sectionId === null) return;
+      
+      if (sectionId === 'home') {
+        // Pour la section d'accueil, on surveille le haut de la page
+        sections.push({ id: sectionId, element: document.body });
+      } else {
+        // Pour les autres sections, on utilise l'ID
+        const section = document.getElementById(sectionId);
+        if (section) {
+          sections.push({ id: sectionId, element: section as HTMLElement });
+        }
+      }
+    });
+    
+    /**
+     * Met à jour visuellement les liens de navigation en fonction de la section active
+     * @param {string} activeSectionId - L'ID de la section actuellement active
+     */
+    function updateNavLinks(activeSectionId: string) {
+      navLinks.forEach(link => {
+        const sectionId = link.getAttribute('data-section');
+        if (sectionId === null) return;
+        
+        const isActive = sectionId === activeSectionId;
+        
+        // Ajouter ou supprimer les classes en fonction de l'état actif
+        if (isActive) {
+          activeClasses.forEach(cls => link.classList.add(cls));
+          inactiveClasses.forEach(cls => link.classList.remove(cls));
+        } else {
+          activeClasses.forEach(cls => link.classList.remove(cls));
+          inactiveClasses.forEach(cls => {
+            // Ne pas ajouter les classes hover si elles sont déjà incluses dans l'élément
+            if (!link.classList.contains(cls)) {
+              link.classList.add(cls);
+            }
+          });
+        }
+      });
+    }
+    
+    /**
+     * Met à jour la section active en fonction de la position de défilement
+     */
+    function updateActiveSection() {
+      // Position de défilement actuelle plus une petite marge
+      const scrollPosition = window.scrollY + 100;
+      
+      // Trouver la section actuellement visible
+      let activeSectionId = 'home'; // Par défaut, on considère que c'est la page d'accueil
+      
+      // Parcourir les sections de bas en haut pour trouver celle qui est visible
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        
+        if (section.id === 'home') {
+          if (scrollPosition < 200) {
+            activeSectionId = 'home';
+            break;
+          }
+        } else {
+          const { top } = section.element.getBoundingClientRect();
+          const elementTop = top + window.scrollY;
+          
+          if (scrollPosition >= elementTop - 100) {
+            activeSectionId = section.id;
+            break;
+          }
+        }
+      }
+      
+      // Mettre à jour les liens de navigation
+      updateNavLinks(activeSectionId);
+      
+      // Mettre à jour le hash dans l'URL sans déclencher un défilement
+      const url = new URL(window.location.href);
+      url.hash = activeSectionId === 'home' ? '' : `#${activeSectionId}`;
+      window.history.replaceState(null, '', url);
+    }
+    
+    // Gestionnaire d'événements pour le clic sur les liens de navigation
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const sectionId = link.getAttribute('data-section');
+        if (sectionId === null) return;
+        
+        // Mettre à jour les liens immédiatement pour une réaction plus rapide
+        updateNavLinks(sectionId);
+        
+        if (sectionId === 'home') {
+          // Pour la section d'accueil, on remonte en haut de la page
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          // Pour les autres sections, on fait défiler jusqu'à la section
+          const section = document.getElementById(sectionId);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+    
+    // Optimisation: utiliser requestAnimationFrame pour limiter les mises à jour pendant le défilement
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateActiveSection();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+    
+    // Initialiser la section active
+    updateActiveSection();
+  });
+</script> 

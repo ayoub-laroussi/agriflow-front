@@ -1,24 +1,23 @@
 ---
 import BenefitItem from '../ui/BenefitItem.astro';
-const { t } = Astro.locals;
 
 // Définir les bénéfices
 const benefits = [
     {
-        title: t('benefits.space_management.title'),
-        description: t('benefits.space_management.description')
+        title: "Gestion des espaces",
+        description: "Organisez vos terres agricoles en espaces distincts pour un suivi précis de chaque parcelle."
     },
     {
-        title: t('benefits.crop_tracking.title'),
-        description: t('benefits.crop_tracking.description')
+        title: "Suivi des cultures",
+        description: "Suivez l'évolution de vos cultures tout au long de leur cycle de vie avec des indicateurs clairs."
     },
     {
-        title: t('benefits.action_planning.title'),
-        description: t('benefits.action_planning.description')
+        title: "Planification des actions",
+        description: "Planifiez vos interventions agricoles à l'avance pour optimiser votre temps et vos ressources."
     },
     {
-        title: t('benefits.calendar.title'),
-        description: t('benefits.calendar.description')
+        title: "Calendrier interactif",
+        description: "Visualisez toutes vos activités dans un calendrier intuitif pour une meilleure organisation."
     }
 ];
 ---
@@ -26,9 +25,9 @@ const benefits = [
 <section id="solutions" class="py-20 bg-light">
     <div class="container mx-auto px-4">
         <div class="mb-16 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">{t('benefits.title')}</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Nos solutions agricoles</h2>
             <p class="text-text-light text-lg max-w-2xl mx-auto">
-                {t('benefits.subtitle')}
+                Découvrez comment AgriFlow peut transformer votre exploitation agricole avec des outils innovants et adaptés à vos besoins.
             </p>
         </div>
 

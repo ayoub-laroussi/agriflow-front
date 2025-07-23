@@ -1,31 +1,30 @@
 ---
 import FeatureCard from '../ui/FeatureCard.astro';
-const { t } = Astro.locals;
 
 // Définition des fonctionnalités
 const features = [
   {
     icon: "🌱",
-    title: t('features.crop_management.title'),
-    description: t('features.crop_management.description'),
+    title: "Gestion des cultures",
+    description: "Suivez l'évolution de vos cultures de la plantation à la récolte avec des outils adaptés à vos besoins.",
     link: "/features/crop_management"
   },
   {
     icon: "📊",
-    title: t('features.inventory.title'),
-    description: t('features.inventory.description'),
+    title: "Inventaire",
+    description: "Gérez efficacement vos stocks de semences, d'engrais et d'autres ressources agricoles.",
     link: "/features/inventory"
   },
   {
     icon: "📝",
-    title: t('features.reporting.title'),
-    description: t('features.reporting.description'),
+    title: "Rapports",
+    description: "Générez des rapports détaillés sur vos activités agricoles pour une meilleure prise de décision.",
     link: "/features/reporting"
   },
   {
     icon: "🗓️",
-    title: t('features.planning.title'),
-    description: t('features.planning.description'),
+    title: "Planification",
+    description: "Planifiez vos activités agricoles à l'avance pour optimiser votre production et vos ressources.",
     link: "/features/planning"
   }
 ];
@@ -35,15 +34,15 @@ const features = [
   <div class="container mx-auto px-4">
     <div class="flex flex-col items-center justify-center text-center mb-16">
       <span class="bg-primary/10 text-primary dark:bg-secondary/20 dark:text-secondary text-sm font-semibold px-4 py-1 rounded-full mb-4">
-        {t('features.subtitle')}
+        Fonctionnalités principales
       </span>
       
       <h2 class="text-3xl md:text-4xl font-bold mb-4 text-text dark:text-light">
-        {t('features.title')}
+        Des outils puissants pour votre exploitation
       </h2>
       
       <p class="text-text-light max-w-xl">
-        {t('features.introduction')}
+        Découvrez comment AgriFlow peut transformer votre gestion agricole avec des fonctionnalités innovantes et intuitives.
       </p>
     </div>
     
@@ -60,18 +59,18 @@ const features = [
     
     <div class="mt-20 text-center">
       <h3 class="text-2xl font-bold mb-4 text-primary dark:text-secondary">
-        {t('features.subtitle_advanced')}
+        Fonctionnalités avancées
       </h3>
       
       <p class="text-text-light max-w-2xl mx-auto mb-10">
-        {t('features.description_advanced')}
+        Explorez nos fonctionnalités avancées conçues pour les agriculteurs professionnels qui souhaitent optimiser chaque aspect de leur exploitation.
       </p>
       
       <a
         href="/features"
         class="inline-flex items-center gap-2 text-primary dark:text-secondary hover:text-primary-dark dark:hover:text-primary transition-all font-semibold"
       >
-        {t('features.learn_more')}
+        En savoir plus
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"

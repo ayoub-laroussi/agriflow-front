@@ -1,0 +1,38 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Consultation du PRD obligatoire
+
+Avant de développer ou modifier une fonctionnalité pour AgriFlow, la consultation du [PRD-AgriFlow.md](mdc:PRD-AgriFlow.md) est **obligatoire**.
+
+## Importance du PRD
+
+Le PRD (Product Requirements Document) contient:
+- La vision et les objectifs du produit
+- Les exigences fonctionnelles détaillées
+- Les exigences non fonctionnelles
+- Les user stories et parcours utilisateur
+- L'architecture technique
+- Les métriques de succès
+- Le planning et les priorités
+
+## Sections clés à consulter
+
+Lors du développement d'une nouvelle fonctionnalité, vérifier systématiquement:
+
+1. **Section 3: Exigences Fonctionnelles** - Pour comprendre les spécifications détaillées
+2. **Section 5: User Stories** - Pour comprendre le contexte d'utilisation
+3. **Section 6.4: Modèles de données** - Pour respecter l'architecture des données
+4. **Section 8: Planning et Priorités** - Pour vérifier l'alignement avec la roadmap
+
+## Workflow de développement
+
+1. Identifier la fonctionnalité dans le PRD
+2. Vérifier sa priorité et ses dépendances
+3. S'assurer que toutes les exigences sont comprises
+4. Développer en respectant les contraintes techniques (Section 9)
+5. Suivre les conventions de code et de commit définies pour le projet
+
+Tout développement non aligné avec le PRD doit faire l'objet d'une discussion préalable avec l'équipe produit.

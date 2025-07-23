@@ -1,22 +1,20 @@
 ---
-const { t } = Astro.locals;
-
 // Définir les avantages
 const advantages = [
   {
     icon: "⏱️",
-    title: t('demo.advantages.time_saving.title'),
-    description: t('demo.advantages.time_saving.description')
+    title: "Gain de temps",
+    description: "Réduisez le temps consacré à la gestion administrative et concentrez-vous sur votre production agricole."
   },
   {
     icon: "🔍",
-    title: t('demo.advantages.decision.title'),
-    description: t('demo.advantages.decision.description')
+    title: "Prise de décision éclairée",
+    description: "Accédez à des données précises pour prendre les meilleures décisions pour votre exploitation."
   },
   {
     icon: "📱",
-    title: t('demo.advantages.adaptability.title'),
-    description: t('demo.advantages.adaptability.description')
+    title: "Adaptabilité",
+    description: "Une solution qui s'adapte à tous types d'exploitations, de la petite ferme à la grande exploitation."
   }
 ];
 ---
@@ -25,12 +23,12 @@ const advantages = [
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row items-center gap-12">
             <div class="md:w-1/2">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">{t('demo.title')}</h2>
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Découvrez AgriFlow en action</h2>
                 <p class="text-text-light text-lg mb-8">
-                    {t('demo.description')}
+                    Voyez comment notre plateforme peut transformer votre gestion agricole quotidienne grâce à une démonstration personnalisée.
                 </p>
                 <a href="#contact" class="inline-block bg-primary text-white px-8 py-3 rounded-full font-semibold hover:bg-primary-dark transition-all">
-                    {t('demo.cta')}
+                    Demander une démo
                 </a>
             </div>
             <div class="md:w-1/2">
@@ -48,7 +46,7 @@ const advantages = [
         </div>
         
         <div class="mt-16 text-center">
-            <h3 class="text-2xl font-bold mb-6">{t('demo.advantages.title')}</h3>
+            <h3 class="text-2xl font-bold mb-6">Les avantages d'AgriFlow</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
                 {advantages.map(item => (
                     <div class="p-6 bg-light rounded-xl">

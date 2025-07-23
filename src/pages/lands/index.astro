@@ -1,0 +1,34 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LandList from '../../components/ui/LandList.svelte';
+import FloatingActionButton from '../../components/ui/FloatingActionButton.svelte';
+---
+
+<Layout title="Terrains | AgriFlow">
+  <main class="container mx-auto py-8 px-4">
+    <h1 class="text-3xl font-bold mb-6">Gestion des terrains</h1>
+    
+    <p class="text-gray-600 dark:text-gray-400 mb-8">
+      Créez et gérez vos terrains agricoles pour une meilleure organisation de vos cultures.
+    </p>
+    
+    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+      <LandList client:load />
+    </div>
+    
+    <FloatingActionButton 
+      client:load
+      icon="add"
+      label="Ajouter un terrain"
+      showLabel={true}
+    />
+  </main>
+</Layout> 
+
+<script>
+  // Cette partie sera exécutée côté client
+  import { landStore } from '../../lib/stores/landStore';
+  
+  // On s'assure que le store est initialisé une seule fois
+  // Cette partie est maintenant gérée dans le composant LandList
+</script> 

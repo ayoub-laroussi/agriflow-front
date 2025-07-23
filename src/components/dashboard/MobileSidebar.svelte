@@ -1,8 +1,6 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
   import { slide } from 'svelte/transition';
-  import LanguageSwitcher from '../ui/LanguageSwitcher.svelte';
-  import Translate from '../ui/Translate.svelte';
   import { dashboardStore, type DashboardSection } from '../../lib/stores/dashboardStore';
   
   const dispatch = createEventDispatcher();
@@ -13,37 +11,37 @@
   // Définition des liens de navigation (identiques à la sidebar)
   const navigationItems = [
     { 
-      name: 'dashboard.nav.dashboard', 
+      name: 'admin.dashboard.nav.dashboard', 
       section: 'main' as DashboardSection,
       icon: 'dashboard',
       current: true 
     },
     { 
-      name: 'dashboard.nav.terrains', 
+      name: 'admin.dashboard.nav.terrains', 
       section: 'terrains' as DashboardSection,
       icon: 'terrain',
       current: false 
     },
     { 
-      name: 'dashboard.nav.espaces', 
+      name: 'admin.dashboard.nav.espaces', 
       section: 'spaces' as DashboardSection,
       icon: 'grid_view',
       current: false 
     },
     { 
-      name: 'dashboard.nav.cultures', 
+      name: 'admin.dashboard.nav.cultures', 
       section: 'cultures' as DashboardSection, 
       icon: 'grass',
       current: false 
     },
     { 
-      name: 'dashboard.nav.taches', 
+      name: 'admin.dashboard.nav.taches', 
       section: 'tasks' as DashboardSection,
       icon: 'event_note',
       current: false 
     },
     { 
-      name: 'dashboard.nav.calendrier', 
+      name: 'admin.dashboard.nav.calendrier', 
       section: 'calendar' as DashboardSection,
       icon: 'calendar_month',
       current: false 
@@ -53,13 +51,13 @@
   // Autres sections
   const otherItems = [
     { 
-      name: 'dashboard.nav.parametres', 
+      name: 'admin.dashboard.nav.parametres', 
       href: '/dashboard/parametres', 
       icon: 'settings',
       current: false 
     },
     { 
-      name: 'dashboard.nav.aide', 
+      name: 'admin.dashboard.nav.aide', 
       href: '/dashboard/aide', 
       icon: 'help',
       current: false 
@@ -126,7 +124,6 @@
             <a href="/" class="flex items-center space-x-2">
               <span class="material-symbols-outlined text-green-600 text-2xl">eco</span>
               <span class="text-xl font-semibold dark:text-white">
-                <Translate key="global.site_name" />
               </span>
             </a>
             <button
@@ -151,14 +148,14 @@
                   aria-current={item.current ? 'page' : undefined}
                 >
                   <span class="material-symbols-outlined mr-3">{item.icon}</span>
-                  <Translate key={item.name} />
+
                 </button>
               {/each}
             </div>
             
             <div class="pt-6 mt-6 border-t border-gray-200 dark:border-gray-700">
               <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider dark:text-gray-400">
-                <Translate key="dashboard.nav.other" />
+
               </h3>
               <div class="mt-2 space-y-1">
                 {#each otherItems as item}
@@ -170,7 +167,6 @@
                     on:click={closeMenu}
                   >
                     <span class="material-symbols-outlined mr-3">{item.icon}</span>
-                    <Translate key={item.name} />
                   </a>
                 {/each}
               </div>
@@ -190,14 +186,14 @@
                   Paul Dupont
                 </p>
                 <p class="text-xs text-gray-500 dark:text-gray-400">
-                  <Translate key="dashboard.nav.profile" />
+
                 </p>
               </div>
             </div>
             
             <!-- Sélecteur de langue -->
             <div class="mt-4">
-              <LanguageSwitcher availableLanguages={['fr', 'en']} />
+
             </div>
           </div>
         </div>

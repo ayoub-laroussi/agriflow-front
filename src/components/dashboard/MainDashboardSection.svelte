@@ -1,6 +1,18 @@
 <script lang="ts">
   // Propriétés du composant
   export let isActive: boolean = false;
+  
+  // Log pour débugger
+  import { onMount } from 'svelte';
+  
+  onMount(() => {
+    console.log('MainDashboardSection mounted, isActive:', isActive);
+  });
+  
+  // Observer les changements de la propriété isActive
+  $: {
+    console.log('MainDashboardSection isActive changed:', isActive);
+  }
 </script>
 
 <div class="container mx-auto" class:hidden={!isActive}>
@@ -10,7 +22,7 @@
         Tableau de bord
       </h1>
       <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
-        Vue d'ensemble de votre exploitation agricole
+        Bienvenue sur votre tableau de bord AgriFlow
       </p>
     </div>
     <div class="mt-4 md:mt-0">
@@ -39,7 +51,7 @@
           <div class="ml-5 w-0 flex-1">
             <dl>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                Tâches en cours
+                Actions en attente
               </dt>
               <dd>
                 <div class="text-lg font-medium text-gray-900 dark:text-white">8</div>
@@ -51,7 +63,7 @@
       <div class="bg-gray-50 dark:bg-gray-700 px-5 py-3">
         <div class="text-sm">
           <a href="#" class="font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300">
-            Voir toutes les tâches
+            Voir les rapports
           </a>
         </div>
       </div>
@@ -79,7 +91,7 @@
       <div class="bg-gray-50 dark:bg-gray-700 px-5 py-3">
         <div class="text-sm">
           <a href="#" class="font-medium text-green-600 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300">
-            Voir toutes les cultures
+            Voir les rapports
           </a>
         </div>
       </div>
@@ -95,7 +107,7 @@
           <div class="ml-5 w-0 flex-1">
             <dl>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                Espaces de culture
+                Total des espaces
               </dt>
               <dd>
                 <div class="text-lg font-medium text-gray-900 dark:text-white">5</div>
@@ -107,7 +119,7 @@
       <div class="bg-gray-50 dark:bg-gray-700 px-5 py-3">
         <div class="text-sm">
           <a href="#" class="font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300">
-            Voir tous les espaces
+            Voir les rapports
           </a>
         </div>
       </div>
@@ -123,7 +135,7 @@
           <div class="ml-5 w-0 flex-1">
             <dl>
               <dt class="text-sm font-medium text-gray-500 dark:text-gray-400 truncate">
-                Prochaines récoltes
+                Tâches à venir
               </dt>
               <dd>
                 <div class="text-lg font-medium text-gray-900 dark:text-white">3</div>
@@ -147,7 +159,9 @@
     <!-- Graphique 1 - Évolution des cultures -->
     <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-4">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-medium text-gray-900 dark:text-white">Progression des cultures</h2>
+        <h2 class="text-lg font-medium text-gray-900 dark:text-white">
+          Statistiques
+        </h2>
         <div class="flex items-center">
           <button class="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
             <span class="material-symbols-outlined">more_vert</span>
@@ -157,7 +171,9 @@
       <div class="h-72 bg-gray-100 dark:bg-gray-700 rounded flex items-center justify-center">
         <div class="text-center">
           <span class="material-symbols-outlined text-4xl text-gray-400 dark:text-gray-500 mb-2">insert_chart</span>
-          <p class="text-gray-500 dark:text-gray-400">Graphique d'évolution des cultures</p>
+          <p class="text-gray-500 dark:text-gray-400">
+            Statistiques
+          </p>
         </div>
       </div>
     </div>
@@ -165,7 +181,9 @@
     <!-- Graphique 2 - Météo et prévisions -->
     <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-4">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-medium text-gray-900 dark:text-white">Météo et prévisions</h2>
+        <h2 class="text-lg font-medium text-gray-900 dark:text-white">
+          Météo
+        </h2>
         <div class="flex items-center">
           <button class="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
             <span class="material-symbols-outlined">more_vert</span>
@@ -178,12 +196,20 @@
             <span class="material-symbols-outlined text-yellow-500 text-4xl mr-3">wb_sunny</span>
             <div>
               <div class="text-3xl font-bold text-gray-900 dark:text-white">23°C</div>
-              <div class="text-sm text-gray-500 dark:text-gray-400">Ensoleillé</div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">
+                Ensoleillé
+              </div>
             </div>
             <div class="ml-auto text-right">
-              <div class="text-sm font-medium text-gray-900 dark:text-white">Aujourd'hui</div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">Humidité: 45%</div>
-              <div class="text-xs text-gray-500 dark:text-gray-400">Vent: 10 km/h</div>
+              <div class="text-sm font-medium text-gray-900 dark:text-white">
+                Météo
+              </div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">
+                Humidité: 45%
+              </div>
+              <div class="text-xs text-gray-500 dark:text-gray-400">
+                Vent: 10 km/h
+              </div>
             </div>
           </div>
           
@@ -216,8 +242,12 @@
           </div>
           
           <div class="mt-4 p-3 bg-blue-50 dark:bg-blue-900 rounded">
-            <div class="text-sm font-medium text-blue-800 dark:text-blue-200">Alerte météo</div>
-            <div class="text-xs text-blue-700 dark:text-blue-300">Prévision de pluie jeudi: 15mm. Pensez à ajuster vos arrosages.</div>
+            <div class="text-sm font-medium text-blue-800 dark:text-blue-200">
+              Alertes
+            </div>
+            <div class="text-xs text-blue-700 dark:text-blue-300">
+              Prévisions de pluie pour jeudi. Pensez à planifier vos activités en conséquence.
+            </div>
           </div>
         </div>
       </div>
@@ -229,7 +259,9 @@
     <!-- Activités récentes -->
     <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-4">
       <div class="flex items-center justify-between mb-4">
-        <h2 class="text-lg font-medium text-gray-900 dark:text-white">Activités récentes</h2>
+        <h2 class="text-lg font-medium text-gray-900 dark:text-white">
+          Activités récentes
+        </h2>
         <button class="text-sm font-medium text-green-600 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300">
           Voir tout
         </button>
@@ -243,70 +275,10 @@
           </div>
           <div class="ml-4">
             <div class="text-sm font-medium text-gray-900 dark:text-white">
-              Arrosage terminé
+              Activités récentes
             </div>
             <div class="text-sm text-gray-500 dark:text-gray-400">
-              Serre principale - Tomates
-            </div>
-            <div class="text-xs text-gray-400 dark:text-gray-500 mt-1">
-              Il y a 2 heures
-            </div>
-          </div>
-        </div>
-        
-        <div class="flex">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-8 w-8 rounded-full bg-blue-100 dark:bg-blue-900">
-              <span class="material-symbols-outlined text-sm text-blue-600 dark:text-blue-400">water_drop</span>
-            </div>
-          </div>
-          <div class="ml-4">
-            <div class="text-sm font-medium text-gray-900 dark:text-white">
-              Irrigation automatique déclenchée
-            </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400">
-              Potager Est
-            </div>
-            <div class="text-xs text-gray-400 dark:text-gray-500 mt-1">
-              Il y a 5 heures
-            </div>
-          </div>
-        </div>
-        
-        <div class="flex">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-8 w-8 rounded-full bg-yellow-100 dark:bg-yellow-900">
-              <span class="material-symbols-outlined text-sm text-yellow-600 dark:text-yellow-400">warning</span>
-            </div>
-          </div>
-          <div class="ml-4">
-            <div class="text-sm font-medium text-gray-900 dark:text-white">
-              Alerte niveau d'eau bas
-            </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400">
-              Réservoir principal
-            </div>
-            <div class="text-xs text-gray-400 dark:text-gray-500 mt-1">
-              Hier, 17:30
-            </div>
-          </div>
-        </div>
-        
-        <div class="flex">
-          <div class="flex-shrink-0">
-            <div class="flex items-center justify-center h-8 w-8 rounded-full bg-purple-100 dark:bg-purple-900">
-              <span class="material-symbols-outlined text-sm text-purple-600 dark:text-purple-400">add_task</span>
-            </div>
-          </div>
-          <div class="ml-4">
-            <div class="text-sm font-medium text-gray-900 dark:text-white">
-              Nouvelle tâche créée
-            </div>
-            <div class="text-sm text-gray-500 dark:text-gray-400">
-              Plantation de carottes
-            </div>
-            <div class="text-xs text-gray-400 dark:text-gray-500 mt-1">
-              Hier, 10:15
+              Aucune activité récente à afficher
             </div>
           </div>
         </div>

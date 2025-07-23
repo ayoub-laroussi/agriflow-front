@@ -1,6 +1,5 @@
 <script lang="ts">
   import { createEventDispatcher, onMount } from 'svelte';
-  import LanguageSwitcher from '../ui/LanguageSwitcher.svelte';
   import LogoutButton from '../layout/LogoutButton.svelte';
   
   const dispatch = createEventDispatcher();
@@ -135,11 +134,6 @@
       
       <!-- Actions de droite -->
       <div class="flex items-center space-x-4">
-        <!-- Sélecteur de langue -->
-        <div class="hidden md:flex">
-          <LanguageSwitcher availableLanguages={['fr', 'en']} />
-        </div>
-        
         <!-- Notifications -->
         <div class="relative">
           <button

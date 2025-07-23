@@ -1,5 +1,5 @@
 ---
-const { t } = Astro.locals;
+// Supprimer la référence à i18n
 ---
 
 <section id="contact" class="py-20 bg-primary text-white">
@@ -8,17 +8,17 @@ const { t } = Astro.locals;
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
                 <div class="md:w-1/2">
                     <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                        {t('cta.title')}
+                        Prêt à transformer votre gestion agricole ?
                     </h2>
                     <p class="text-xl opacity-90 mb-8">
-                        {t('cta.description')}
+                        Rejoignez des milliers d'agriculteurs qui ont déjà optimisé leur production grâce à AgriFlow. Commencez dès aujourd'hui !
                     </p>
                     <div class="flex flex-wrap gap-4">
                         <a href="/auth/register" class="inline-block py-3 px-8 rounded-full bg-white text-primary font-semibold transition-colors hover:bg-light">
-                            {t('cta.button_primary')}
+                            Créer un compte
                         </a>
                         <a href="#demo" class="inline-block py-3 px-8 rounded-full border border-white text-white font-semibold hover:bg-white hover:text-primary transition-all">
-                            {t('cta.button_secondary')}
+                            Voir la démo
                         </a>
                     </div>
                 </div>
